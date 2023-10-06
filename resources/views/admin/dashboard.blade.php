@@ -108,8 +108,7 @@
                             <span class="text-sm text-gray-600">admin</span>
                         </div>
                         <span class="h-12 w-12 ml-2 sm:ml-3 mr-2 bg-gray-100 rounded-full overflow-hidden">
-                            <img src="" alt="user profile photo"
-                                class="h-full w-full object-cover">
+                            <img src="" alt="user profile photo" class="h-full w-full object-cover">
                         </span>
                         <svg aria-hidden="true" viewBox="0 0 20 20" fill="currentColor"
                             class="hidden sm:block h-6 w-6 text-gray-300">
@@ -119,21 +118,21 @@
                         </svg>
                     </button>
                     <div class="border-l pl-3 ml-3 space-x-1">
-                        
+
                         <form action="{{ route('logout') }}" method="POST" class="d-flex" role="search">
-                          @csrf
-                          @method('DELETE')
-                          <button
-                            class="relative p-2 text-gray-400 hover:bg-gray-100 hover:text-gray-600 focus:bg-gray-100 focus:text-gray-600 rounded-full">
-                            <span class="sr-only">Log out</span>
-                            <svg aria-hidden="true" fill="none" viewBox="0 0 24 24" stroke="currentColor"
-                                class="h-6 w-6">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                    d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1" />
-                            </svg>
-                        </button>
+                            @csrf
+                            @method('DELETE')
+                            <button
+                                class="relative p-2 text-gray-400 hover:bg-gray-100 hover:text-gray-600 focus:bg-gray-100 focus:text-gray-600 rounded-full">
+                                <span class="sr-only">Log out</span>
+                                <svg aria-hidden="true" fill="none" viewBox="0 0 24 24" stroke="currentColor"
+                                    class="h-6 w-6">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1" />
+                                </svg>
+                            </button>
                         </form>
-                        
+
                     </div>
                 </div>
             </header>
@@ -153,15 +152,15 @@
                             </svg>
                             Manage dashboard
                         </button>
-                        <form action="" method="post">
+                        <form action="{{route('mapel.index')}}" method="get">
                             <button
-                                class="inline-flex px-5 py-3 text-white bg-purple-600 hover:bg-purple-700 focus:bg-purple-700 rounded-md ml-6 mb-3">
+                                class="inline-flex px-5 py-3 text-white bg-purple-600 hover:bg-purple-700 rounded-md ml-6 mb-3">
                                 <svg aria-hidden="true" fill="none" viewBox="0 0 24 24" stroke="currentColor"
                                     class="flex-shrink-0 h-6 w-6 text-white -ml-1 mr-2">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                         d="M12 6v6m0 0v6m0-6h6m-6 0H6" />
                                 </svg>
-                                Create new dashboard
+                                Index
                             </button>
                         </form>
                     </div>
@@ -231,5 +230,3 @@
 </body>
 
 </html>
-
-

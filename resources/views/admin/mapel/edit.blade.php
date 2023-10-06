@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Create judul</title>
+    <title>edit judul</title>
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
 
@@ -15,9 +15,10 @@
 
         <h1 class="text-xl font-bold text-white capitalize">Create judul form</h1>
 
-        <form action="{{ route('mapel.store') }}" method="post" enctype="multipart/form-data">
+        <form action="{{ route('mapel.update', $mapel->id ) }}" method="post" enctype="multipart/form-data">
 
             @csrf
+            @method('PUT')
 
             <div class="grid grid-cols-1 gap-6 mt-4 sm:grid-cols-2">
 
@@ -39,7 +40,7 @@
                     </label>
                     <input
                         class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 cursor-pointer"
-                        name="image" id="image" type="file" required>
+                        name="image" id="image" type="file">
                 </div>
 
             </div>
