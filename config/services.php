@@ -31,4 +31,10 @@ return [
         'region' => env('AWS_DEFAULT_REGION', 'us-east-1'),
     ],
 
+    'google' => [
+        'client_id' => env('GOOGLE  _CLIENT_ID'),
+        'client_secret' => env('GOOGLE  _CLIENT_SECRET'),
+        'redirect' => 'http://example.com/callback-url',
+    ],
+
 ];

@@ -15,6 +15,7 @@ class MapelController extends Controller
     {
         $mapels = Mapel::latest()->paginate(5);
         return view('admin.mapel.index', compact('mapels'));
+        
     }
 
     /**
@@ -110,6 +111,8 @@ class MapelController extends Controller
      */
     public function destroy(Mapel $mapel)
     {
-        
+        Storage::delete('public/mapels/', $mapel->image);
+        $mapel->delete();
+        return redirect()->route('mapel.index')-> with(['successsss' => 'Data sudah dihapus']);
     }
 }

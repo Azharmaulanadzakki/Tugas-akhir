@@ -11,10 +11,8 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('mapels', function (Blueprint $table) {
-            $table->id();
-            $table->string('judul_mapel');
-            $table->timestamps();
+        Schema::table('users', function (Blueprint $table) {
+            $table->string('profile_image')->nullable();
         });
     }
 
@@ -23,6 +21,8 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('mapels');
+        Schema::table('users', function (Blueprint $table) {
+            $table->dropColumn('profile_image');
+        });
     }
 };

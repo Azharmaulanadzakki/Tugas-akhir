@@ -11,7 +11,7 @@ class AuthController extends Controller
 {
     public function register()
     {
-        return view('register');
+        return view('auth.register');
     }
  
     public function registerPost(Request $request)
@@ -29,7 +29,7 @@ class AuthController extends Controller
  
     public function login()
     {
-        return view('login');
+        return view('auth.login');
     }
  
     public function loginPost(Request $request)
@@ -55,7 +55,7 @@ class AuthController extends Controller
     {
         Auth::logout();
  
-        return redirect()->route('login');
+        return redirect()->route('welcome');
     }
 
     public function authenticated($user){
