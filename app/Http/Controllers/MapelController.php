@@ -3,7 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\Mapel;
-use Illuminate\Http\Request;
+use Illuminate\Http\Request;                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
 
 class MapelController extends Controller
@@ -13,7 +14,7 @@ class MapelController extends Controller
      */
     public function index()
     {
-        $mapels = Mapel::latest()->paginate(5);
+        $mapels = DB::table('mapels')->paginate(5);
         return view('admin.mapel.index', compact('mapels'));
         
     }

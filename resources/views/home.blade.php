@@ -31,13 +31,17 @@
                     Prototyping, dan Quiz UI/UX untuk pemula.
                 </div>
 
+                <div>
+                    
+                </div>
+
             </div>
 
             <div class="col-span-1 ">
                 <img class="rounded-xl" src="https://i.pinimg.com/736x/8a/ed/3b/8aed3badcde62dcd68780e1be562611c.jpg"
                     alt="">
             </div>
-
+            
         </div>
 
     </header>
@@ -103,17 +107,6 @@
                     </div>
                 </div>
             </div>
-        </div>
-    </section>
-
-    <!-- Call to Action Section -->
-    <section class="bg-blue-800 text-white py-16">
-        <div class="container mx-auto text-center">
-            <h2 class="text-3xl font-bold">Siap Untuk Memulai?</h2>
-            <p class="mt-4 text-lg">Gabunglah dalam kursus kami dan tingkatkan keterampilan UI/UX Anda!</p>
-            <a href="#"
-                class="mt-8 inline-block bg-white text-blue-800 hover:bg-white hover:text-blue-800 py-2 px-6 rounded-full text-lg font-semibold transition duration-300">Daftar
-                Sekarang</a>
         </div>
     </section>
 

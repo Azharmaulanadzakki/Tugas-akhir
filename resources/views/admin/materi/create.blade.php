@@ -4,9 +4,51 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
+    <title>Create materi</title>
+    @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
 <body>
-    wfwwg3
+     <!-- component -->
+     <section class="max-w-4xl p-6 mx-auto bg-gray-800 rounded-md shadow-md my-5">
+
+        <h1 class="text-xl font-bold text-white capitalize">Create materi form</h1>
+
+        <form action="{{ route('materi.store') }}" method="post" enctype="multipart/form-data">
+
+            @csrf
+
+            <div class="grid grid-cols-1 gap-6 mt-4 sm:grid-cols-2">
+
+                <div>
+                    <label class="text-white" for="judul">Judul Materi</label>
+                    <input id="judul" type="text" name="judul" required
+                        class="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-300 rounded-md  focus:outline-none focus:ring">
+                </div>
+
+                <div>
+                    <label class="block text-sm font-medium text-white mt-1" for="gif">
+                        Gif materi
+                    </label>
+                    <input
+                    class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 cursor-pointer"
+                    name="gif" id="gif" type="file" required>
+                </div>
+                
+                <div>
+                    <label class="text-white mt-2 " for="isi">Isi</label>
+                    <input id="isi" type="text" name="isi" required
+                        class="block w-full h-60 px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-300 rounded-md focus:border-blue-500 focus:outline-none focus:ring">
+                </div>
+            </div>
+
+            <div class="flex justify-end mt-6">
+                <button
+                type="submit"
+                class="font-semibold px-6 py-2 leading-5 text-gray-900 transition-colors duration-200 transform bg-white rounded-md hover:bg-gray-300 focus:outline-none focus:bg-gray-300">Create</button>
+            </div>
+
+        </form>
+
+    </section>
 </body>
 </html>

@@ -1,22 +1,21 @@
 <?php
 
-namespace Database\Seeders;
-
-use App\Models\User;
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
+use App\Models\User;
+use Faker\Factory as Faker;
 
 class UserSeeder extends Seeder
 {
-    /**
-     * Run the database seeds.
-     */
-    public function run(): void
+    public function run()
     {
-        User::create([
-            'name'      => 'Azhar Maulana Dzakki',
-            'email'     => 'azhar@gmail.com',
-            'password'  => bcrypt('123'),
-        ]);
+        $faker = Faker::create();
+
+        for ($i = 0; $i < 10; $i++) { // Ganti 10 dengan jumlah pengguna yang Anda inginkan
+            User::create([
+                'name' => $faker->name,
+                'email' => $faker->unique()->safeEmail,
+                'password' => bcrypt('password123'), // Ganti dengan kata sandi yang Anda inginkan
+            ]);
+        }
     }
 }

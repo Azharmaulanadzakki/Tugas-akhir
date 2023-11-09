@@ -33,7 +33,7 @@ class MateriController extends Controller
         $this->validate($request, [
             'judul'     =>  'required|',
             'isi'       =>  'required|',
-            'gif'       =>  'required|image|mimes:gif',
+            'gif'       =>  'required|image',
         ]);
 
         //upload image
@@ -74,7 +74,7 @@ class MateriController extends Controller
         $this->validate($request, [
             'judul'     =>  'required|',
             'isi'       =>  'required|',
-            'gif'       =>  'required|image|mimes:gif',
+            'gif'       =>  'required|image',
         ]);
 
         //untuk menyimpan gambar yang ada

@@ -38,7 +38,7 @@
             <main class="p-6 sm:p-10 space-y-2">
                 <div class="flex flex-col space-y-6 md:space-y-0 md:flex-row justify-between">
                     <div class="mr-6">
-                        <h1 class="text-4xl font-semibold mb-2">Data Mapel</h1>
+                        <h1 class="text-4xl font-semibold mb-2">Data User</h1>
                         <h2 class="text-gray-600 ml-0.5">Learn With Azhar UI/UX Course</h2>
                     </div>
                 </div>

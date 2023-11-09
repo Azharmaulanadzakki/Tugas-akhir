@@ -41,7 +41,7 @@
                         <h1 class="text-4xl font-semibold mb-2">Dashboard</h1>
                         <h2 class="text-gray-600 ml-0.5">Learn With Azhar UI/UX Course</h2>
                     </div>
-                    <div class="flex flex-wrap items-start justify-end -mb-3">
+                    {{-- <div class="flex flex-wrap items-start justify-end -mb-3">
                         <form action="{{ route('mapel.index') }}" method="get">
                             <button
                                 class="inline-flex px-5 py-3 text-white bg-purple-600 hover:bg-purple-700 rounded-md ml-6 mb-3">
@@ -53,7 +53,7 @@
                                 Index
                             </button>
                         </form>
-                    </div>
+                    </div> --}}
                 </div>
                 <section class="grid md:grid-cols-2 xl:grid-cols-4 gap-6">
                     <div class="flex items-center p-8 bg-white shadow rounded-lg">

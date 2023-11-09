@@ -25,7 +25,8 @@ Route::group(['middleware' => 'auth'], function () {
 });
 
 Route::middleware(['auth', 'checkUserRole:admin'])->group(function () {
-    Route::get('/admin/dashboard', [AdminController::class, 'index']);
+    Route::get('/admin/dashboard', [AdminController::class, 'index'])->name('admin.dashboard');
     Route::resource('/admin/mapel', \App\Http\Controllers\MapelController::class);
+    Route::resource('/admin/materi', \App\Http\Controllers\MateriController::class);
     Route::resource('/admin/user', \App\Http\Controllers\UserController::class);
 });

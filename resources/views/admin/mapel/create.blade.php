@@ -45,9 +45,8 @@
             </div>
 
             <div class="flex justify-end mt-6">
-                <button
-                type="submit"
-                class="font-semibold px-6 py-2 leading-5 text-gray-900 transition-colors duration-200 transform bg-white rounded-md hover:bg-gray-300 focus:outline-none focus:bg-gray-300">Create</button>
+                <button type="submit"
+                    class="font-semibold px-6 py-2 leading-5 text-gray-900 transition-colors duration-200 transform bg-white rounded-md hover:bg-gray-300 focus:outline-none focus:bg-gray-300">Create</button>
             </div>
 
         </form>

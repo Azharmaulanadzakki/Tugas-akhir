@@ -19,4 +19,7 @@ class AdminController extends Controller
             'mapelCount' => $mapelCount,
         ]);
     }
+    public function dashboard() {
+        return view('admin.dashboard');
+    }
 }
