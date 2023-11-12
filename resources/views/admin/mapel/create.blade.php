@@ -29,7 +29,7 @@
 
                 <div>
                     <label class="text-white " for="harga">Harga</label>
-                    <input id="harga" type="text" name="harga" required
+                    <input id="harga" type="number" min="0" name="harga" required
                         class="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-300 rounded-md focus:border-blue-500 focus:outline-none focus:ring">
                 </div>
 
