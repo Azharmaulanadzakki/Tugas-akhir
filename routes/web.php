@@ -7,8 +7,6 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\HomeController;
 
 
-
-
 Route::group(['middleware' => 'guest'], function () {
     Route::get('/', function () {
         return view('welcome');
