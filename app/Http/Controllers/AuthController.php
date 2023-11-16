@@ -6,6 +6,7 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use RealRashid\SweetAlert\Facades\Alert;
 
 class AuthController extends Controller
 {
@@ -23,8 +24,8 @@ class AuthController extends Controller
         $user->password = Hash::make($request->password);
  
         $user->save();
- 
-        return redirect('login')->with('success', 'Register successfully');
+        Alert::success('Register berhasil');
+        return redirect('login');
     }
  
     public function login()
@@ -42,13 +43,14 @@ class AuthController extends Controller
         if (Auth::attempt($credetials)) {
             $user = Auth::user();
             if ($user->role == 'admin') {
-                return redirect('/admin/dashboard')->with('success', 'Login Success');
+                Alert::success('Login berhasil');
+                return redirect('/admin/dashboard');
             } elseif ($user->role == 'user') {
-                return redirect('/home')->with('success', 'Login Success');
+                return redirect('/login');
             }
         }
- 
-        return back()->with('error', 'Error Email or Password');
+        Alert::error('Email atau Password salah!');
+        return back();
     }
  
     public function logout()

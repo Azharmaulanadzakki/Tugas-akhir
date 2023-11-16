@@ -7,9 +7,12 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     @vite(['resources/css/app.css', 'resources/js/app.js'])
     <title>Login Page</title>
+    
 </head>
 
 <body>
+    @include('sweetalert::alert')
+
     <div class="min-w-screen min-h-screen bg-gray-900 flex items-center justify-center px-5 py-5">
         <div class="bg-gray-100 text-gray-500 rounded-3xl shadow-xl w-full overflow-hidden" style="max-width:1000px">
             <div class="md:flex w-full">
@@ -143,21 +146,3 @@
 </body>
 
 </html>
-
-
-{{-- <form action="{{ route('login') }}" method="POST">
-    @csrf
-    <div class="mb-3">
-        <label for="email" class="form-label">Email address</label>
-        <input type="email" name="email" class="form-control" id="email" placeholder="name@example.com" required>
-    </div>
-    <div class="mb-3">
-        <label for="password" class="form-label">Password</label>
-        <input type="password" name="password" class="form-control" id="password" required>
-    </div>
-    <div class="mb-3">
-        <div class="d-grid">
-            <button class="btn btn-primary">Login</button>
-        </div>
-    </div>
-</form> --}}
