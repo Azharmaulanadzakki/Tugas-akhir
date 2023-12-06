@@ -42,10 +42,10 @@ class MapelController extends Controller
     public function store(Request $request)
     {
         $this->validate($request, [
-            'image'     =>  'required|image|mimes:jpeg,jpg,png|',
-            'judul'     =>  'required|',
-            'description'     =>  'required|',
-            'harga'     =>  'required|',
+            'image'         =>  'required|image|mimes:jpeg,jpg,png|max:10000',
+            'judul'         =>  'required|',
+            'description'   =>  'required|',
+            'harga'         =>  'required|',
         ]);
 
         //upload image
