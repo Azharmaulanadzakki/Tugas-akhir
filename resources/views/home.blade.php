@@ -83,7 +83,7 @@
             {{-- untuk card --}}
             <section class="mx-11 my-6"> 
                 {{-- grid --}}
-                <div class="owl-carousel  flex-nowrap grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-4">
+                <div class="owl-carousel grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-4">
                     {{-- card --}} 
                     @foreach ($mapels as $mapel)
                         <div class="rounded-xl shadow-lg">
