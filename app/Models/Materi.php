@@ -2,8 +2,9 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
+use App\Models\Mapel;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Materi extends Model
 {
@@ -14,5 +15,10 @@ class Materi extends Model
         'isi',
         'gif',
     ];
+
+    public function Mapel()
+    {
+        return $this->belongsTo(Mapel::class, 'parent_id');
+    }
 }
 

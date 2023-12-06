@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Storage;
 
 class UserController extends Controller
@@ -11,9 +12,17 @@ class UserController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
-        $users = User::latest()->paginate(5);
+        $search = $request->input('search');
+
+        $users = User::when($search, function ($query) use ($search) {
+            return $query->where('name', 'like', '%' . $search . '%')
+                ->orWhere('email', 'like', '%' . $search . '%');
+        })
+            ->latest()
+            ->paginate(5);
+
         return view('admin.user.index', compact('users'));
     }
 
@@ -22,7 +31,7 @@ class UserController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.user.create');
     }
 
     /**
@@ -30,7 +39,38 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'name' => 'required|string|max:255',
+            'email' => 'required|string|email|max:255|unique:users',
+            'password' => 'required|string', // Sesuaikan aturan keamanan password
+            'profile_image' => 'nullable|image|mimes:jpeg,png,jpg,gif', // Maksimal 2MB
+            'role' => 'required',
+        ]);
+
+        // Periksa apakah peran yang dimasukkan adalah sah
+        $validRoles = ['admin', 'user'];
+        if (!in_array($request->role, $validRoles)) {
+            return redirect()->back()->with('error', 'Peran yang dimasukkan tidak valid.');
+        }
+
+        // Upload gambar profil jika ada
+        $imageName = null;
+        if ($request->hasFile('profile_image')) {
+            $profileImage = $request->file('profile_image');
+            $imageName = time() . '.' . $profileImage->extension();
+            $profileImage->storeAs('public/profile_images', $imageName);
+        }
+
+        // Simpan pengguna baru ke dalam database
+        User::create([
+            'name' => $request->name,
+            'email' => $request->email,
+            'password' => Hash::make($request->password),
+            'profile_image' => $imageName,
+            'role' => $request->role,
+        ]);
+
+        return redirect()->route('user.index')->with(['success' => "Data Pengguna Baru Berhasil Ditambahkan!"]);
     }
 
     /**
@@ -54,11 +94,11 @@ class UserController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        $this->validate($request, [
-            'name'      =>  'required|',
-            'email'     => 'required|string|email|max:255|unique:users,email,' . auth()->id(),
-            'profile_image'     =>  'nullable|image|mimes:jpeg,jpg,png|max:2048',
-            'role'      =>  'required|',
+        $request->validate([
+            'name' => 'string|max:255',
+            'email' => 'string|email|max:255|unique:users,email,' . auth()->id(),
+            'profile_image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048', // Maksimal 2MB
+            'role' => '',
         ]);
 
         // Periksa apakah peran yang diubah adalah sah
@@ -67,28 +107,34 @@ class UserController extends Controller
             return redirect()->back()->with('error', 'Peran yang dimasukkan tidak valid.');
         }
 
-        // Periksa apakah peran yang diubah sama dengan peran awal
+        // Temukan pengguna yang ingin diubah
         $user = User::find($id);
-        if ($user->role === $request->role) {
-            return redirect()->back()->with('warning', 'Peran tidak berubah.');
-        }
 
-        // Simpan perubahan peran ke database jika validasi melewati semua pemeriksaan
-        $user->role = $request->role;
-        $user->save();
+        // Update atribut pengguna jika diperlukan
+        if ($user) {
+            $user->name = $request->name;
+            $user->email = $request->email;
+            $user->role = $request->role;
 
-        if ($request->hasFile('profile_image')) {
-            // Jika pengguna mengunggah gambar profil baru, simpan gambar tersebut
-            $profileImage = $request->file('profile_image');
-            $imageName = time() . '.' . $profileImage->extension();
-            $profileImage->storeAs('profile_images', $imageName, 'public');
+            if ($request->hasFile('profile_image')) {
+                // Hapus gambar lama jika ada
+                if ($user->profile_image) {
+                    Storage::delete('public/profile_images/' . $user->profile_image);
+                }
 
-            // Simpan nama gambar di dalam kolom 'profile_image' di tabel pengguna
-            $user->profile_image = $imageName;
+                // Upload gambar profil yang baru
+                $profileImage = $request->file('profile_image');
+                $imageName = time() . '.' . $profileImage->extension();
+                $profileImage->storeAs('public/profile_images', $imageName);
+                $user->profile_image = $imageName;
+            }
+
             $user->save();
-        }
 
-        return redirect()->route('user.index')->with(['success' => "Data Berhasil di Update!"]);
+            return redirect()->route('user.index')->with(['success' => "Data Berhasil di Update!"]);
+        } else {
+            return redirect()->route('user.index')->with(['error' => "Pengguna tidak ditemukan."]);
+        }
     }
 
     /**
@@ -96,6 +142,22 @@ class UserController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        // Temukan pengguna yang ingin dihapus
+        $user = User::find($id);
+
+        // Periksa apakah pengguna ditemukan
+        if ($user) {
+            // Hapus gambar profil jika ada
+            if ($user->profile_image) {
+                Storage::delete('public/profile_images/' . $user->profile_image);
+            }
+
+            // Hapus pengguna dari database
+            $user->delete();
+
+            return redirect()->route('user.index')->with(['success' => "Data Pengguna Berhasil di Hapus!"]);
+        } else {
+            return redirect()->route('user.index')->with(['error' => "Pengguna tidak ditemukan."]);
+        }
     }
 }

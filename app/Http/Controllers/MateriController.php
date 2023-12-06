@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Mapel;
 use App\Models\Materi;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
@@ -13,8 +14,8 @@ class MateriController extends Controller
      */
     public function index()
     {
-            $materis = Materi::latest()->paginate(5);
-            return view('admin.materi.index', compact('materis'));
+        $materis = Materi::with('mapel')->latest()->paginate(5);
+        return view('admin.materi.index', compact('materis'));
     }
 
     /**
@@ -22,7 +23,8 @@ class MateriController extends Controller
      */
     public function create()
     {
-        return view('admin.materi.create');
+        $parents = Mapel::with('materi')->get();
+        return view('admin.materi.create', compact('parents'));
     }
 
     /**
@@ -34,18 +36,27 @@ class MateriController extends Controller
             'judul'     =>  'required|',
             'isi'       =>  'required|',
             'gif'       =>  'required|image',
+            'parent_id' =>  'nullable'
         ]);
 
         //upload image
         $gif = $request->file('gif');
         $gif->storeAs('public/mapels', $gif->hashName());
 
-        //create post
+
         Materi::create([
             'judul'     => $request->judul,
             'isi'       => $request->isi,
             'gif'       => $gif->hashName(),
+            'parent_id' => $request->input('parent_id'),
         ]);
+
+        if ($request->input('parent_id')) {
+            $activeParent = Materi::find($request->input('parent_id'));
+            if ($activeParent) {
+                $activeParent->update(['active' => true]);
+            }
+        }
 
         return redirect()->route('materi.index');
     }
@@ -55,7 +66,6 @@ class MateriController extends Controller
      */
     public function show(Materi $materi)
     {
-        
     }
 
     /**
@@ -82,7 +92,7 @@ class MateriController extends Controller
 
         if ($request->hasFile('gif')) {
             $gif = $request->file('gif');
-            $gif ->storeAs('public/materis', $gif->hashName());
+            $gif->storeAs('public/materis', $gif->hashName());
 
             //hapus gambar lama
             if ($existingGif) {
@@ -112,6 +122,6 @@ class MateriController extends Controller
     {
         Storage::delete('public/materis/', $materi->gif);
         $materi->delete();
-        return redirect()->route('materi.index')-> with(['successsss' => 'Data sudah dihapus']);
+        return redirect()->route('materi.index')->with(['successsss' => 'Data sudah dihapus']);
     }
 }

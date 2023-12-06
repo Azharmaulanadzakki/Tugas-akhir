@@ -1,117 +1,107 @@
-<!DOCTYPE html>
-<html lang="en">
+@extends('layout.app')
+@section('content')
+<style>
+    #table-slider {
+    display: flex;
+    overflow-x: auto;
+    padding: 1rem;
+}
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    @vite(['resources/css/app.css', 'resources/js/app.js'])
-    <link rel="icon" href="https://i.pinimg.com/564x/9d/22/b9/9d22b9dc4f4eff27b3c1960d61b12e28.jpg" type="image/x-icon">
-    <title>Landing Page </title>
-</head>
+.slider-card {
+    flex: 0 0 auto;
+    width: 300px;
+    margin-right: 1rem;
+}
+</style>
+    <body class="bg-gray-100 antialiased">
 
-<body class="bg-gray-100">
+        @include('components.navbar-user')
 
-    @include('components.navbar')
+        <!-- Hero Section -->
+        <header class="text-gray-800 py-10 px-4 sm:px-8 md:px-16 lg:px-24 ">
 
-    <!-- Hero Section -->
-    <header class="text-gray-800 py-16 px-4 sm:px-8 md:px-16 lg:px-32">
-
-        <div class="grid grid-cols-2">
-
-
-            <div class="col-span-1 container mx-auto text-center">
-                <div class="text-[#55c097] text-lg font-bold text-left">#SemangatCogg</div>
-                <h1
-                    class="text-3xl sm:text-4xl md:text-5xl lg:text-5xl mt-5 font-bold leading-tight text-left w-[30rem]">
-                    Hai user
-                </h1>
-                <div class="text-gray-400 text-lg text-left mt-5 w-[25rem]">LearnWithAzhar menyediakan kelas UI/UX
-                    design,
-                    Prototyping, dan Quiz UI/UX untuk pemula.
+            <div class="grid grid-cols-2">
+                <div class="col-span-1 container mx-auto text-center">
+                    <div class="text-[#55c097] text-lg font-bold text-left">#DreamComeTrue</div>
+                    <h1
+                        class="text-3xl sm:text-4xl md:text-5xl lg:text-5xl mt-5 font-bold leading-tight text-left w-[30rem]">
+                        Hello {{ Auth::user()->name }}
+                    </h1>
+                    <div class="text-gray-400 text-lg text-left mt-5 w-[25rem]">LearnWithAzhar menyediakan kelas UI/UX
+                        design,
+                        Prototyping, dan Quiz UI/UX untuk pemula.
+                    </div>
                 </div>
-
-                <div>
-                    
-                </div>
-
             </div>
 
-            <div class="col-span-1 ">
-                <img class="rounded-xl" src="https://i.pinimg.com/736x/8a/ed/3b/8aed3badcde62dcd68780e1be562611c.jpg"
-                    alt="">
+        </header>
+
+        
+        <!-- Features Section -->
+        <section class="mx-20">
+            
+            <div class="container mx-auto py-16 px-4">
+                <h1 class="text-4xl font-semibold mb-8 text-center">Discover a most popular Online Course</h1>
+                <div class="flex items-center justify-center">
+                    <form action="{{ route('home.index') }}" method="GET">
+                        <div
+                            class="mx-auto relative bg-white min-w-sm max-w-2xl flex flex-col md:flex-row items-center justify-center border py-2 px-2 rounded-2xl gap-2 shadow-2xl focus-within:border-gray-300">
+                            <input type="text" name="search" value="{{ $search }}" placeholder="Search course"
+                                class="px-6 py-2 w-full rounded-md flex-1 outline-none bg-white">
+                            <button type="submit"
+                                class="w-full md:w-auto px-6 py-3 bg-black border-black text-white fill-white active:scale-110 duration-300 border will-change-transform overflow-hidden relative rounded-xl transition-all disabled:opacity-70">
+    
+                                <div class="relative">
+    
+                                    <!-- Loading animation change opacity to display -->
+                                    <div
+                                        class="flex items-center justify-center h-3 w-3 absolute inset-1/2 -translate-x-1/2 -translate-y-1/2 transition-all">
+                                        <svg class="opacity-0 animate-spin w-full h-full" xmlns="http://www.w3.org/2000/svg"
+                                            fill="none" viewBox="0 0 24 24">
+                                            <circle class="opacity-25" cx="12" cy="12" r="10"
+                                                stroke="currentColor" stroke-width="4"></circle>
+                                            <path class="opacity-75" fill="currentColor"
+                                                d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z">
+                                            </path>
+                                        </svg>
+                                    </div>
+    
+                                    <div class="flex items-center transition-all opacity-1 valid:"><span
+                                            class="text-sm font-semibold whitespace-nowrap truncate mx-auto">
+                                            Search
+                                        </span>
+                                    </div>
+    
+                                </div>
+    
+                            </button>
+                        </div>
+                    </form>
+                </div>
             </div>
             
-        </div>
-
-    </header>
-
-    <!-- Features Section -->
-    <section class="py-16">
-        <div class="container mx-auto text-center">
-            <h2 class="text-3xl font-bold">Apa yang Anda Pelajari?</h2>
-            <p class="mt-4 text-lg text-gray-600">Pelajari keterampilan yang dibutuhkan untuk merancang antarmuka
-                pengguna yang menarik dan efektif.</p>
-
-            <div class="flex flex-wrap justify-center mt-12">
-                <div class="w-full sm:w-1/2 md:w-1/3 lg:w-1/4 p-4">
-                    <div class="bg-white rounded-lg p-6">
-                        <svg class="w-12 h-12 mx-auto text-blue-500" fill="none" stroke="currentColor"
-                            viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                d="M21 21a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h9" />
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
-                        </svg>
-                        <h3 class="text-xl font-semibold mt-4">Desain Antarmuka Pengguna</h3>
-                        <p class="mt-2 text-gray-600">Pelajari prinsip-prinsip desain antarmuka pengguna yang efektif.
-                        </p>
-                    </div>
+            {{-- untuk card --}}
+            <section class="mx-11 my-6"> 
+                {{-- grid --}}
+                <div class="owl-carousel  flex-nowrap grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-4">
+                    {{-- card --}} 
+                    @foreach ($mapels as $mapel)
+                        <div class="rounded-xl shadow-lg">
+                            <div class="rounded-b-none rounded-t-xl overflow-hidden"> <img
+                                    src="{{ asset('/storage/mapels/' . $mapel->image) }}" alt="" class="aspect-[1/1]">
+                            </div>
+                            <div class="p-4 flex flex-col">
+                                <h5 class="text-lg md:text-xl font-medium mt-3"> {{ $mapel->judul }}</h5>
+                                <h7 class="md:text-xl text-sm"> Rp. {{ $mapel->harga }}</h7>
+                                <p class="text-slate-400 text-lg mt-3"> {{ $mapel->description }} </p>
+                            </div>
+                        </div>
+                    @endforeach
                 </div>
-                <div class="w-full sm:w-1/2 md:w-1/3 lg:w-1/4 p-4">
-                    <div class="bg-white rounded-lg p-6">
-                        <svg class="w-12 h-12 mx-auto text-blue-500" fill="none" stroke="currentColor"
-                            viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
-                        </svg>
-                        <h3 class="text-xl font-semibold mt-4">Pengalaman Pengguna</h3>
-                        <p class="mt-2 text-gray-600">Pahami cara membuat pengalaman pengguna yang menyenangkan.</p>
-                    </div>
-                </div>
-                <div class="w-full sm:w-1/2 md:w-1/3 lg:w-1/4 p-4">
-                    <div class="bg-white rounded-lg p-6">
-                        <svg class="w-12 h-12 mx-auto text-blue-500" fill="none" stroke="currentColor"
-                            viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                d="M3 7a3 3 0 013-3h12a3 3 0 013 3v13a2 2 0 01-2 2H5a2 2 0 01-2-2V7z" />
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                d="M15 6a2 2 0 00-2-2a2 2 0 00-2 2" />
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                d="M15 6a2 2 0 00-2-2a2 2 0 00-2 2" />
-                        </svg>
-                        <h3 class="text-xl font-semibold mt-4">Prototyping</h3>
-                        <p class="mt-2 text-gray-600">Pelajari cara membuat prototipe untuk konsep desain Anda.</p>
-                    </div>
-                </div>
-                <div class="w-full sm:w-1/2 md:w-1/3 lg:w-1/4 p-4">
-                    <div class="bg-white rounded-lg p-6">
-                        <svg class="w-12 h-12 mx-auto text-blue-500" fill="none" stroke="currentColor"
-                            viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                d="M13 10V3L4 14h7v7l9-11h-7z" />
-                        </svg>
-                        <h3 class="text-xl font-semibold mt-4">Kolaborasi</h3>
-                        <p class="mt-2 text-gray-600">Belajar cara berkolaborasi dengan tim pengembangan.</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
+            </section>
+            {{-- end card --}}
 
-    @include('components.footer')
-
-</body>
-
-</html>
+            
+        </section>
+    </body>
+@endsection

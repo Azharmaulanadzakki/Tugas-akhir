@@ -11,7 +11,13 @@ class Mapel extends Model
 
     protected $fillable = [
         'judul',
+        'description',
         'image',
         'harga',
     ];
+
+    public function materi()
+    {
+        return $this->hasMany(Materi::class, 'parent_id');
+    }
 }

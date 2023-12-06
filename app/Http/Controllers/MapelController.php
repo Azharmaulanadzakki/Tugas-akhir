@@ -3,20 +3,29 @@
 namespace App\Http\Controllers;
 
 use App\Models\Mapel;
-use Illuminate\Http\Request;                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
+use RealRashid\SweetAlert\Facades\Alert;
 
 class MapelController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
-        $mapels = DB::table('mapels')->paginate(5);
-        return view('admin.mapel.index', compact('mapels'));
-        
+        $search = $request->input('search');
+
+        $mapels = DB::table('mapels')
+            ->when($search, function ($query) use ($search) {
+                return $query->where('judul', 'like', '%' . $search . '%')
+                    ->orWhere('description', 'like', '%' . $search . '%');
+            })
+            ->latest()
+            ->paginate(5);
+
+        return view('admin.mapel.index', compact('mapels', 'search'));
     }
 
     /**
@@ -33,8 +42,9 @@ class MapelController extends Controller
     public function store(Request $request)
     {
         $this->validate($request, [
-            'image'     =>  'required|image|mimes:jpeg,jpg,png|max:2048',
+            'image'     =>  'required|image|mimes:jpeg,jpg,png|',
             'judul'     =>  'required|',
+            'description'     =>  'required|',
             'harga'     =>  'required|',
         ]);
 
@@ -44,9 +54,10 @@ class MapelController extends Controller
 
         //create post
         Mapel::create([
-            'image'     => $image->hashName(),
-            'judul'     => $request->judul,
-            'harga'     => $request->harga,
+            'image'         => $image->hashName(),
+            'judul'         => $request->judul,
+            'description'   => $request->description,
+            'harga'         => $request->harga,
         ]);
 
         return redirect()->route('mapel.index');
@@ -74,9 +85,10 @@ class MapelController extends Controller
     public function update(Request $request, Mapel $mapel)
     {
         $this->validate($request, [
-            'image'     =>  'nullable|image|mimes:jpeg,jpg,png|max:2048',
-            'judul'     =>  'required|',
-            'harga'     =>  'required|',
+            'image'           =>  'nullable|',
+            'judul'           =>  'required|',
+            'description'     =>  'required|',
+            'harga'           =>  'required|',
         ]);
 
         //untuk menyimpan gambar yang ada
@@ -92,15 +104,17 @@ class MapelController extends Controller
             }
 
             $mapel->update([
-                'image'     => $image->hashName(),
-                'judul'     => $request->judul,
-                'harga'     => $request->harga,
+                'judul'         => $request->judul,
+                'description'   => $request->description,
+                'harga'         => $request->harga,
+                'image'         => $image->hashName(),
             ]);
         } else {
             $mapel->update([
-                'judul'     => $request->judul,
-                'harga'     => $request->harga,
-                'image'  => $existingImage //gunakan gambar yang sudah ada
+                'judul'         => $request->judul,
+                'description'   => $request->description,
+                'harga'         => $request->harga,
+                'image'         => $existingImage //gunakan gambar yang sudah ada
             ]);
         }
 
@@ -114,6 +128,7 @@ class MapelController extends Controller
     {
         Storage::delete('public/mapels/', $mapel->image);
         $mapel->delete();
-        return redirect()->route('mapel.index')-> with(['successsss' => 'Data sudah dihapus']);
+        Alert::success("Berhasil dihapus");
+        return redirect()->route('mapel.index');
     }
 }

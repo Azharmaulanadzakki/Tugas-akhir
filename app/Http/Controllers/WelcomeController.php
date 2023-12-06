@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
-class HomeController extends Controller
+class WelcomeController extends Controller
 {
     public function index(Request $request)
     {
@@ -17,8 +17,7 @@ class HomeController extends Controller
                     ->orWhere('description', 'like', '%' . $search . '%');
             })
             ->latest()
-            ->paginate();
+            ->paginate(5);
 
-        return view('home', compact('mapels', 'search'));
-    }
-}
+        return view('welcome', compact('mapels', 'search'));
+    }}

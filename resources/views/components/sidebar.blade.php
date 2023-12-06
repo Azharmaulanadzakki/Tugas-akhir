@@ -1,33 +1,32 @@
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
+    integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
 
 <div class="bg-gray-100">
-    <div class="sidebar w-[3.35rem] h-full overflow-hidden border-r hover:w-56 hover:h-full hover:bg-white hover:shadow-lg">
+    <div
+        class="sidebar w-[3.35rem] h-full overflow-hidden border-r hover:w-56 hover:h-full hover:bg-white hover:shadow-lg">
         <div class="flex h-full flex-col justify-between pt-2 pb-6">
             <div>
                 <ul class="mt-6 space-y-2 tracking-wide">
                     <li class="min-w-max">
                         <a href="{{ route('admin.dashboard') }}" aria-label="dashboard"
                             class="relative flex items-center space-x-4 px-4 py-3 text-gray-600">
-                            <i class="fa-regular fa-user"></i>
+                            <i class="fas fa-user"></i>
                             <span class="-mr-1 font-medium">{{ Auth::user()->name }}</span>
                         </a>
-                        <form action="{{route('mapel.index')}}" method="GET">
-                            <button class="relative flex items-center space-x-4  px-4 py-3 text-gray-600">
+                    </li>
+                    <li class="min-w-max">
+                        <form action="{{ route('mapel.index') }}" method="GET">
+                            <button
+                                class="relative flex items-center space-x-5  px-4 py-3 text-gray-600 hover:bg-gray-600 w-full hover:text-white">
                                 <i class="fa-solid fa-database"></i>
-                                <span class="mr-1">Data Mapel</span>
+                                <span class="mr-2">Data Mapel</span>
                             </button>
                         </form>
                     </li>
                     <li class="min-w-max">
-                        <a href="{{ route('user.index') }}">
-                            <button class="bg group flex items-center space-x-4 rounded-md px-4 py-3 text-gray-600">
-                                <i class="fas fa-user-edit"></i>
-                                <span class="group-hover:text-gray-700">Data User</span>
-                            </button>
-                        </a>
-                    </li>
-                    <li class="min-w-max">
-                        <a href="{{ route('materi.index')}}" class="group flex items-center space-x-4 rounded-md px-4 py-3 text-gray-600">
+                        <a href="{{ route('materi.index') }}"
+                            class="group flex items-center space-x-4 rounded-md px-4 py-3 text-gray-600 hover:bg-gray-600 w-full hover:text-white">
                             <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20"
                                 fill="currentColor">
                                 <path class="fill-current text-gray-600 group-hover:text-cyan-600" fill-rule="evenodd"
@@ -40,7 +39,17 @@
                         </a>
                     </li>
                     <li class="min-w-max">
-                        <a href="#" class="group flex items-center space-x-4 rounded-md px-4 py-3 text-gray-600">
+                        <form action="{{ route('user.index') }}" method="GET">
+                            <button
+                                class="relative flex items-center space-x-4  px-4 py-3 text-gray-600 hover:bg-gray-600 w-full hover:text-white">
+                                <i class="fas fa-user-edit"></i>
+                                <span class="mr-1">Data User</span>
+                            </button>
+                        </form>
+                    </li>
+                    <li class="min-w-max">
+                        <a href="#"
+                            class="group flex items-center space-x-4 rounded-md px-4 py-3 text-gray-600 hover:bg-gray-600 w-full hover:text-white">
                             <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20"
                                 fill="currentColor">
                                 <path class="fill-current text-gray-600 group-hover:text-cyan-600"
@@ -48,11 +57,12 @@
                                 <path class="fill-current text-gray-300 group-hover:text-cyan-300"
                                     d="M12 2.252A8.014 8.014 0 0117.748 8H12V2.252z" />
                             </svg>
-                            <span class="group-hover:text-gray-700">Other data</span>
+                            <span class="group-hover:text-gray-700">Data Quiz</span>
                         </a>
                     </li>
                     <li class="min-w-max">
-                        <a href="#" class="group flex items-center space-x-4 rounded-md px-4 py-3 text-gray-600">
+                        <a href="#"
+                            class="group flex items-center space-x-4 rounded-md px-4 py-3 text-gray-600 hover:bg-gray-600 w-full hover:text-white">
                             <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20"
                                 fill="currentColor">
                                 <path class="fill-current text-gray-300 group-hover:text-cyan-300"
@@ -65,10 +75,11 @@
                         </a>
                     </li>
                     <div class="w-max -mb-3">
-                        <form action="{{route('logout')}}" method="post">
-                          @csrf
-                          @method('DELETE')
-                            <button  class="group flex items-center space-x-4 rounded-md px-4 py-3 text-gray-600">
+                        <form action="{{ route('logout') }}" method="post">
+                            @csrf
+                            @method('DELETE')
+                            <button
+                                class="group flex items-center space-x-4 rounded-md px-4 py-3 text-gray-600 hover:bg-gray-600 w-full hover:text-white">
                                 <svg aria-hidden="true" fill="none" viewBox="0 0 24 24" stroke="currentColor"
                                     class="h-6 w-6">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -80,7 +91,7 @@
                     </div>
                 </ul>
             </div>
-            
+
         </div>
     </div>
 </div>

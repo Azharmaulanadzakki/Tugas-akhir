@@ -1,60 +1,98 @@
-<!DOCTYPE html>
-<html lang="en">
+@extends('layout.admin')
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>edit judul</title>
-    @vite(['resources/css/app.css', 'resources/js/app.js'])
-</head>
+@section('content')
 
-<body>
-    <!-- component -->
-    <section class="max-w-4xl p-6 mx-auto bg-gray-800 rounded-md shadow-md my-5">
+    <body>
+        <!-- component -->
+        <section class="max-w-4xl p-6 mx-auto my-5">
 
-        <h1 class="text-xl font-bold text-white capitalize">Create judul form</h1>
+            <h1 class="text-xl font-bold text-white capitalize">Create judul form</h1>
 
-        <form action="{{ route('mapel.update', $mapel->id ) }}" method="post" enctype="multipart/form-data">
+            <form action="{{ route('mapel.update', $mapel->id) }}" method="post" enctype="multipart/form-data">
 
-            @csrf
-            @method('PUT')
+                @csrf
+                @method('PUT')
 
-            <div class="grid grid-cols-1 gap-6 mt-4 sm:grid-cols-2">
+                <div class="grid grid-cols-1 gap-6 mt-4 sm:grid-cols-2">
 
-                <div>
-                    <label class="text-white" for="judul">Judul Kursus</label>
-                    <input id="judul" type="text" name="judul" required
-                        class="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-300 rounded-md  focus:outline-none focus:ring">
+                    <!-- Judul -->
+                    <div class="mb-4">
+                        <label for="judul" class="block text-gray-700 text-sm font-bold mb-2">Judul</label>
+                        <input type="text" name="judul" id="judul" class="w-full border rounded-md py-2 px-3"
+                            value="{{ old('judul', $mapel->judul) }}">
+
+                        <!-- Tampilkan pesan kesalahan jika ada -->
+                        @error('judul')
+                            <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
+                        @enderror
+                    </div>
+
+                    <!-- Harga -->
+                    <div class="mb-4">
+                        <label for="harga" class="block text-gray-700 text-sm font-bold mb-2">Harga</label>
+                        <input type="number" min="0" name="harga" id="harga"
+                            class="w-full border rounded-md py-2 px-3" value="{{ old('harga', $mapel->harga) }}">
+                        <!-- Tampilkan pesan kesalahan jika ada -->
+                        @error('harga')
+                            <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
+                        @enderror
+                    </div>
+
+                    <!-- Deskripsi -->
+                    <div class="mb-4">
+                        <label for="description" class="block text-gray-700 text-sm font-bold mb-2">Description</label>
+                        <textarea name="description" id="description" class="w-full border rounded-md py-2 px-3" rows="4">{{ old('description', $mapel->description) }}</textarea>
+                        <!-- Tampilkan pesan kesalahan jika ada -->
+                        @error('description')
+                            <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
+                        @enderror
+                    </div>
+
+                    <!-- Input Gambar -->
+                    <div class="mb-4">
+                        <label for="image" class="block text-gray-700 text-sm font-bold mb-2">Image</label>
+                        <input type="file" name="image" id="image" class="w-full border rounded-md py-2 px-3"
+                            onchange="previewImage()">
+                        <!-- Tampilkan pesan kesalahan jika ada -->
+                        @error('image')
+                            <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
+                        @enderror
+
+                        <!-- Pratinjau Gambar -->
+                        <img id="preview" class="mt-2" style="max-width: 40%;"
+                            src="{{ old('image', Storage::url($mapel->image)) }}" alt="Preview">
+                    </div>
+
+                    <!-- Tombol Submit -->
+                    <div class="flex mt-6 justify-start">
+                        <button type="submit"
+                            class="ring-2 ring-slate-700 font-semibold px-6 py-2 leading-5 text-gray-900 hover:text-white transition-colors duration-200 transform bg-white rounded-md hover:bg-gray-900 focus:outline-none focus:bg-gray-300">Create</button>
+                    </div>
                 </div>
 
-                <div>
-                    <label class="text-white " for="harga">Harga</label>
-                    <input id="harga" type="text" name="harga" required
-                        class="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-300 rounded-md focus:border-blue-500 focus:outline-none focus:ring">
-                </div>
+            </form>
 
-                <div>
-                    <label class="block text-sm font-medium text-white" for="image">
-                        Image
-                    </label>
-                    <input
-                        class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 cursor-pointer"
-                        name="image" id="image" type="file">
-                </div>
+        </section>
 
-            </div>
-
-            <div class="flex justify-end mt-6">
-                <button
-                type="submit"
-                class="font-semibold px-6 py-2 leading-5 text-gray-900 transition-colors duration-200 transform bg-white rounded-md hover:bg-gray-300 focus:outline-none focus:bg-gray-300">Edit</button>
-            </div>
-
-        </form>
-
-    </section>
-
-</body>
-
-</html>
+        <script>
+            // Fungsi untuk pratinjau gambar saat memilih file
+            function previewImage() {
+                const input = document.getElementById('image');
+                const preview = document.getElementById('preview');
+        
+                const file = input.files[0];
+                if (file) {
+                    const reader = new FileReader();
+        
+                    reader.onload = function (e) {
+                        preview.src = e.target.result;
+                    };
+        
+                    reader.readAsDataURL(file);
+                } else {
+                    preview.src = null;
+                }
+            }
+        </script>
+    </body>
+@endsection

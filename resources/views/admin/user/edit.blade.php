@@ -1,66 +1,59 @@
-<!DOCTYPE html>
-<html lang="en">
+@extends('layout.admin') {{-- Sesuaikan dengan layout yang Anda gunakan --}}
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>edit user</title>
-    @vite(['resources/css/app.css', 'resources/js/app.js'])
-</head>
+@section('content')
+    <div class="container mx-auto mt-8">
+        <div class="max-w-md mx-auto bg-white p-8 border border-gray-300 shadow-md rounded">
+            <h2 class="text-2xl font-semibold mb-6">Edit Pengguna</h2>
 
-<body>
-    <!-- component -->
-    <section class="max-w-4xl p-6 mx-auto bg-gray-800 rounded-md shadow-md my-5">
+            @if ($errors->any())
+                <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded mb-4">
+                    <strong>Whoops!</strong> Ada masalah dengan input Anda. Silakan periksa kembali.
+                </div>
+            @endif
 
-        <h1 class="text-xl font-bold text-white capitalize">Create judul form</h1>
+            <form action="{{ route('user.update', $user->id) }}" method="post" enctype="multipart/form-data">
+                @csrf
+                @method('PUT') {{-- Menggunakan metode PUT untuk update --}}
 
-        <form action="{{ route('user.update', $user->id ) }}" method="post" enctype="multipart/form-data">
-
-            @csrf
-            @method('PUT')
-
-            <div class="grid grid-cols-1 gap-6 mt-4 sm:grid-cols-2">
-
-                <div>
-                    <label class="text-white" for="name">Name</label>
-                    <input id="name" type="text" name="name" required value="{{old('name', $user->name)}}"
-                        class="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-300 rounded-md  focus:outline-none focus:ring">
+                <div class="mb-4">
+                    <label for="name" class="block text-sm font-medium text-gray-600">Nama</label>
+                    <input type="text" name="name" id="name" class="mt-1 p-2 w-full border rounded-md"
+                        value="{{ old('name', $user->name) }}" required>
                 </div>
 
-                <div>
-                    <label class="text-white " for="email">Email</label>
-                    <input id="email" type="email" name="email" required value="{{old('email', $user->email)}}"
-                        class="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-300 rounded-md focus:border-blue-500 focus:outline-none focus:ring">
+                <div class="mb-4">
+                    <label for="email" class="block text-sm font-medium text-gray-600">Email</label>
+                    <input type="email" name="email" id="email" class="mt-1 p-2 w-full border rounded-md"
+                        value="{{ old('email', $user->email) }}" required>
+                    @if ($errors->has('email'))
+                        <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded my-4">
+                            {{ $errors->first('email') }}
+                        </div>
+                    @endif
                 </div>
-                <div class="mb-6 w-full">
-                    <label for="role" class="block mb-2 text-sm font-medium text-white ">Role</label>
-                    <select id="role" name="role" class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5">
-                        <option value="admin" @if(old('role', $user->role) === 'admin') selected @endif>Admin</option>
-                        <option value="user" @if(old('role', $user->role) === 'user') selected @endif>User</option>
+
+                <div class="mb-4">
+                    <label for="profile_image" class="block text-sm font-medium text-gray-600">Gambar Profil</label>
+                    <input type="file" name="profile_image" id="profile_image" class="mt-1 p-2 w-full border rounded-md">
+                    @if ($user->profile_image)
+                        <img src="{{ asset('/storage/profile_images/' . $user->profile_image) }}" alt="Profile Image"
+                            class="mt-2 rounded-md shadow-md">
+                    @endif
+                </div>
+
+                <div class="mb-4">
+                    <label for="role" class="block text-sm font-medium text-gray-600">Peran</label>
+                    <select name="role" id="role" class="mt-1 p-2 w-full border rounded-md" required>
+                        <option value="admin" {{ $user->role == 'admin' ? 'selected' : '' }}>Admin</option>
+                        <option value="user" {{ $user->role == 'user' ? 'selected' : '' }}>User</option>
                     </select>
                 </div>
-                <div>
-                    <label class="block text-sm font-medium text-white" for="id">
-                        Image
-                    </label>
-                    <input
-                        class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 cursor-pointer"
-                        name="profile_image" id="profile_image" type="file">
+
+                <div class="flex items-center justify-between">
+                    <button type="submit" class="bg-blue-500 text-white p-2 rounded">Simpan</button>
+                    <a href="{{ route('user.index') }}" class="text-gray-600">Batal</a>
                 </div>
-            
-            </div>
-
-            <div class="flex justify-end mt-6">
-                <button
-                type="submit"
-                class="font-semibold px-6 py-2 leading-5 text-gray-900 transition-colors duration-200 transform bg-white rounded-md hover:bg-gray-300 focus:outline-none focus:bg-gray-300">Edit</button>
-            </div>
-
-        </form>
-
-    </section>
-
-</body>
-
-</html>
+            </form>
+        </div>
+    </div>
+@endsection

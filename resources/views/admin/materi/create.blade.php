@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,48 +8,88 @@
     <title>Create materi</title>
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
-<body>
-     <!-- component -->
-     <section class="max-w-4xl p-6 mx-auto bg-gray-800 rounded-md shadow-md my-5">
 
-        <h1 class="text-xl font-bold text-white capitalize">Create materi form</h1>
+<body>
+    <!-- component -->
+    <section class="max-w-4xl p-6 mx-auto my-5">
+
+
 
         <form action="{{ route('materi.store') }}" method="post" enctype="multipart/form-data">
 
             @csrf
 
+
             <div class="grid grid-cols-1 gap-6 mt-4 sm:grid-cols-2">
 
-                <div>
-                    <label class="text-white" for="judul">Judul Materi</label>
-                    <input id="judul" type="text" name="judul" required
-                        class="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-300 rounded-md  focus:outline-none focus:ring">
-                </div>
-
-                <div>
-                    <label class="block text-sm font-medium text-white mt-1" for="gif">
-                        Gif materi
-                    </label>
-                    <input
-                    class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 cursor-pointer"
-                    name="gif" id="gif" type="file" required>
-                </div>
+                <form action="{{ route('materi.store') }}" method="POST" enctype="multipart/form-data">
+                    @csrf
                 
-                <div>
-                    <label class="text-white mt-2 " for="isi">Isi</label>
-                    <input id="isi" type="text" name="isi" required
-                        class="block w-full h-60 px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-300 rounded-md focus:border-blue-500 focus:outline-none focus:ring">
-                </div>
-            </div>
+                    <!-- Judul -->
+                    <div class="mb-4">
+                        <label for="judul" class="block text-gray-700 text-sm font-bold mb-2">Judul</label>
+                        <input type="text" name="judul" id="judul" class="w-full border rounded-md py-2 px-3" value="{{old('judul')}}">
+                        @error('judul')
+                            <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
+                        @enderror
+                    </div>
+                    
+                    <!-- Isi -->
+                    <div class="mb-4">
+                        <label for="isi" class="block text-gray-700 text-sm font-bold mb-2">Isi</label>
+                        <textarea name="isi" id="isi" class="w-full border rounded-md py-2 px-3" rows="4">{{ old('isi') }}</textarea>
+                        @error('isi')
+                            <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
+                        @enderror
+                    </div>
+                
+                     <!-- Input Gambar -->
+                     <div class="mb-4">
+                        <label for="gif" class="block text-gray-700 text-sm font-bold mb-2">image</label>
+                        <input type="file" name="gif" id="gif" class="w-full border rounded-md py-2 px-"
+                            onchange="previewImage()">
+                        <img id="preview" class="mt-2" style="max-width: 40%;">
+                        <!-- Tampilkan pesan kesalahan jika ada -->
+                        @error('gambar')
+                            <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
+                        @enderror
+                    </div>
 
-            <div class="flex justify-end mt-6">
-                <button
-                type="submit"
-                class="font-semibold px-6 py-2 leading-5 text-gray-900 transition-colors duration-200 transform bg-white rounded-md hover:bg-gray-300 focus:outline-none focus:bg-gray-300">Create</button>
+                    <!-- Parent Dropdown -->
+                    <div class="mb-4">
+                        <label for="parent_id" class="block text-gray-700 text-sm font-bold mb-2">Parent</label>
+                        <select name="parent_id" id="parent_id" class="w-full border rounded-md py-2 px-3">
+                            <option value="">Pilih Parent (Opsional)</option>
+                            @foreach ($parents as $parent)
+                                <option value="{{ $parent->id }}">{{ $parent->judul }}</option>
+                            @endforeach
+                        </select>
+                    </div>
+                
+                    <div class="flex mt-6 justify-start">
+                        <button type="submit"
+                            class="ring-2 ring-slate-700 font-semibold px-6 py-2 leading-5 text-gray-900 hover:text-white transition-colors duration-200 transform bg-white rounded-md hover:bg-gray-700 focus:outline-none focus:bg-gray-900">Create</button>
+                    </div>
+                </form>
             </div>
-
         </form>
 
     </section>
+
+    <script>
+        function previewImage() {
+            var input = document.getElementById('gif');
+            var preview = document.getElementById('preview');
+
+            var reader = new FileReader();
+            reader.onload = function(e) {
+                preview.src = e.target.result;
+            };
+
+            reader.readAsDataURL(input.files[0]);
+        }
+    </script>
+
 </body>
+
 </html>

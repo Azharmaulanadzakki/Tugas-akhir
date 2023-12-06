@@ -1,25 +1,8 @@
-<!doctype html>
-<html lang="en">
-
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title></title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe" crossorigin="anonymous">
-    </script>
-    @vite(['resources/css/app.css', 'resources/js/app.js'])
-</head>
-
-<body>
+@extends('layout.admin')
+@section('content')
 
     <body class="flex bg-gray-100 min-h-screen">
-
-
         @include('components.sidebar')
-
         <div class="flex-grow text-gray-800">
             <header class="flex items-center h-20 px-6 sm:px-10 bg-white">
 
@@ -75,6 +58,9 @@
                                             GIF
                                         </th>
                                         <th scope="col" class="px-6 py-3">
+                                            MAPEL
+                                        </th>
+                                        <th scope="col" class="px-6 py-3">
                                             <span class="sr-only">Edit</span>
                                         </th>
                                     </tr>
@@ -93,8 +79,23 @@
                                                 {{ $materi->isi }}
                                             </td>
                                             <td class="px-6 py-4">
-                                                <img src="{{ asset('/storage/materis/' . $materi->gif) }}"
-                                                    alt="" style="width: 50px">
+                                                <img src="{{ asset('/storage/materis/' . $materi->gif) }}" alt=""
+                                                    style="width: 50px">
+                                            </td>
+                                            <td class="px-6 py-4 text-center">
+                                                @foreach ($materis as $materi)
+                                                    <div>
+                                                        <h3>{{ $materi->judul }}</h3>
+                                                        <p>{{ $materi->isi }}</p>
+                                                        @if ($materi->mapel)
+                                                            <p>Parent ID: {{ $materi->parent_id }}</p>
+                                                            <p>Judul Mapel: {{ $materi->mapel->judul }}</p>
+                                                        @else
+                                                            <p>Tidak ada parent</p>
+                                                        @endif
+                                                        <!-- Tambahkan elemen lain yang diperlukan -->
+                                                    </div>
+                                                @endforeach
                                             </td>
                                             <td class="px-6 py-4 text-right flex justify-end">
 
@@ -112,11 +113,12 @@
                                                 </form>
 
                                                 <form action="{{ route('materi.destroy', ['materi' => $materi->id]) }}"
-                                                    method="POST">
+                                                    method="POST" id="deleteForm">
                                                     @csrf
                                                     @method('DELETE')
                                                     <button
-                                                        class="inline-flex items-center px-4 py-2 bg-red-600 hover:bg-red-700 text-white text-sm font-medium rounded-md">
+                                                        class="inline-flex items-center px-4 py-2 bg-red-600 hover:bg-red-700 text-white text-sm font-medium rounded-md"
+                                                        onclick="confirmDelete()">
                                                         <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2"
                                                             fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                                             <path stroke-linecap="round" stroke-linejoin="round"
@@ -137,7 +139,26 @@
                 </div>
             </main>
         </div>
-    </body>
-</body>
 
-</html>
+
+        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+        <script>
+            function confirmDelete() {
+                Swal.fire({
+                    title: "Are you sure?",
+                    text: "You won't be able to revert this!",
+                    icon: "warning",
+                    showCancelButton: true,
+                    confirmButtonColor: "#3085d6",
+                    cancelButtonColor: "#d33",
+                    confirmButtonText: "Yes, delete it!"
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        // Submit the form when the user confirms
+                        document.getElementById('deleteForm').submit();
+                    }
+                });
+            }
+        </script>
+    </body>
+@endsection

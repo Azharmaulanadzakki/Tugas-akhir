@@ -1,16 +1,15 @@
 
 <?php
 
-use App\Http\Controllers\AdminController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\HomeController;
-
+use App\Http\Controllers\UserController;
+use App\Http\Controllers\AdminController;
+use App\Http\Controllers\WelcomeController;
 
 Route::group(['middleware' => 'guest'], function () {
-    Route::get('/', function () {
-        return view('welcome');
-    })->name('welcome');
+    Route::get('/', [WelcomeController::class, 'index'])->name('welcome.index');
     Route::get('/register', [AuthController::class, 'register'])->name('register');
     Route::post('/register', [AuthController::class, 'registerPost'])->name('register');
     Route::get('/login', [AuthController::class, 'login'])->name('login');
@@ -27,4 +26,6 @@ Route::middleware(['auth', 'checkUserRole:admin'])->group(function () {
     Route::resource('/admin/mapel', \App\Http\Controllers\MapelController::class);
     Route::resource('/admin/materi', \App\Http\Controllers\MateriController::class);
     Route::resource('/admin/user', \App\Http\Controllers\UserController::class);
+    Route::get('/users', [UserController    ::class, 'index'])->name('user.index');
+
 });

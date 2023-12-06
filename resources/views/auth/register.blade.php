@@ -1,92 +1,124 @@
-<!DOCTYPE html>
-<html lang="en">
+@extends('layout.app')
+@section('content')
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    @vite(['resources/css/app.css', 'resources/js/app.js'])
-    <title>Register  Page</title>
-</head>
+    <body class="bg-gray-50 min-h-screen flex items-center justify-center">
+        @include('sweetalert::alert')
 
-<body>
-    <div class="min-w-screen min-h-screen bg-gray-900 flex items-center justify-center px-5 py-5">
-        <div class="bg-gray-100 text-gray-500 rounded-3xl shadow-xl w-full overflow-hidden" style="max-width:1000px">
-            <div class="md:flex w-full">
-                <div class="hidden md:block w-1/2 bg-indigo-500 py-10 px-10">
-                    
-                </div>
-                <div class="w-full md:w-1/2 py-10 px-5 md:px-10">
-                    <div class="text-center mb-10">
-                        <h1 class="font-bold text-3xl text-gray-900">Register</h1>
+
+        <!-- login container -->
+        <div class="bg-gray-100 flex rounded-2xl shadow-lg max-w-3xl p-5 items-center">
+            <!-- form -->
+            <div class="md:w-1/2 px-8 md:px-16">
+                <h2 class="font-bold text-2xl text-[#002D74]">Register</h2>
+                <p class="text-xs mt-4 text-[#002D74]">If you are not already a member, register first</p>
+
+                <form action="{{ route('register') }}" method="POST" class="flex flex-col gap-4">
+                    @csrf
+
+                    <input class="p-2 mt-8 rounded-xl border" id="name" type="text" name="name"
+                        placeholder="Your Name" required>
+                    <input class="p-2 rounded-xl border" id="email" type="email" name="email" placeholder="Email"
+                        required>
+                    <div class="relative">
+                        <input class="p-2 rounded-xl border w-full" id="password" type="password" name="password"
+                            placeholder="Password" required>
+                        <div class="eye-icons" onclick="togglePasswordVisibility('password')">
+                            <svg id="eye-off-password" xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                                fill="gray" class="bi bi-eye absolute top-1/2 right-3 -translate-y-1/2"
+                                viewBox="0 0 16 16">
+                                <path
+                                    d="M16 8s-3-5.5-8-5.5S0 8 0 8s3 5.5 8 5.5S16 8 16 8M1.173 8a13.133 13.133 0 0 1 1.66-2.043C4.12 4.668 5.88 3.5 8 3.5c2.12 0 3.879 1.168 5.168 2.457A13.133 13.133 0 0 1 14.828 8c-.058.087-.122.183-.195.288-.335.48-.83 1.12-1.465 1.755C11.879 11.332 10.119 12.5 8 12.5c-2.12 0-3.879-1.168-5.168-2.457A13.134 13.134 0 0 1 1.172 8z" />
+                                <path
+                                    d="M8 5.5a2.5 2.5 0 1 0 0 5 2.5 2.5 0 0 0 0-5M4.5 8a3.5 3.5 0 1 1 7 0 3.5 3.5 0 0 1-7 0" />
+                            </svg>
+                            <svg id="eye-slash-password" xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                                fill="gray" class="bi bi-eye-slash absolute top-1/2 right-3 -translate-y-1/2 "
+                                viewBox="0 0 16 16">
+                                <path
+                                    d="M13.359 11.238C15.06 9.72 16 8 16 8s-3-5.5-8-5.5a7.028 7.028 0 0 0-2.79.588l.77.771A5.944 5.944 0 0 1 8 3.5c2.12 0 3.879 1.168 5.168 2.457A13.134 13.134 0 0 1 14.828 8c-.058.087-.122.183-.195.288-.335.48-.83 1.12-1.465 1.755-.165.165-.337.328-.517.486z" />
+                                <path
+                                    d="M11.297 9.176a3.5 3.5 0 0 0-4.474-4.474l.823.823a2.5 2.5 0 0 1 2.829 2.829zm-2.943 1.299.822.822a3.5 3.5 0 0 1-4.474-4.474l.823.823a2.5 2.5 0 0 0 2.829 2.829" />
+                                <path
+                                    d="M3.35 5.47c-.18.16-.353.322-.518.487A13.134 13.134 0 0 0 1.172 8l.195.288c.335.48.83 1.12 1.465 1.755C4.121 11.332 5.881 12.5 8 12.5c.716 0 1.39-.133 2.02-.36l.77.772A7.029 7.029 0 0 1 8 13.5C3 13.5 0 8 0 8s.939-1.721 2.641-3.238l.708.709zm10.296 8.884-12-12 .708-.708 12 12-.708.708" />
+                            </svg>
+                        </div>
                     </div>
 
-                    <form action="{{ route('register') }}" method="POST">                        
-                        @csrf
-                          <div class="flex -mx-3">
-                            <div class="w-full px-3 mb-5">
-                                <label for="name" class="text-xs font-semibold px-1">Name</label>
-                                <div class="flex">
-                                    <div
-                                        class="w-10 z-10 pl-1 text-center pointer-events-none flex items-center justify-center">
-                                        <i class="mdi mdi-email-outline text-gray-400 text-lg"></i></div>
-                                    <input type="text"
-                                        name="name"
-                                        id="name"
-                                        class="w-full -ml-10 pl-10 pr-3 py-2 rounded-lg border-2 border-gray-200 outline-none focus:border-indigo-500"
-                                        placeholder="your name">
-                                </div>
-                            </div>
+                    <div class="relative">
+                        <input class="p-2 rounded-xl border w-full" id="password_confirmation" type="password"
+                            name="password_confirmation" placeholder="Password confirmation" required>
+
+                        <div class="eye-icons" onclick="togglePasswordVisibility('password_confirmation')">
+                            <svg id="eye-off-password-confirmation" xmlns="http://www.w3.org/2000/svg" width="16"
+                                height="16" fill="gray" class="bi bi-eye absolute top-1/2 right-3 -translate-y-1/2"
+                                viewBox="0 0 16 16">
+                                <path
+                                    d="M16 8s-3-5.5-8-5.5S0 8 0 8s3 5.5 8 5.5S16 8 16 8M1.173 8a13.133 13.133 0 0 1 1.66-2.043C4.12 4.668 5.88 3.5 8 3.5c2.12 0 3.879 1.168 5.168 2.457A13.133 13.133 0 0 1 14.828 8c-.058.087-.122.183-.195.288-.335.48-.83 1.12-1.465 1.755C11.879 11.332 10.119 12.5 8 12.5c-2.12 0-3.879-1.168-5.168-2.457A13.134 13.134 0 0 1 1.172 8z" />
+                                <path
+                                    d="M8 5.5a2.5 2.5 0 1 0 0 5 2.5 2.5 0 0 0 0-5M4.5 8a3.5 3.5 0 1 1 7 0 3.5 3.5 0 0 1-7 0" />
+                            </svg>
+                            <svg id="eye-slash-password-confirmation" xmlns="http://www.w3.org/2000/svg" width="16"
+                                height="16" fill="gray"
+                                class="bi bi-eye-slash absolute top-1/2 right-3 -translate-y-1/2 " viewBox="0 0 16 16">
+                                <path
+                                    d="M13.359 11.238C15.06 9.72 16 8 16 8s-3-5.5-8-5.5a7.028 7.028 0 0 0-2.79.588l.77.771A5.944 5.944 0 0 1 8 3.5c2.12 0 3.879 1.168 5.168 2.457A13.134 13.134 0 0 1 14.828 8c-.058.087-.122.183-.195.288-.335.48-.83 1.12-1.465 1.755-.165.165-.337.328-.517.486z" />
+                                <path
+                                    d="M11.297 9.176a3.5 3.5 0 0 0-4.474-4.474l.823.823a2.5 2.5 0 0 1 2.829 2.829zm-2.943 1.299.822.822a3.5 3.5 0 0 1-4.474-4.474l.823.823a2.5 2.5 0 0 0 2.829 2.829" />
+                                <path
+                                    d="M3.35 5.47c-.18.16-.353.322-.518.487A13.134 13.134 0 0 0 1.172 8l.195.288c.335.48.83 1.12 1.465 1.755C4.121 11.332 5.881 12.5 8 12.5c.716 0 1.39-.133 2.02-.36l.77.772A7.029 7.029 0 0 1 8 13.5C3 13.5 0 8 0 8s.939-1.721 2.641-3.238l.708.709zm10.296 8.884-12-12 .708-.708 12 12-.708.708" />
+                            </svg>
                         </div>
-                        <div class="flex -mx-3">
-                            <div class="w-full px-3 mb-5">
-                                <label for="email" class="text-xs font-semibold px-1">Email</label>
-                                <div class="flex">
-                                    <div
-                                        class="w-10 z-10 pl-1 text-center pointer-events-none flex items-center justify-center">
-                                        <i class="mdi mdi-email-outline text-gray-400 text-lg"></i></div>
-                                    <input type="email"
-                                        name="email"
-                                        id="email"
-                                        class="w-full -ml-10 pl-10 pr-3 py-2 rounded-lg border-2 border-gray-200 outline-none focus:border-indigo-500"
-                                        placeholder="johnsmith@example.com">
-                                </div>
-                            </div>
+                    </div>
+                    @if ($errors->any())
+                        <div class="alert alert-danger">
+                            <ul>
+                                @foreach ($errors->all() as $error)
+                                    <li class="text-red-400 text-sm font-medium">{{ $error }}</li>
+                                @endforeach
+                            </ul>
                         </div>
-                        <div class="flex -mx-3">
-                            <div class="w-full px-3 mb-12">
-                                <label for="password" class="text-xs font-semibold px-1">Password</label>
-                                <div class="flex">
-                                    <div
-                                        class="w-10 z-10 pl-1 text-center pointer-events-none flex items-center justify-center">
-                                        <i class="mdi mdi-lock-outline text-gray-400 text-lg"></i></div>
-                                    <input type="password"
-                                        name="password"
-                                        id="password"
-                                        class="w-full -ml-10 pl-10 pr-3 py-2 rounded-lg border-2 border-gray-200 outline-none focus:border-indigo-500"
-                                        placeholder="************">
-                                </div>
-                            </div>
-                        </div>
-                        <div class="flex -mx-3">
-                            <div class="w-full px-3 mb-5">
-                                <button
-                                    class="block w-full max-w-xs mx-auto bg-indigo-500 hover:bg-indigo-700 focus:bg-indigo-700 text-white rounded-lg px-3 py-3 font-semibold">REGISTER
-                                    NOW</button>
-                            </div>
-                        </div>
+                    @endif
+
+                    <button type="submit"
+                        class="bg-[#002D74] rounded-xl text-white py-2 hover:scale-105 duration-300">Register</button>
+                </form>
+
+                <div class="mt-5 text-xs border-b border-[#002D74] py-4 text-[#002D74]">
+                    <a href="#">Forgot your password?</a>
+                </div>
+
+                <div class="mt-3 text-xs flex justify-between items-center text-[#002D74]">
+                    <p>Alreay have an account?</p>
+                    <form action="{{ route('login') }}">
+                        <button class="py-2 px-5 bg-white border rounded-xl hover:scale-110 duration-300">Login</button>
                     </form>
-
-
                 </div>
             </div>
+
+            <!-- image -->
+            <div class="md:block hidden w-1/2">
+                <img class="rounded-2xl aspect-[9/12]"
+                    src="https://images.unsplash.com/photo-1616606103915-dea7be788566?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1887&q=80">
+            </div>
         </div>
-    </div>
-
-</body>
-
-</html>
+    </body>
 
 
+    <script>
+        function togglePasswordVisibility(inputId) {
+            const passwordInput = document.getElementById(inputId);
+            const eyeOffIcon = document.getElementById(`eye-off-${inputId}`);
+            const eyeSlashIcon = document.getElementById(`eye-slash-${inputId}`);
 
-
+            if (passwordInput.type === 'password') {
+                passwordInput.type = 'text';
+                eyeOffIcon.style.display = 'none';
+                eyeSlashIcon.style.display = 'block';
+            } else {
+                passwordInput.type = 'password';
+                eyeOffIcon.style.display = 'block';
+                eyeSlashIcon.style.display = 'none';
+            }
+        }
+    </script>
+@endsection
