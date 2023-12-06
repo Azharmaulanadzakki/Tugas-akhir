@@ -29,3 +29,7 @@ Route::middleware(['auth', 'checkUserRole:admin'])->group(function () {
     Route::get('/users', [UserController    ::class, 'index'])->name('user.index');
 
 });
+
+Route::fallback(function () {
+    return view('errors.404');
+});
