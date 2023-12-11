@@ -37,80 +37,82 @@
                     </form>
                 </div>
 
-                <div>
-                    <div class="container antialiased mx-auto mt-5">
-                        <div class="relative justify-center items-center overflow-x-auto shadow-md sm:rounded-lg">
-                            <table class="w-full text-sm text-left text-gray-500">
-                                <thead class="text-xs text-gray-700 uppercase bg-gray-50">
-                                    <tr>
-                                        <th scope="col" class="px-6 py-3">
-                                            ID
-                                        </th>
-                                        <th scope="col" class="px-6 py-3">
-                                            JUDUL
-                                        </th>
-                                        <th scope="col" class="px-6 py-3">
-                                            Description
-                                        </th>
-                                        <th scope="col" class="px-6 py-3">
-                                            PRICE
-                                        </th>
-                                        <th scope="col" class="px-6 py-3">
-                                            IMAGE
-                                        </th>
-                                        <th scope="col" class="px-6 py-3">
-                                            <span class="sr-only">Edit</span>
-                                        </th>
-                                        
+                <div class="container antialiased mx-auto mt-5">
+                    <div class="relative justify-center items-center overflow-x-auto shadow-md sm:rounded-lg">
+                        <div class="flex justify-end mb-4">
+                            <button id="sortDesc" onclick="sortTable('desc')"
+                                class="px-4 py-2 bg-gray-500 hover:bg-gray-600 text-white text-sm font-medium rounded-md mr-2">Sort Descending
+                            </button>
+                            <button id="sortAsc" onclick="sortTable('asc')"
+                                class="px-4 py-2 bg-gray-500 hover:bg-gray-600 text-white text-sm font-medium rounded-md">Sort Ascending
+                            </button>
+                        </div>
+                        <table id="mapelTable" class="w-full text-sm text-left text-gray-500">
+                            <thead class="text-xs text-gray-700 uppercase bg-gray-50">
+                                <tr>
+                                    <th scope="col" class="px-6 py-3">
+                                        ID
+                                    </th>
+                                    <th scope="col" class="px-6 py-3">
+                                        JUDUL
+                                    </th>
+                                    <th scope="col" class="px-6 py-3">
+                                        Description
+                                    </th>
+                                    <th scope="col" class="px-6 py-3">
+                                        PRICE
+                                    </th>
+                                    <th scope="col" class="px-6 py-3">
+                                        IMAGE
+                                    </th>
+                                    <th scope="col" class="px-6 py-3">
+                                        <span class="sr-only">Edit</span>
+                                    </th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @forelse ($mapels as $mapel)
+                                    <tr class="bg-white border-b hover:bg-gray-50 ">
+                                        <td scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap">
+                                            {{ $mapel->id }}
+                                        </td>
+                                        <td class="px-6 py-4">
+                                            {{ $mapel->judul }}
+                                        </td>
+                                        <td class="px-6 py-4">
+                                            {{ $mapel->description }}
+                                        </td>
+                                        <td class="px-6 py-4">
+                                            Rp. {{ $mapel->harga }}
+                                        </td>
+                                        <td class="px-6 py-4">
+                                            <img src="{{ asset('/storage/mapels/' . $mapel->image) }}" alt=""
+                                                style="width: 50px">
+                                        </td>
+                                        <td class="px-6 py-4 text-right flex justify-end">
+                                            <form action="{{ route('mapel.edit', ['mapel' => $mapel->id]) }}">
+                                                <button
+                                                    class="inline-flex items-center px-4 py-2 bg-indigo-500 hover:bg-indigo-600 text-white text-sm font-medium rounded-md mr-4">
+                                                    Edit
+                                                </button>
+                                            </form>
+                                            <form action="{{ route('mapel.destroy', ['mapel' => $mapel->id]) }}" method="POST"
+                                                id="deleteForm">
+                                                @csrf
+                                                @method('DELETE')
+                                                <button type="button" onclick="confirmDeleteSatu()"
+                                                    class="inline-flex items-center px-4 py-2 bg-red-500 hover:bg-red-600 text-white text-sm font-medium rounded-md mr-4">Delete
+                                                </button>
+                                            </form>
+                                        </td>
                                     </tr>
-                                </thead>
-                                <tbody>
-                                    @forelse ($mapels as $mapel)
-                                        <tr class="bg-white border-b hover:bg-gray-50 ">
-                                            <td scope="row"
-                                                class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap">
-                                                {{ $mapel->id }}
-                                            </td>
-                                            <td class="px-6 py-4">
-                                                {{ $mapel->judul }}
-                                            </td>
-                                            <td class="px-6 py-4">
-                                                {{ $mapel->description }}
-                                            </td>
-                                            <td class="px-6 py-4">
-                                                Rp. {{ $mapel->harga }}
-                                            </td>
-                                            <td class="px-6 py-4">
-                                                <img src="{{ asset('/storage/mapels/' . $mapel->image) }}" alt=""
-                                                    style="width: 50px">
-                                            </td>
-                                            <td class="px-6 py-4 text-right flex justify-end">
-                                                <form action="{{ route('mapel.edit', ['mapel' => $mapel->id]) }}">
-                                                    <button
-                                                        class="inline-flex items-center px-4 py-2 bg-indigo-500 hover:bg-indigo-600 text-white text-sm font-medium rounded-md mr-4">
-                                                        Edit
-                                                    </button>
-                                                </form>
-                                                <form action="{{ route('mapel.destroy', ['mapel' => $mapel->id]) }}"
-                                                    method="POST" id="deleteForm">
-                                                    @csrf
-                                                    @method('DELETE')
-                                                    <button type="button" onclick="confirmDeleteSatu()"
-                                                        class="inline-flex items-center px-4 py-2 bg-red-500 hover:bg-red-600 text-white text-sm font-medium rounded-md mr-4">Delete
-                                                    </button>
-                                                </form>
-                                            </td>
-                                        </tr>
-                                    @empty
-                                    @endforelse
-                                </tbody>
-                            </table>
-                        </div>
-
-                        <div class="mt-2 flex ">
-                            {{ $mapels->links() }}
-                        </div>
-
+                                @empty
+                                @endforelse
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="mt-2 flex">
+                        {{ $mapels->links() }}
                     </div>
                 </div>
             </main>
@@ -139,7 +141,31 @@
             }
         </script>
 
-        
+        <script>
+            function sortTable(order) {
+                let rows = Array.from(document.querySelectorAll('#mapelTable tbody tr'));
+
+                rows.sort((a, b) => {
+                    let aValue = parseInt(a.cells[0].innerText); // Gantilah dengan indeks kolom yang sesuai
+                    let bValue = parseInt(b.cells[0].innerText); // Gantilah dengan indeks kolom yang sesuai
+
+                    if (order === 'desc') {
+                        return bValue - aValue;
+                    } else {
+                        return aValue - bValue;
+                    }
+                });
+
+                // Hapus semua baris yang ada di tabel
+                let tbody = document.querySelector('#mapelTable tbody');
+                tbody.innerHTML = '';
+
+                // Masukkan baris-baris yang sudah diurutkan kembali ke tabel
+                rows.forEach(row => {
+                    tbody.appendChild(row);
+                });
+            }
+        </script>
 
     </body>
 @endsection

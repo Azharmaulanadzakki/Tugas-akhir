@@ -20,7 +20,7 @@ class MapelController extends Controller
         $mapels = DB::table('mapels')
             ->when($search, function ($query) use ($search) {
                 return $query->where('judul', 'like', '%' . $search . '%')
-                    ->orWhere('description', 'like', '%' . $search . '%');
+                    ->orWhere('id', 'like', '%' . $search . '%');
             })
             ->latest()
             ->paginate(5);

@@ -17,7 +17,7 @@ class WelcomeController extends Controller
                     ->orWhere('description', 'like', '%' . $search . '%');
             })
             ->latest()
-            ->paginate(5);
+            ->paginate();
 
         return view('welcome', compact('mapels', 'search'));
     }}

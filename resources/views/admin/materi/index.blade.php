@@ -55,10 +55,13 @@
                                             ISI
                                         </th>
                                         <th scope="col" class="px-6 py-3">
+                                            TAUTAN
+                                        </th>
+                                        <th scope="col" class="px-6 py-3">
                                             GIF
                                         </th>
                                         <th scope="col" class="px-6 py-3">
-                                            MAPEL
+                                            MAPEL PARENT
                                         </th>
                                         <th scope="col" class="px-6 py-3">
                                             <span class="sr-only">Edit</span>
@@ -66,6 +69,7 @@
                                     </tr>
                                 </thead>
                                 <tbody>
+                                    
                                     @forelse ($materis as $materi)
                                         <tr class="bg-white border-b hover:bg-gray-50 ">
                                             <th scope="row"
@@ -79,23 +83,14 @@
                                                 {{ $materi->isi }}
                                             </td>
                                             <td class="px-6 py-4">
+                                                {{ $materi->tautan }}
+                                            </td>
+                                            <td class="px-6 py-4">
                                                 <img src="{{ asset('/storage/materis/' . $materi->gif) }}" alt=""
                                                     style="width: 50px">
                                             </td>
                                             <td class="px-6 py-4 text-center">
-                                                @foreach ($materis as $materi)
-                                                    <div>
-                                                        <h3>{{ $materi->judul }}</h3>
-                                                        <p>{{ $materi->isi }}</p>
-                                                        @if ($materi->mapel)
-                                                            <p>Parent ID: {{ $materi->parent_id }}</p>
-                                                            <p>Judul Mapel: {{ $materi->mapel->judul }}</p>
-                                                        @else
-                                                            <p>Tidak ada parent</p>
-                                                        @endif
-                                                        <!-- Tambahkan elemen lain yang diperlukan -->
-                                                    </div>
-                                                @endforeach
+                                                {{ optional($materi->mapel)->judul }}
                                             </td>
                                             <td class="px-6 py-4 text-right flex justify-end">
 

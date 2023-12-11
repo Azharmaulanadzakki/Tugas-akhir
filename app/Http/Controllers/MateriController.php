@@ -7,13 +7,15 @@ use App\Models\Materi;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 
+
 class MateriController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
+
     public function index()
-    {
+    {   
         $materis = Materi::with('mapel')->latest()->paginate(5);
         return view('admin.materi.index', compact('materis'));
     }
@@ -23,7 +25,7 @@ class MateriController extends Controller
      */
     public function create()
     {
-        $parents = Mapel::with('materi')->get();
+        $parents = Mapel::all();
         return view('admin.materi.create', compact('parents'));
     }
 
@@ -35,30 +37,35 @@ class MateriController extends Controller
         $this->validate($request, [
             'judul'     =>  'required|',
             'isi'       =>  'required|',
-            'gif'       =>  'required|image',
-            'parent_id' =>  'nullable'
+            'gif'       =>  'required|',
+            'parent_id' =>  'required|exists:mapels,id',
+            'tautan'    => 'required|url|',
         ]);
 
-        //upload image
+
+
+        // Upload image
         $gif = $request->file('gif');
-        $gif->storeAs('public/mapels', $gif->hashName());
+        $gif->storeAs('public/materis', $gif->hashName());
 
-
-        Materi::create([
+        // Create Materi
+        $materi = Materi::create([
             'judul'     => $request->judul,
             'isi'       => $request->isi,
             'gif'       => $gif->hashName(),
-            'parent_id' => $request->input('parent_id'),
+            'parent_id' => $request->parent_id,
+            'tautan'    => $request->tautan,
         ]);
 
+        // Update parent's 'active' status
         if ($request->input('parent_id')) {
-            $activeParent = Materi::find($request->input('parent_id'));
+            $activeParent = Mapel::find($request->input('parent_id'));
             if ($activeParent) {
                 $activeParent->update(['active' => true]);
             }
         }
 
-        return redirect()->route('materi.index');
+        return redirect()->route('materi.index')->with(['success' => 'Data Berhasil Disimpan!']);
     }
 
     /**
@@ -85,6 +92,7 @@ class MateriController extends Controller
             'judul'     =>  'required|',
             'isi'       =>  'required|',
             'gif'       =>  'required|',
+            'tautan'    =>  'required|url|',
         ]);
 
         //untuk menyimpan gambar yang ada
@@ -102,12 +110,14 @@ class MateriController extends Controller
             $materi->update([
                 'judul'     => $request->judul,
                 'isi'       => $request->isi,
+                'tautan'    => $request->tautan,
                 'gif'       => $gif->hashName(),
             ]);
         } else {
             $materi->update([
                 'judul'     => $request->judul,
                 'isi'       => $request->isi,
+                'tautan'    => $request->tautan,
                 'gif'       => $existingGif //gunakan gif yang sudah ada
             ]);
         }

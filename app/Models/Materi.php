@@ -14,9 +14,12 @@ class Materi extends Model
         'judul',
         'isi',
         'gif',
+        'parent_id',
+        'tautan',
+        
     ];
 
-    public function Mapel()
+    public function mapel()
     {
         return $this->belongsTo(Mapel::class, 'parent_id');
     }

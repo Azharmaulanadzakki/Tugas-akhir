@@ -1,7 +1,10 @@
 <?php
 
+use Arubacao\Oembed\Facades\Oembed;
+use App\Providers\AppServiceProvider;
 use Illuminate\Support\Facades\Facade;
 use Illuminate\Support\ServiceProvider;
+use Arubacao\Oembed\OembedServiceProvider;
 
 return [
 
@@ -163,6 +166,7 @@ return [
         /*
          * Application Service Providers...
          */
+        // App\Providers\OembedServiceProvider::class,
         App\Providers\AppServiceProvider::class,
         App\Providers\AuthServiceProvider::class,
         // App\Providers\BroadcastServiceProvider::class,
@@ -183,6 +187,7 @@ return [
 
     'aliases' => Facade::defaultAliases()->merge([
         // 'Example' => App\Facades\Example::class,
+        // 'Oembed' => Oembed::class,
     ])->toArray(),
 
 ];
