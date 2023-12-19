@@ -15,7 +15,7 @@ class MateriController extends Controller
      */
 
     public function index()
-    {   
+    {
         $materis = Materi::with('mapel')->latest()->paginate(5);
         return view('admin.materi.index', compact('materis'));
     }
@@ -37,9 +37,9 @@ class MateriController extends Controller
         $this->validate($request, [
             'judul'     =>  'required|',
             'isi'       =>  'required|',
-            'gif'       =>  'required|',
+            'gif'       =>  'nullable',
             'parent_id' =>  'required|exists:mapels,id',
-            'tautan'    => 'required|url|',
+            'tautan'    =>  'required|url|',
         ]);
 
 
@@ -91,7 +91,7 @@ class MateriController extends Controller
         $this->validate($request, [
             'judul'     =>  'required|',
             'isi'       =>  'required|',
-            'gif'       =>  'required|',
+            'gif'       =>  'nullable',
             'tautan'    =>  'required|url|',
         ]);
 
@@ -112,6 +112,8 @@ class MateriController extends Controller
                 'isi'       => $request->isi,
                 'tautan'    => $request->tautan,
                 'gif'       => $gif->hashName(),
+
+
             ]);
         } else {
             $materi->update([

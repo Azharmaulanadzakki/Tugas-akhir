@@ -7,48 +7,46 @@
 
 
 
-            <form action="{{ route('materi.store') }}" method="post" enctype="multipart/form-data">
-
+            <form action="{{ route('tool.store') }}" method="post" enctype="multipart/form-data">
                 @csrf
-
 
                 <div class="grid grid-cols-1 gap-6 mt-4 sm:grid-cols-2">
 
                     <!-- Judul -->
                     <div class="mb-4">
-                        <label for="judul" class="block text-gray-700 text-sm font-bold mb-2">Judul</label>
-                        <input type="text" name="judul" id="judul" class="w-full border rounded-md py-2 px-3"
-                            value="{{ old('judul') }}">
-                        @error('judul')
+                        <label for="nama_tool" class="block text-gray-700 text-sm font-bold mb-2">Nama Tool</label>
+                        <input type="text" name="nama_tool" id="nama_tool" class="w-full border rounded-md py-2 px-3"
+                            value="{{ old('nama_tool') }}">
+                        @error('nama_tool')
                             <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
                         @enderror
                     </div>
 
-                    <!-- Isi -->
+                    <!-- Description -->
                     <div class="mb-4">
-                        <label for="isi" class="block text-gray-700 text-sm font-bold mb-2">Isi</label>
-                        <textarea name="isi" id="isi" class="w-full border rounded-md py-2 px-3" rows="4">{{ old('isi') }}</textarea>
-                        @error('isi')
+                        <label for="description" class="block text-gray-700 text-sm font-bold mb-2">Description</label>
+                        <textarea name="description" id="description" class="w-full border rounded-md py-2 px-3" rows="4">{{ old('description') }}</textarea>
+                        @error('description')
                             <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
                         @enderror
                     </div>
 
                     <div class="mb-4">
-                        <label for="tautan" class="block text-gray-700 text-sm font-bold mb-2">link yt</label>
+                        <label for="tautan" class="block text-gray-700 text-sm font-bold mb-2">Link source tautan</label>
                         <textarea name="tautan" id="tautan" class="w-full border rounded-md py-2 px-3" rows="4">{{ old('tautan') }}</textarea>
-                        @error('isi')
+                        @error('tautan')
                             <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
                         @enderror
                     </div>
 
                     <!-- Input Gambar -->
                     <div class="mb-4">
-                        <label for="gif" class="block text-gray-700 text-sm font-bold mb-2">icon png yg berkaitan dgn judul</label>
-                        <input type="file" name="gif" id="gif" class="w-full border rounded-md py-2 px-"
+                        <label for="image" class="block text-gray-700 text-sm font-bold mb-2">Image Tool</label>
+                        <input type="file" name="image" id="image" class="w-full border rounded-md py-2 px-"
                             onchange="previewImage()">
                         <img id="preview" class="mt-2" style="max-width: 40%;">
                         <!-- Tampilkan pesan kesalahan jika ada -->
-                        @error('gambar')
+                        @error('image')
                             <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
                         @enderror
                     </div>
@@ -75,7 +73,7 @@
 
         <script>
             function previewImage() {
-                var input = document.getElementById('gif');
+                var input = document.getElementById('image');
                 var preview = document.getElementById('preview');
 
                 var reader = new FileReader();

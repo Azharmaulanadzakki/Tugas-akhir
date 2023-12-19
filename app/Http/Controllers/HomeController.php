@@ -32,13 +32,35 @@ class HomeController extends Controller
             abort(404); // atau atur sesuai kebutuhan aplikasi Anda
         }
 
-        // Ambil data materi yang terkait dengan $parent_id yang dipilih
+        // Ambil data materi yang terkait dengan $parent_id yang dipilih dengan paginasi
         $materis = DB::table('materis')
             ->where('parent_id', $parent_id)
-            ->get();
-
+            ->paginate(1); // Sesuaikan dengan jumlah item per halaman yang diinginkan
 
         // Kirimkan variabel $parent dan $materis ke tampilan
         return view('materi', compact('parent', 'materis'));
+    }
+
+    public function tools($parent_id = null)
+    {
+        // Ambil data parent dari tabel mapels sesuai dengan $parent_id
+        $parent = $parent_id ? DB::table('mapels')->find($parent_id) : null;
+
+        // Jika $parent tidak ditemukan, bisa ditangani di sini
+        if (!$parent && $parent_id) {
+            abort(404); // atau atur sesuai kebutuhan aplikasi Anda
+        }
+
+        // Ambil data tools yang terkait dengan $parent_id (jika diberikan) atau semua tools
+        $toolsQuery = DB::table('tools');
+
+        if ($parent_id) {
+            $toolsQuery->where('mapel_id', $parent_id);
+        }
+
+        $tools = $toolsQuery->get();
+
+        // Kirimkan variabel $parent, $tools, dan $parent_id ke tampilan
+        return view('tools', compact('parent', 'tools', 'parent_id'));
     }
 }

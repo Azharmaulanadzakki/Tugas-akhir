@@ -17,7 +17,7 @@ class AuthController extends Controller
         return view('auth.profile');
     }
 
-    
+
     public function updateProfile(Request $request)
     {
         $request->validate([
@@ -82,12 +82,12 @@ class AuthController extends Controller
 
     public function loginPost(Request $request)
     {
-        $credetials = [
+        $credentials = [
             'email' => $request->email,
             'password' => $request->password,
         ];
 
-        if (Auth::attempt($credetials)) {
+        if (Auth::attempt($credentials)) {
             $user = Auth::user();
             if ($user->role == 'admin') {
                 Alert::success('Login berhasil');
@@ -97,7 +97,7 @@ class AuthController extends Controller
             }
         }
         Alert::error('Email atau Password salah!');
-        return back();
+        return back()->withInput();
     }
 
     public function logout()

@@ -61,7 +61,7 @@
             </div>
 
             <section class="mx-4 sm:mx-8 my-6">
-                <div class="owl-carousel grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
+                <div class="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
                     @foreach ($mapels as $index => $mapel)
                         <div id="mapel-list-{{ $index }}" class="rounded-xl shadow-lg mapel-item"
                             data-index="{{ $index }}">
@@ -72,7 +72,7 @@
                                 </div>
                                 <div class="p-2 sm:p-4 flex flex-col">
                                     <h5 class="text-md font-medium mt-3"> {{ $mapel->judul }}</h5>
-                                    <h7 class="text-md font-semibold"> Rp. {{ $mapel->harga }}</h7>
+                                    <h7 class="text-md font-semibold"> Rp.{{ $mapel->harga }}</h7>
                                     <p class="text-slate-400 text-base mt-3"> {{ $mapel->description }} </p>
                                     <form action="{{ route('materi', ['parent_id' => $mapel->id]) }}">
                                         <button class="my-3 rounded-md px-4 sm:px-3 py-2 text-sm bg-indigo-500 text-white font-semibold hover:bg-indigo-600 duration-300">

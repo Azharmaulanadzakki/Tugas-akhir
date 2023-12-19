@@ -6,23 +6,20 @@ use App\Models\Mapel;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
-class Materi extends Model
+class Tool extends Model
 {
     use HasFactory;
 
     protected $fillable = [
-        'judul',
-        'isi',
-        'gif',
-        'parent_id',
+        'nama_tool',
+        'description',
+        'image',
         'tautan',
-        
+        'parent_id',
     ];
 
     public function mapel()
     {
         return $this->belongsTo(Mapel::class, 'parent_id');
     }
-
 }
-
