@@ -72,10 +72,12 @@
                                 </div>
                                 <div class="p-2 sm:p-4 flex flex-col">
                                     <h5 class="text-md font-medium mt-3"> {{ $mapel->judul }}</h5>
-                                    <h7 class="text-md font-semibold"> Rp.{{ $mapel->harga }}</h7>
+                                    <h7 class="text-md font-semibold"> Rp.{{ number_format($mapel->harga, 2, ',', '.') }}
+                                    </h7>
                                     <p class="text-slate-400 text-base mt-3"> {{ $mapel->description }} </p>
                                     <form action="{{ route('materi', ['parent_id' => $mapel->id]) }}">
-                                        <button class="my-3 rounded-md px-4 sm:px-3 py-2 text-sm bg-indigo-500 text-white font-semibold hover:bg-indigo-600 duration-300">
+                                        <button
+                                            class="my-3 rounded-md px-4 sm:px-3 py-2 text-sm bg-indigo-500 text-white font-semibold hover:bg-indigo-600 duration-300">
                                             Lihat Materi
                                         </button>
                                     </form>

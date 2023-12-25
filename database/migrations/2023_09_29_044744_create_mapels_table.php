@@ -16,7 +16,7 @@ return new class extends Migration
             $table->string('judul');
             $table->string('description');
             $table->string('image');
-            $table->integer('harga');
+            $table->decimal('harga', 10, 2); // Menggunakan tipe data decimal
             $table->timestamps();
         });
     }
