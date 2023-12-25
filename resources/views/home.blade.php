@@ -25,7 +25,8 @@
         <section class="mx-4 sm:mx-8 md:mx-16 lg:mx-24">
 
             <div class="container mx-auto py-8 sm:py-16 px-4">
-                <h1 class="text-2xl sm:text-4xl font-semibold mb-4 sm:mb-8 text-center">Discover a most popular Online Course
+                <h1 class="text-2xl sm:text-4xl font-semibold mb-4 sm:mb-8 text-center">
+                    Discover a most popular Online Course
                 </h1>
                 <div class="flex items-center justify-center">
                     <form action="{{ route('home.index') }}" method="GET">
