@@ -2,7 +2,7 @@
 <nav class="navbar bg-transparent p-6">
     <div class="container mx-auto">
         <div class="flex justify-between items-center">
-            <a href="#" class="text-gray-900 text-2xl font-bold">LearnWithAzhar</a>
+            <a href="#" class="text-gray-900 text-2xl font-bold">DesignedForYou</a>
             {{-- <ul class="flex space-x-4">
                   <li><a href="#" class="text-gray-900 font-semibold">Beranda</a></li>
                   <li><a href="#" class="text-gray-900 font-semibold">Kursus</a></li>

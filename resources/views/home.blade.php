@@ -1,9 +1,9 @@
 @extends('layout.app')
 @section('content')
 
-    <body class="bg-gray-100 antialiased">
+    @include('components.navbar-user')
 
-        @include('components.navbar-user')
+    <body class="bg-gray-100 antialiased">
 
         <!-- Hero Section -->
         <header class="text-gray-800 py-10 px-4 sm:px-8 md:px-16 lg:px-24">
@@ -14,8 +14,8 @@
                         class="text-3xl sm:text-4xl md:text-5xl lg:text-5xl mt-5 font-bold leading-tight text-left sm:w-[30rem]">
                         Hello {{ Auth::user()->name }}
                     </h1>
-                    <div class="text-gray-400 text-lg text-left mt-5 sm:w-[25rem]">
-                        LearnWithAzhar menyediakan kelas UI/UX design, Prototyping, dan Quiz UI/UX untuk pemula.
+                    <div class="text-gray-400 text-lg text-left mt-5 sm:w-[27rem]">
+                        Kelas online kami menyediakan kelas UI/UX design, Prototyping, dan Quiz UI/UX untuk pemula.
                     </div>
                 </div>
             </div>
@@ -61,7 +61,7 @@
                 </div>
             </div>
 
-            <section class="mx-4 sm:mx-8 my-6">
+            <div class="mx-4 sm:mx-8 my-6">
                 <div class="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
                     @foreach ($mapels as $index => $mapel)
                         <div id="mapel-list-{{ $index }}" class="rounded-xl shadow-lg mapel-item"
@@ -75,7 +75,7 @@
                                     <h5 class="text-md font-medium mt-3"> {{ $mapel->judul }}</h5>
                                     <h7 class="text-md font-semibold"> Rp.{{ number_format($mapel->harga, 2, ',', '.') }}
                                     </h7>
-                                    <p class="text-slate-400 text-base mt-3"> {{ $mapel->description }} </p>
+                                    {{-- <p class="text-slate-400 text-base mt-3"> {{ $mapel->description }} </p> --}}
                                     <form action="{{ route('materi', ['parent_id' => $mapel->id]) }}">
                                         <button
                                             class="my-3 rounded-md px-4 sm:px-3 py-2 text-sm bg-indigo-500 text-white font-semibold hover:bg-indigo-600 duration-300">
@@ -95,12 +95,30 @@
                     class="my-3 rounded-md px-4 sm:px-9 py-2 bg-black text-white font-semibold hover:bg-gray-900 duration-300">
                     Less More
                 </button>
-            </section>
-            @include('components.scroll')
+
+            </div>
+
+            <div id="about" class="py-2 hidden md:block">
+
+                <div class="flex justify-center items-center">
+                    <p class="text-emerald-400 font-bold text-lg"> Tools UI/UX Designer </p>
+                </div>
+                <div class="flex justify-center items-center">
+                    <p class="text-gray-900 font-bold text-4xl mt-2"> Kelas Online UI/UX Terupdate. </p>
+                </div>
+                <div class="flex justify-center items-center">
+                    <p class="text-gray-900 font-bold text-4xl mt-2"> DesignedForYou. </p>
+                </div>
+        
+            </div>
+
         </section>
+        @include('components.scroll')
+        @include('components.infinite-scroll')
 
 
         {{-- script show more --}}
+
         <script>
             document.addEventListener("DOMContentLoaded", function() {
                 const mapelItems = document.querySelectorAll(".mapel-item");

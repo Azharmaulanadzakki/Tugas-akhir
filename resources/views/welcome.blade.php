@@ -2,7 +2,7 @@
 @section('content')
 
     <body class="bg-gray-100">
-
+        
         <!-- Hero Section -->
         <header class="text-gray-800 py-8 sm:py-12 md:py-16 lg:py-20 px-4 sm:px-6 md:px-8 lg:px-12 xl:px-16">
             <div class="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-12">
@@ -93,7 +93,7 @@
                                 <div class="p-2 sm:p-4 flex flex-col">
                                     <h5 class="text-md font-medium mt-3"> {{ $mapel->judul }}</h5>
                                     <h7 class="text-md font-semibold"> Rp.{{ $mapel->harga }}</h7>
-                                    <p class="text-slate-400 text-base mt-3"> {{ $mapel->description }} </p>
+                                    {{-- <p class="text-slate-400 text-base mt-3"> {{ $mapel->description }} </p> --}}
                                     <form action="{{ route('materi', ['parent_id' => $mapel->id]) }}">
                                         <button
                                             class="my-3 rounded-md px-4 sm:px-3 py-2 text-sm bg-indigo-500 text-white font-semibold hover:bg-indigo-600 duration-300">
