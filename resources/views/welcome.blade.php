@@ -2,7 +2,7 @@
 @section('content')
 
     <body class="bg-gray-100">
-        
+
         <!-- Hero Section -->
         <header class="text-gray-800 py-8 sm:py-12 md:py-16 lg:py-20 px-4 sm:px-6 md:px-8 lg:px-12 xl:px-16">
             <div class="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-12">
@@ -105,19 +105,26 @@
                         </div>
                     @endforeach
                 </div>
+
                 <button id="showMoreBtn"
                     class="my-3 rounded-md px-9 py-2 bg-black text-white font-semibold hover:bg-gray-900 duration-300">Show
-                    More</button>
+                    More
+                </button>
+
                 <button id="lessMoreBtn" style="display: none; "
                     class="my-3 rounded-md px-9 py-2 bg-black text-white font-semibold hover:bg-gray-900 duration-300">Less
-                    More</button>
+                    More
+                </button>
+
             </section>
             {{-- end card --}}
 
-            @include('components.scroll')
-
+            @include('components.about')
 
         </section>
+        
+        @include('components.scroll')
+        @include('components.infinite-scroll')
 
 
 

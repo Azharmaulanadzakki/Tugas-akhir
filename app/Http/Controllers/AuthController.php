@@ -12,37 +12,6 @@ use RealRashid\SweetAlert\Facades\Alert;
 class AuthController extends Controller
 {
 
-    public function profile()
-    {
-        return view('auth.profile');
-    }
-
-
-    public function updateProfile(Request $request)
-    {
-        $request->validate([
-            'name' => 'required|string|max:255',
-            'email' => 'required|email|unique:users,email,' . Auth::id(),
-            'profile_image' => 'image|mimes:jpeg,png,jpg,gif|max:2048',
-        ]);
-
-        // Simpan gambar ke penyimpanan dan dapatkan nama file
-        if ($request->hasFile('profile_image')) {
-            $imageName = time() . '.' . $request->profile_image->extension();
-            $request->profile_image->storeAs('profile_images', $imageName, 'public');
-
-            // Perbarui kolom 'profile_image' pada model User
-            Auth::user(['profile_image' => $imageName]);
-        }
-
-        Auth::user([
-            'name' => $request->name,
-            'email' => $request->email,
-        ]);
-
-        return redirect()->back()->with('success', 'Profile updated successfully.');
-    }
-
 
     public function register()
     {
