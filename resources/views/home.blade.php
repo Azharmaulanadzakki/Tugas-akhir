@@ -79,7 +79,7 @@
                                     <form action="{{ route('materi', ['parent_id' => $mapel->id]) }}">
                                         <button
                                             class="my-3 rounded-md px-4 sm:px-3 py-2 text-sm bg-indigo-500 text-white font-semibold hover:bg-indigo-600 duration-300">
-                                            Lihat Materi
+                                            Lihat Kursus
                                         </button>
                                     </form>
                                 </div>

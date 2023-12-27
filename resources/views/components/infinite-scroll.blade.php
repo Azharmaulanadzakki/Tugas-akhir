@@ -22,11 +22,11 @@
         }
 
         .marquee-container {
-            animation: slideRight 20s linear infinite;
+            animation: slideRight 14s linear infinite;
         }
 
         .marquee {
-            animation: slideLeft 20s linear infinite;
+            animation: slideLeft 10s linear infinite;
         }
     </style>
 
