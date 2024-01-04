@@ -22,7 +22,7 @@
         }
 
         .marquee-container {
-            animation: slideRight 14s linear infinite;
+            animation: slideRight 10s linear infinite;
         }
 
         .marquee {

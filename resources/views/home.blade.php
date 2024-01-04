@@ -14,10 +14,14 @@
                         class="text-3xl sm:text-4xl md:text-5xl lg:text-5xl mt-5 font-bold leading-tight text-left sm:w-[30rem]">
                         Hello {{ Auth::user()->name }}
                     </h1>
-                    <div class="text-gray-400 text-lg text-left mt-5 sm:w-[27rem]">
+                    <p class="text-gray-400 text-lg text-left mt-5 sm:w-[27rem]">
                         Kelas online kami menyediakan kelas UI/UX design, Prototyping, dan Quiz UI/UX untuk pemula.
-                    </div>
+                    </p>
                 </div>
+                {{-- <div class="hidden md:inline-flex">
+                    <img class="rounded-xl text-right" src="https://i.pinimg.com/736x/8a/ed/3b/8aed3badcde62dcd68780e1be562611c.jpg"
+                        alt="">
+                </div> --}}
             </div>
         </header>
 
