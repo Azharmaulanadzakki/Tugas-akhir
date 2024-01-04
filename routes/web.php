@@ -20,9 +20,12 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('/home', [HomeController::class, 'index'])->name('home.index');
     Route::get('/materi/{parent_id}', [HomeController::class, 'materi'])->name('materi');
     Route::get('/tools', [HomeController::class, 'tools'])->name('tools');
-    Route::get('/profile', [AuthController::class, 'profile'])->name('profile');
-    Route::get('/profile/update', [AuthController::class, 'updateProfile'])->name('profile.update');
     Route::delete('/logout', [AuthController::class, 'logout'])->name('logout');
+    Route::get('/profile', function () {
+        $user = auth()->user(); // Mendapatkan pengguna yang sedang login
+        return view('profile', compact('user'));
+    })->name('profile.show');
+    Route::put('/profile/update', [AuthController::class, 'updateProfile'])->name('profile.update');
 });
 
 Route::middleware(['auth', 'checkUserRole:admin'])->group(function () {
@@ -33,7 +36,6 @@ Route::middleware(['auth', 'checkUserRole:admin'])->group(function () {
     Route::resource('/admin/tool', \App\Http\Controllers\ToolController::class);
     Route::resource('/admin/user', \App\Http\Controllers\UserController::class);
     Route::get('/users', [UserController::class, 'index'])->name('user.index');
-
 });
 
 Route::fallback(function () {
