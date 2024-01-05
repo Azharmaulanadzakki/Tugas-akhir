@@ -1,4 +1,4 @@
-@extends('layout.admin')
+@extends('layout.app')
 
 @section('content')
     @include('components.scroll')
@@ -7,17 +7,7 @@
 
         @include('components.navbar-user')
         <div class=" w-full flex flex-col gap-5 px-3 md:px-16 lg:px-28 md:flex-row text-[#161931]">
-            <aside class="hidden py-4 md:w-1/3 lg:w-1/4 md:block">
-                <div class="sticky flex flex-col gap-2 p-4 text-sm border-r border-indigo-100 top-12">
-
-                    <h2 class="pl-3 mb-4 text-2xl font-semibold">Profile</h2>
-
-                    <button onclick="scrollToEdit()"
-                        class="flex items-center px-3 py-2.5 font-semibold bg-gray-700 hover:bg-gray-800 transition-colors text-white text-base border rounded-full w-full">
-                        Edit Profile
-                    </button>
-                </div>
-            </aside>
+            @include('components.profile-sidebar')
             <main class="w-full min-h-screen py-1 md:w-2/3 lg:w-3/">
                 <div class="p-2 md:p-4">
                     <div class="w-full px-6 pb-8 mt-8 sm:max-w-xl sm:rounded-lg">
@@ -26,11 +16,11 @@
                         <div class="grid max-w-2xl mx-auto mt-8">
                             <div class="flex flex-col items-center space-y-5 sm:flex-row sm:space-y-0">
                                 <!-- Tampilkan gambar profil -->
-                                <img class="object-cover w-40 h-40 p-1 rounded-full ring-2 ring-indigo-300 dark:ring-indigo-500"
+                                <img class="object-cover w-40 h-40 p-1 rounded-full ring-2 ring-gray-400"
                                     src="{{ asset('storage/profile_images/' . $user->profile_image) }}"
                                     alt="Profile Picture">
                             </div>
-
+                            
                             <!-- Tampilkan informasi profil lainnya -->
                             <div class="items-center mt-8 sm:mt-14 text-[#202142]">
                                 <!-- Tambahkan informasi profil lainnya sesuai kebutuhan -->

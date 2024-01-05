@@ -66,7 +66,7 @@
             <ul class="flex-col p-4 md:p-0 mt-4 font-medium rounded-lg md:space-x-8 rtl:space-x-reverse md:flex-row md:mt-0 md:border-0 md:flex hidden"
                 id="menu">
                 <li>
-                    <a href="#"
+                    <a href="home"
                         class="block py-2 px-3 text-[#101828] rounded md:bg-transparent md:text-[#101828] md:p-0 "
                         aria-current="page">Home</a>
                 </li>
