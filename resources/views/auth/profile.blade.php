@@ -1,4 +1,4 @@
-@extends('layout.app')
+@extends('layout.admin')
 
 @section('content')
     @include('components.scroll')
@@ -29,7 +29,6 @@
                                 <img class="object-cover w-40 h-40 p-1 rounded-full ring-2 ring-indigo-300 dark:ring-indigo-500"
                                     src="{{ asset('storage/profile_images/' . $user->profile_image) }}"
                                     alt="Profile Picture">
-
                             </div>
 
                             <!-- Tampilkan informasi profil lainnya -->
@@ -39,11 +38,18 @@
                                     <p class="font-semibold">Username</p>
                                     <div
                                         class="font-semibold text-base bg-indigo-50 border border-indigo-300 text-indigo-900 rounded-lg focus:ring-indigo-500 focus:border-indigo-500 block py-2 px-5 w-fit">
-                                        {{ $user->name }}</div>
+                                        {{ $user->name }}
+                                    </div>
                                     <p class="font-semibold">Email</p>
                                     <div
                                         class="font-semibold text-base bg-indigo-50 border border-indigo-300 text-indigo-900 rounded-lg focus:ring-indigo-500 focus:border-indigo-500 block py-2 px-5 w-fit ">
-                                        {{ $user->email }}</div>
+                                        {{ $user->email }}
+                                    </div>
+                                    <p class="font-semibold">Bio</p>
+                                    <div
+                                        class="font-semibold text-base bg-indigo-50 border border-indigo-300 text-indigo-900 rounded-lg focus:ring-indigo-500 focus:border-indigo-500 block py-4 px-5 w-full ">
+                                        {{ $user->bio }}
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -86,6 +92,13 @@
                         @error('email')
                             <p class="text-red-500 text-xs mt-1">{{ $message }}</p>
                         @enderror
+                    </div>
+
+                    <div class="mb-4">
+                        <label for="bio"
+                            class="block mb-2 text-sm font-medium text-indigo-900">Bio</label>
+                        <textarea id="bio" name="bio" rows="4"
+                            class="block p-2.5 w-full text-sm text-indigo-90 rounded-lg border " placeholder="Write your bio here...">{{ old('bio', $user->bio) }}</textarea>
                     </div>
 
                     <div class="mb-4">

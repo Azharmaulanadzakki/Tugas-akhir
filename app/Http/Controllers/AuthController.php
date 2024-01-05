@@ -40,6 +40,7 @@ class AuthController extends Controller
     $userData = [
         'name' => $request->name,
         'email' => $request->email,
+        'bio' => $request->bio,
         // add other profile fields
     ];
 

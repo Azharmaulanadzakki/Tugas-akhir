@@ -75,15 +75,16 @@
                                             {{ $user->id }}
                                         </th>
                                         <td class="px-6 py-4">
-                                            {{ $user->name }}
+                                            <div class="flex items-center">
+                                                <div class="w-10 h-10 flex-shrink-0 mr-2 sm:mr-3">
+                                                    <img class="rounded-full" 
+                                                    src="{{ asset('storage/profile_images/' . $user->profile_image) }}" width="40" height="40" alt="Alex Shatov"></div>
+                                                <div class="font-medium text-gray-800">{{ $user->name }}</div>
+                                            </div>
                                         </td>
                                         <td class="px-6 py-4">
                                             {{ $user->email }}
                                         </td>
-                                        {{-- <td class="px-6 py-4">
-                                            <img src="{{ asset('/storage/profile_images/' . $user->profile_image) }}" alt=""
-                                                style="width: 50px">
-                                        </td> --}}
                                         <td class="px-6 py-4">
                                             {{ $user->role }}
                                         </td>
