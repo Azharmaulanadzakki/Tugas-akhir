@@ -28,7 +28,7 @@
                     <!-- Harga -->
                     <div class="mb-4">
                         <label for="harga" class="block text-gray-700 text-sm font-bold mb-2">Harga</label>
-                        <input type="number" min="0" name="harga" id="harga"
+                        <input type="number" min="0" max="1000000" name="harga" id="harga"
                             class="w-full border rounded-md py-2 px-3" value="{{ old('harga') }}">
                         <!-- Tampilkan pesan kesalahan jika ada -->
                         @error('harga')

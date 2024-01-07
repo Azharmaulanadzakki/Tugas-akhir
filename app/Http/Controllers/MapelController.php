@@ -22,7 +22,6 @@ class MapelController extends Controller
                 return $query->where('judul', 'like', '%' . $search . '%')
                     ->orWhere('id', 'like', '%' . $search . '%');
             })
-            ->latest()
             ->paginate(5);
 
         return view('admin.mapel.index', compact('mapels', 'search'));
