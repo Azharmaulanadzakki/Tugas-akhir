@@ -105,8 +105,8 @@
                         <span class="flex text-[#121212] font-medium text-base">UI/UX Designer</span>
                     </p>
                 </div>
-        
             </div>
+            
         </div>
     </div>
 </body>

@@ -10,7 +10,7 @@
             <div>
                 <ul class="mt-6 space-y-2 tracking-wide">
                     <li class="min-w-max">
-                        <a href="{{ route('admin.dashboard') }}" aria-label="dashboard"
+                        <a href="{{ route('admin.profile') }}" aria-label="dashboard"
                             class="relative flex items-center space-x-4 px-4 py-3 text-gray-600">
                             <i class="fas fa-user"></i>
                             <span class="-mr-1 font-medium">{{ Auth::user()->name }}</span>

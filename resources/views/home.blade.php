@@ -18,10 +18,6 @@
                         Kelas online kami menyediakan kelas UI/UX design, Prototyping, dan Quiz UI/UX untuk pemula.
                     </p>
                 </div>
-                {{-- <div class="hidden md:inline-flex">
-                    <img class="rounded-xl text-right" src="https://i.pinimg.com/736x/8a/ed/3b/8aed3badcde62dcd68780e1be562611c.jpg"
-                        alt="">
-                </div> --}}
             </div>
         </header>
 

@@ -43,15 +43,10 @@
                     <button type="submit" class="bg-[#002D74] rounded-xl text-white py-2 hover:scale-105 duration-300">
                         Login
                     </button>
-
-                    <div id="loadingSpinner" class="hidden mt-4">
-                        <iframe src="https://lottie.host/embed/fbc453e8-17f7-410b-86d0-0deabd606c80/cdA5m0RvPV.json"></iframe>
-                    </div>
-
                 </form>
 
                 <div class="mt-5 text-xs border-b border-[#002D74] py-4 text-[#002D74]">
-                    <a href="#">Forgot your password?</a>
+                    <a href="{{route('forgot')}}">Forgot your password?</a>
                 </div>
 
                 <div class="mt-3 text-xs flex justify-between items-center text-[#002D74]">
@@ -87,21 +82,5 @@
                 eyeSlashIcon.style.display = 'none';
             }
         }
-    </script>
-
-    <script>
-        function showLoadingSpinner() {
-            document.getElementById('loadingSpinner').style.display = 'block';
-            document.getElementById('loginButton').style.display = 'none';
-        }
-
-        function hideLoadingSpinner() {
-            document.getElementById('loadingSpinner').style.display = 'none';
-            document.getElementById('loginButton').style.display = 'block';
-        }
-
-        document.getElementById('loginForm').addEventListener('submit', function() {
-            showLoadingSpinner();
-        });
     </script>
 @endsection
