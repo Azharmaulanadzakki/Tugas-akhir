@@ -18,7 +18,7 @@ return new class extends Migration
             $table->string('gif');
             $table->string('tautan');
             $table->unsignedBigInteger('parent_id')->nullable();
-            $table->foreign('parent_id')->references('id')->on('mapels');
+            $table->foreign('parent_id')->references('id')->on('mapels')->onDelete('cascade');
             $table->timestamps();
         });
     }

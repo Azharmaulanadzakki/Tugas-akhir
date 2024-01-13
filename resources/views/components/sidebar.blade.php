@@ -17,13 +17,13 @@
                         </a>
                     </li>
                     <li class="min-w-max">
-                        <form action="{{ route('mapel.index') }}" method="GET">
+                        <a href="{{ route('mapel.index') }}" method="GET">
                             <button
                                 class="relative flex items-center space-x-5  px-4 py-3 text-gray-600 hover:bg-gray-600 w-full hover:text-white">
                                 <i class="fa-solid fa-database"></i>
                                 <span class="mr-2">Data Mapel</span>
                             </button>
-                        </form>
+                        </a>
                     </li>
                     <li class="min-w-max">
                         <a href="{{ route('materi.index') }}"
@@ -54,13 +54,13 @@
                         </a>
                     </li>
                     <li class="min-w-max">
-                        <form action="{{ route('user.index') }}" method="GET">
+                        <a href="{{ route('user.index') }}" method="GET">
                             <button
                                 class="relative flex items-center space-x-4  px-4 py-3 text-gray-600 hover:bg-gray-600 w-full hover:text-white">
                                 <i class="fas fa-user-edit"></i>
                                 <span class="mr-1">Data User</span>
                             </button>
-                        </form>
+                        </a>
                     </li>
                     <li class="min-w-max">
                         <a href="#"

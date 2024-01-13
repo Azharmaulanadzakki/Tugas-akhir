@@ -43,7 +43,7 @@ class MapelController extends Controller
         $this->validate($request, [
             'image'         =>  'required|image|mimes:jpeg,jpg,png|max:10000',
             'judul'         =>  'required|',
-            'description'   =>  'nullable|',
+            'description'   =>  'nullable',
             'harga'         =>  'required|',
         ]);
 
@@ -86,7 +86,7 @@ class MapelController extends Controller
         $this->validate($request, [
             'image'           =>  'nullable|',
             'judul'           =>  'required|',
-            'description'     =>  'nullable|',
+            'description'     =>  'nullable',
             'harga'           =>  'required|',
         ]);
 

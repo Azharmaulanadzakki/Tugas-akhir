@@ -29,8 +29,17 @@
                     </div>
                 </div>
 
-                <div class="hidden md:block">
-                    <img class="rounded-xl" src="https://i.pinimg.com/736x/8a/ed/3b/8aed3badcde62dcd68780e1be562611c.jpg"
+                <div class="hidden md:block md:relative">
+                    <div
+                        class="absolute top-0 -left-4 w-80 h-80 bg-purple-300 rounded-full mix-blend-multiply filter blur-xl opacity-70 animate-blob">
+                    </div>
+                    <div
+                        class="absolute top-0 -right-4 w-80 h-80 bg-yellow-300 rounded-full mix-blend-multiply filter blur-xl opacity-70 animate-blob animation-delay-2000">
+                    </div>
+                    <div
+                        class="absolute -bottom-8 left-20 w-80 h-80 bg-pink-300 rounded-full mix-blend-multiply filter blur-xl opacity-70 animate-blob animation-delay-4000">
+                    </div>
+                    <img class="rounded-xl relative p-7" src="https://i.pinimg.com/736x/8a/ed/3b/8aed3badcde62dcd68780e1be562611c.jpg"
                         alt="">
                 </div>
 
@@ -92,12 +101,12 @@
                                 </div>
                                 <div class="p-2 sm:p-4 flex flex-col">
                                     <h5 class="text-md font-medium mt-3"> {{ $mapel->judul }}</h5>
-                                    <h7 class="text-md font-semibold"> Rp.{{ $mapel->harga }}</h7>
-                                    {{-- <p class="text-slate-400 text-base mt-3"> {{ $mapel->description }} </p> --}}
+                                    <h7 class="text-md font-medium"> Rp.{{ number_format($mapel->harga, 2, ',', '.') }}
+                                    </h7>
                                     <form action="{{ route('materi', ['parent_id' => $mapel->id]) }}">
                                         <button
                                             class="my-3 rounded-md px-4 sm:px-3 py-2 text-sm bg-indigo-500 text-white font-semibold hover:bg-indigo-600 duration-300">
-                                            Lihat Materi
+                                            Lihat Kursus
                                         </button>
                                     </form>
                                 </div>
@@ -122,7 +131,7 @@
             @include('components.about')
 
         </section>
-        
+
         @include('components.scroll')
         @include('components.infinite-scroll')
 

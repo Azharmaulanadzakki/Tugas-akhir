@@ -70,7 +70,7 @@
                             <div class="rounded-xl shadow-lg">
                                 <div class="rounded-b-none rounded-t-xl overflow-hidden">
                                     <img src="{{ asset('/storage/mapels/' . $mapel->image) }}" alt=""
-                                        class="aspect-[1/1] w-full h-full">
+                                    class="aspect-[1/1] w-full h-full">
                                 </div>
                                 <div class="p-2 sm:p-4 flex flex-col">
                                     <h5 class="text-md font-medium mt-3"> {{ $mapel->judul }}</h5>
