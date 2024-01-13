@@ -62,7 +62,8 @@
             </div>
 
             <div class="mx-4 sm:mx-8 my-6">
-                <div class="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
+
+                <div class="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4 ">
                     @foreach ($mapels as $index => $mapel)
                         <div id="mapel-list-{{ $index }}" class="rounded-xl shadow-lg mapel-item"
                             data-index="{{ $index }}">
@@ -73,9 +74,8 @@
                                 </div>
                                 <div class="p-2 sm:p-4 flex flex-col">
                                     <h5 class="text-md font-medium mt-3"> {{ $mapel->judul }}</h5>
-                                    <h7 class="text-md font-semibold"> Rp.{{ number_format($mapel->harga, 2, ',', '.') }}
+                                    <h7 class="text-md font-medium"> Rp.{{ number_format($mapel->harga, 2, ',', '.') }}
                                     </h7>
-                                    {{-- <p class="text-slate-400 text-base mt-3"> {{ $mapel->description }} </p> --}}
                                     <form action="{{ route('materi', ['parent_id' => $mapel->id]) }}">
                                         <button
                                             class="my-3 rounded-md px-4 sm:px-3 py-2 text-sm bg-indigo-500 text-white font-semibold hover:bg-indigo-600 duration-300">
@@ -87,6 +87,7 @@
                         </div>
                     @endforeach
                 </div>
+
                 <button id="showMoreBtn"
                     class="my-3 rounded-md px-4 sm:px-9 py-2 bg-black text-white font-semibold hover:bg-gray-900 duration-300">
                     Show More
