@@ -1,8 +1,8 @@
 @component('mail::message')
 
-<h1>Hello, {{ $user->name }}</h1>
+<h1>Hello, {{ $user->email }}</h1>
 
-@component('mail::button', ['url' => url('reset/'.$user->remember_token)])
+@component('mail::button', ['url' => url('reset/'.$user->token)])
 Reset your password
 @endcomponent
 

@@ -15,7 +15,7 @@
                         Hello {{ Auth::user()->name }}
                     </h1>
                     <p class="text-gray-400 text-lg text-left mt-5 sm:w-[27rem]">
-                        Kelas online kami menyediakan kelas UI/UX design, Prototyping, dan Quiz UI/UX untuk pemula.
+                        Kelas online kami menyediakan kelas UI/UX design, Prototyping, dan ramah untuk designer UI/UX untuk pemula.
                     </p>
                 </div>
             </div>

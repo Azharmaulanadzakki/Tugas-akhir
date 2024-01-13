@@ -43,7 +43,4 @@ Route::middleware(['auth', 'checkUserRole:admin'])->group(function () {
 Route::fallback(function () {
     return view('errors.404');
 });
-
-Route::fallback(function () {
-    return view('errors.403');
-});
+        
