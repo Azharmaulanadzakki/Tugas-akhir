@@ -8,5 +8,4 @@
     <div class="flex justify-center items-center">
         <p class="text-gray-900 font-bold text-4xl mt-2"> DesignedForYou. </p>
     </div>
-
 </div>
