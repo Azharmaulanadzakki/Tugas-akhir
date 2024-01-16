@@ -39,14 +39,6 @@
 
                 <div class="container antialiased mx-auto mt-5">
                     <div class="relative justify-center items-center overflow-x-auto shadow-md sm:rounded-lg">
-                        {{-- <div class="flex justify-end mb-4">
-                            <button id="sortDesc" onclick="sortTable('desc')"
-                                class="px-4 py-2 bg-gray-500 hover:bg-gray-600 text-white text-sm font-medium rounded-md mr-2">Sort Descending
-                            </button>
-                            <button id="sortAsc" onclick="sortTable('asc')"
-                                class="px-4 py-2 bg-gray-500 hover:bg-gray-600 text-white text-sm font-medium rounded-md">Sort Ascending
-                            </button>
-                        </div> --}}
                         <table id="mapelTable" class="w-full text-sm text-left text-gray-500">
                             <thead class="text-xs text-gray-700 uppercase bg-gray-50">
                                 <tr>

@@ -8,27 +8,27 @@
 
     <body class="antialiased bg-gray-100">
 
-        <header class="text-gray-800 py-10 px-4 sm:px-8 md:px-16 lg:px-24">
+        <main class="text-gray-800 py-10 px-4 sm:px-8 md:px-16">
             {{-- grid --}}
             <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <div class=" col-span-1 container mx-auto text-center">
                     <div class="text-[#55c097] text-lg font-bold text-left">#WujudkanMimpimu</div>
                     <h1
-                        class="text-3xl sm:text-4xl md:text-5xl lg:text-5xl mt-5 font-bold leading-tight text-left sm:w-[30rem]">
+                        class="text-3xl sm:text-4xl md:text-5xl lg:text-5xl mt-5 font-semibold leading-tight text-left sm:w-[30rem]">
                         Hello {{ Auth::user()->name }}
                     </h1>
                     @foreach ($materis as $materi)
-                        <h1 class="text-gray-900 font-bold text-2xl text-left mt-10 sm:w-full">
+                        <h1 class="text-gray-900 font-medium text-2xl text-left mt-10 sm:w-full">
                             Materi : {{ $materi->judul }}.
                         </h1>
-                        <div class="relative max-w-full w-full md:w-[100rem] overflow-hidden mt-5 rounded-lg shadow-xl shadow-gray-400"
+                        <div class="relative w-full overflow-hidden md:h-[50dvh] md:w-[50dvh] lg:h-[75dvh] lg:w-[150dvh] mt-5 rounded-lg shadow-xl shadow-gray-400"
                             style="padding-bottom: 56.25%">
                             <iframe src="{{ $materi->tautan }}" frameborder="" allowfullscreen
                                 class="absolute top-0 left-0 w-full h-full">
                             </iframe>
                         </div>
-                        
-                        <div class="flex justify-between mt-8">
+
+                        <div class="flex justify-between mt-8 sm:w-60">
                             @if ($materis->previousPageUrl())
                                 <a href="{{ $materis->previousPageUrl() }}">
                                     <button
@@ -76,14 +76,8 @@
                         </p>
                     @endforeach
                 </div>
-
-                <div class="col-span-1">
-                    <!-- Tampilkan link paginasi menggunakan Tailwind CSS -->
-
-                </div>
             </div>
 
-            </div>
             {{-- end grid --}}
 
             <button
@@ -93,7 +87,7 @@
 
             <div class="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4 my-4">
                 @foreach ($tools as $tool)
-                    <div id="tools-section" class="rounded-xl shadow-lg mapel-item">
+                    <div id="tool-section" class="rounded-xl shadow-lg mapel-item">
                         <div class="rounded-xl shadow-lg">
                             <div class="rounded-b-none rounded-t-xl overflow-hidden p-10 bg-white">
                                 <img src="{{ asset('/storage/tools/' . $tool->image) }}" alt=""
@@ -112,25 +106,24 @@
                         </div>
                     </div>
                 @endforeach
-
             </div>
-        </header>
+        </main>
 
         <script>
             // Fungsi untuk melakukan scroll ke elemen dengan ID 'tools-section'
             function scrollToAbout() {
-                const toolsSection = document.getElementById('about-section');
+                const aboutSection = document.getElementById('about-section');
 
-                if (toolsSection) {
+                if (aboutSection) {
                     // Gunakan fungsi scrollIntoView untuk melakukan scroll ke elemen tersebut
-                    toolsSection.scrollIntoView({
+                    aboutSection.scrollIntoView({
                         behavior: 'smooth'
                     });
                 }
             }
 
             function scrollToTools() {
-                const toolsSection = document.getElementById('tools-section');
+                const toolsSection = document.getElementById('tool-section');
 
                 if (toolsSection) {
                     // Gunakan fungsi scrollIntoView untuk melakukan scroll ke elemen tersebut
@@ -142,7 +135,4 @@
         </script>
 
     </body>
-
-
-    <!-- Tambahkan bagian lain dari tampilan materi sesuai kebutuhan -->
 @endsection

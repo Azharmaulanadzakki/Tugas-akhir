@@ -34,14 +34,14 @@
                     </li>
                     <li class="min-w-max">
                         <a href="{{ route('materi.index') }}"
-                            class="group flex items-center space-x-6 rounded-md px-4 py-3 text-gray-600 hover:bg-gray-600 w-full hover:text-white">
+                            class="group flex items-center space-x-6 px-4 py-3 text-gray-600 hover:bg-gray-600 w-full hover:text-white">
                             <i class="fa-solid fa-book"></i>
                             <span class="group-hover:text-gray-700">Data Materi</span>
                         </a>
                     </li>
                     <li class="min-w-max">
                         <a href="{{ route('tool.index') }}"
-                            class="group flex items-center space-x-6 rounded-md px-4 py-3  text-gray-600 hover:bg-gray-600 hover:text-white w-full">
+                            class="group flex items-center space-x-6 px-4 py-3  text-gray-600 hover:bg-gray-600 hover:text-white w-full">
                             <i class="fa-solid fa-toolbox"></i>
                             <span class="group-hover:text-white">Data Tools Materi</span>
                         </a>
