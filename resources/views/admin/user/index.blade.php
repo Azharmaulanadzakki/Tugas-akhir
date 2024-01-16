@@ -57,14 +57,11 @@
                                     <th scope="col" class="px-6 py-3">
                                         Email
                                     </th>
-                                    {{-- <th scope="col" class="px-6 py-3">
-                                        Image
-                                    </th> --}}
                                     <th scope="col" class="px-6 py-3">
                                         Role
                                     </th>
                                     <th scope="col" class="px-6 py-3">
-                                        <span class="sr-only">Edit</span>
+                                       
                                     </th>
                                 </tr>
                             </thead>
@@ -86,20 +83,33 @@
                                             {{ $user->role }}
                                         </td>
                                         <td class="px-6 py-4 flex gap-2 justify-center text-right items-center">
-                                            <a href="{{ route('user.edit', ['user' => $user->id]) }}"
-                                                class="font-medium text-blue-600 hover:underline">Edit</a>
-
-                                            <form action="{{ route('user.destroy', ['user' => $user->id]) }}" method="POST"
-                                                id="deleteForm">
+                                            <form action="{{ route('user.edit', ['user' => $user->id]) }}">
+                                                <button
+                                                    class="inline-flex items-center px-4 py-2 bg-indigo-500 hover:bg-indigo-600 text-white text-sm font-medium rounded-md mr-4">
+                                                    Edit
+                                                </button>
+                                            </form>
+                                            <form action="{{ route('user.destroy', $user->id) }}" method="POST">
                                                 @csrf
                                                 @method('DELETE')
-                                                <button type="button" onclick="confirmDelete()"
-                                                    class="font-medium text-red-600 hover:underline">Delete
+                                                <button type="submit"
+                                                    class="inline-flex items-center px-4 py-2 bg-red-500 hover:bg-red-600 text-white text-sm font-medium rounded-md mr-4">
+                                                    Delete
                                                 </button>
                                             </form>
 
-                                        </td>
+                                            {{-- <a href="{{ route('user.edit', ['user' => $user->id]) }}"
+                                                class="font-medium text-blue-600 hover:underline">Edit</a>
 
+                                            <form action="{{ route('user.destroy', ['user' => $user->id]) }}" method="POST">
+                                                @csrf
+                                                @method('DELETE')
+                                                <button type="submit"
+                                                    class="font-medium text-red-600 hover:underline">
+                                                    Delete
+                                                </button>
+                                            </form> --}}
+                                        </td>
                                     </tr>
                                 @endforeach
                             </tbody>
@@ -113,7 +123,7 @@
         </div>
 
         <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
-        <script>
+        {{-- <script>
             function confirmDelete() {
                 Swal.fire({
                     title: "Are you sure?",
@@ -130,6 +140,6 @@
                     }
                 });
             }
-        </script>
+        </script> --}}
     </body>
 @endsection

@@ -17,33 +17,32 @@
                     <!-- Judul -->
                     <div class="mb-4">
                         <label for="judul" class="block text-gray-700 text-sm font-bold mb-2">Judul</label>
-                        <input type="text" name="judul" id="judul" class="w-full border rounded-md py-2 px-3"
-                            value="{{ old('judul') }}">
+                        <input type="text" name="judul" id="judul" class="w-full border rounded-md py-2 px-3"                            ="{{ old('judul') }}">
                         <!-- Tampilkan pesan kesalahan jika ada -->
-                        @error('judul')
+                        {{-- @error('judul')
                             <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
-                        @enderror
+                        @enderror --}}
                     </div>
 
                     <!-- Harga -->
                     <div class="mb-4">
                         <label for="harga" class="block text-gray-700 text-sm font-bold mb-2">Harga</label>
                         <input type="number" min="0" max="1000000" name="harga" id="harga"
-                            class="w-full border rounded-md py-2 px-3" value="{{ old('harga') }}">
+                            class="w-full border rounded-md py-2 px-3">
                         <!-- Tampilkan pesan kesalahan jika ada -->
-                        @error('harga')
+                        {{-- @error('harga')
                             <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
-                        @enderror
+                        @enderror --}}
                     </div>
 
                     <!-- Deskripsi -->
                     <div class="mb-4">
                         <label for="description" class="block text-gray-700 text-sm font-bold mb-2">description</label>
-                        <textarea name="description" id="description" class="w-full border rounded-md py-2 px-3" rows="4">{{ old('deskripsi') }}</textarea>
+                        <textarea name="description" id="description" class="w-full border rounded-md py-2 px-3" rows="4"></textarea>
                         <!-- Tampilkan pesan kesalahan jika ada -->
-                        @error('deskripsi')
+                        {{-- @error('deskripsi')
                             <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
-                        @enderror
+                        @enderror --}}
                     </div>
 
                     <!-- Input Gambar -->
@@ -53,9 +52,9 @@
                             onchange="previewImage()">
                         <img id="preview" class="mt-2" style="max-width: 40%;">
                         <!-- Tampilkan pesan kesalahan jika ada -->
-                        @error('gambar')
+                        {{-- @error('gambar')
                             <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
-                        @enderror
+                        @enderror --}}
                     </div>
 
                     <!-- Tombol Submit -->

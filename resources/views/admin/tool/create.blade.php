@@ -55,7 +55,7 @@
                     <div class="mb-4">
                         <label for="parent_id" class="block text-gray-700 text-sm font-bold mb-2">Parent</label>
                         <select name="parent_id" id="parent_id" class="w-full border rounded-md py-2 px-3">
-                            <option value="">Pilih Parent (Opsional)</option>
+                            <option value="">Pilih Parent (Wajib)</option>
                             @foreach ($parents as $parent)
                                 <option value="{{ $parent->id }}">{{ $parent->judul }}</option>
                             @endforeach

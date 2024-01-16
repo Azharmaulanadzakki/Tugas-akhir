@@ -39,14 +39,14 @@
 
                 <div class="container antialiased mx-auto mt-5">
                     <div class="relative justify-center items-center overflow-x-auto shadow-md sm:rounded-lg">
-                        <div class="flex justify-end mb-4">
+                        {{-- <div class="flex justify-end mb-4">
                             <button id="sortDesc" onclick="sortTable('desc')"
                                 class="px-4 py-2 bg-gray-500 hover:bg-gray-600 text-white text-sm font-medium rounded-md mr-2">Sort Descending
                             </button>
                             <button id="sortAsc" onclick="sortTable('asc')"
                                 class="px-4 py-2 bg-gray-500 hover:bg-gray-600 text-white text-sm font-medium rounded-md">Sort Ascending
                             </button>
-                        </div>
+                        </div> --}}
                         <table id="mapelTable" class="w-full text-sm text-left text-gray-500">
                             <thead class="text-xs text-gray-700 uppercase bg-gray-50">
                                 <tr>
@@ -71,7 +71,7 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                @forelse ($mapels as $mapel)
+                                @foreach ($mapels as $mapel)
                                     <tr class="bg-white border-b hover:bg-gray-50 ">
                                         <td scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap">
                                             {{ $mapel->id }}
@@ -96,22 +96,21 @@
                                                     Edit
                                                 </button>
                                             </form>
-                                            <form action="{{ route('mapel.destroy', ['mapel' => $mapel->id]) }}" method="POST"
-                                                id="deleteForm">
+                                            <form action="{{ route('mapel.destroy', $mapel->id) }}" method="POST">
                                                 @csrf
                                                 @method('DELETE')
-                                                <button type="button" onclick="confirmDeleteSatu()"
-                                                    class="inline-flex items-center px-4 py-2 bg-red-500 hover:bg-red-600 text-white text-sm font-medium rounded-md mr-4">Delete
+                                                <button type="submit"
+                                                    class="inline-flex items-center px-4 py-2 bg-red-500 hover:bg-red-600 text-white text-sm font-medium rounded-md mr-4">
+                                                    Delete
                                                 </button>
                                             </form>
                                         </td>
                                     </tr>
-                                @empty
-                                @endforelse
+                                @endforeach
                             </tbody>
                         </table>
                     </div>
-                    <div class="mt-2 flex">
+                    <div class="mt-2 flex bg-white">
                         {{ $mapels->links() }}
                     </div>
                 </div>
@@ -122,8 +121,8 @@
 
         <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
 
-        <script>
-            function confirmDeleteSatu() {
+        {{-- <script>
+            function confirmDelete() {
                 Swal.fire({
                     title: "Are you sure?",
                     text: "You won't be able to revert this!",
@@ -134,14 +133,14 @@
                     confirmButtonText: "Yes, delete it!"
                 }).then((result) => {
                     if (result.isConfirmed) {
-                        // Proceed with the delete action
+                        // Submit the form when the user confirms
                         document.getElementById('deleteForm').submit();
                     }
                 });
             }
-        </script>
+        </script> --}}
 
-        <script>
+        {{-- <script>
             function sortTable(order) {
                 let rows = Array.from(document.querySelectorAll('#mapelTable tbody tr'));
 
@@ -165,7 +164,7 @@
                     tbody.appendChild(row);
                 });
             }
-        </script>
+        </script> --}}
 
     </body>
 @endsection

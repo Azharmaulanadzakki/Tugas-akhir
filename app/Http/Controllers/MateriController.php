@@ -6,6 +6,7 @@ use App\Models\Mapel;
 use App\Models\Materi;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
+use RealRashid\SweetAlert\Facades\Alert;
 
 
 class MateriController extends Controller
@@ -134,6 +135,7 @@ class MateriController extends Controller
     {
         Storage::delete('public/materis/', $materi->gif);
         $materi->delete();
-        return redirect()->route('materi.index')->with(['successsss' => 'Data sudah dihapus']);
+        Alert::success("Berhasil dihapus");
+        return redirect()->route('materi.index');
     }
 }

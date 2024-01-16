@@ -8,7 +8,7 @@
             <div class="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-12">
 
                 <div class="container mx-auto text-center">
-                    <div class="text-[#55c097] text-lg font-bold text-left">#SemangatCogg</div>
+                    <div class="text-[#55c097] text-lg font-bold text-left">#KeepLearning</div>
                     <h1
                         class="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl mt-4 sm:mt-6 md:mt-8 font-bold leading-tight text-left">
                         Your Dream Career Starts With Us

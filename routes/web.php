@@ -42,5 +42,11 @@ Route::middleware(['auth', 'checkUserRole:admin'])->group(function () {
 
 Route::fallback(function () {
     return view('errors.404');
-});
+})->name('notfound');
+
+
+// Route::fallback(function () {
+//     return view('errors.403'); // Ganti dengan tampilan yang sesuai untuk Unauthorized
+// })->name('unauthorized');
+
         

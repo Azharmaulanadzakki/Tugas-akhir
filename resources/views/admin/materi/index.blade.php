@@ -70,7 +70,7 @@
                                 </thead>
                                 <tbody>
 
-                                    @forelse ($materis as $materi)
+                                    @foreach ($materis as $materi)
                                         <tr class="bg-white border-b hover:bg-gray-50 ">
                                             <th scope="row"
                                                 class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap">
@@ -107,18 +107,18 @@
                                                 </form>
 
                                                 <form action="{{ route('materi.destroy', ['materi' => $materi->id]) }}"
-                                                    method="POST" id="deleteForm">
+                                                    method="post">
                                                     @csrf
                                                     @method('DELETE')
-                                                    <button type="button" onclick="confirmDelete()"
+                                                    <button type="submit" onclick="confirmDelete()"
                                                         class="inline-flex items-center px-4 py-2 bg-red-500 hover:bg-red-600 text-white text-sm font-medium rounded-md mr-4">Delete
                                                     </button>
                                                 </form>
                                             </td>
 
                                         </tr>
-                                    @empty
-                                    @endforelse
+                                    
+                                    @endforeach
                                 </tbody>
                             </table>
                         </div>
@@ -162,7 +162,7 @@
 
         <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
 
-        <script>
+        {{-- <script>
             function confirmDelete() {
                 Swal.fire({
                     title: "Are you sure?",
@@ -179,7 +179,7 @@
                     }
                 });
             }
-        </script>
+        </script> --}}
 
         <script>
             // JavaScript to control the modal

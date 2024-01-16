@@ -27,4 +27,13 @@ class Mapel extends Model
     {
         return $this->hasMany(Tool::class, 'parent_id');
     }
+
+
+    public function deleteMapel()
+    {
+        $mapel = Mapel::find(1);
+        $mapel->delete();
+
+        // Tambahkan logika atau respons sesuai kebutuhan
+    }
 }

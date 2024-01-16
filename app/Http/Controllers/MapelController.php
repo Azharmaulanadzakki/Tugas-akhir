@@ -22,6 +22,7 @@ class MapelController extends Controller
                 return $query->where('judul', 'like', '%' . $search . '%')
                     ->orWhere('id', 'like', '%' . $search . '%');
             })
+            ->latest()
             ->paginate(5);
 
         return view('admin.mapel.index', compact('mapels', 'search'));
@@ -124,10 +125,16 @@ class MapelController extends Controller
      * Remove the specified resource from storage.
      */
     public function destroy(Mapel $mapel)
+    
     {
-        Storage::delete('public/mapels/', $mapel->image);
+        // Hapus rekord dari database setelah file gambar dihapus
         $mapel->delete();
+
+        // Hapus file gambar terlebih dahulu
+        Storage::delete('public/mapels/' . $mapel->image);
+
         Alert::success("Berhasil dihapus");
         return redirect()->route('mapel.index');
+
     }
 }
