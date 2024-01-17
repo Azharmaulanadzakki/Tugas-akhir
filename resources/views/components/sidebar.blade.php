@@ -55,6 +55,15 @@
                             </button>
                         </a>
                     </li>
+                    <li class="min-w-max">
+                        <a href="{{ route('package.index') }}" method="GET">
+                            <button
+                                class="group flex items-center space-x-5  px-4 py-3 text-gray-600 hover:bg-gray-600 w-full hover:text-white">
+                                <i class="fa-solid fa-money-check"></i>
+                                <span class="mr-1">Data Packages</span>
+                            </button>
+                        </a>
+                    </li>
                 </ul>
             </div>
             <div class="min-w-max">
