@@ -70,7 +70,7 @@
                             <div class="rounded-xl shadow-lg">
                                 <div class="rounded-b-none rounded-t-xl overflow-hidden">
                                     <img src="{{ asset('/storage/mapels/' . $mapel->image) }}" alt=""
-                                    class="aspect-[1/1] w-full h-full">
+                                    class="aspect-[1/1] w-full h-52">
                                 </div>
                                 <div class="p-2 sm:p-4 flex flex-col">
                                     <h5 class="text-md font-medium mt-3"> {{ $mapel->judul }}</h5>
@@ -96,18 +96,18 @@
                     class="my-3 rounded-md px-4 sm:px-9 py-2 bg-black text-white font-semibold hover:bg-gray-900 duration-300">
                     Less More
                 </button>
-
             </div>
 
             @include('components.about')
-
         </section>
+
         @include('components.scroll')
         @include('components.infinite-scroll')
+        @include('components.pay-view')
+        @include('components.footer')
 
 
         {{-- script show more --}}
-
         <script>
             document.addEventListener("DOMContentLoaded", function() {
                 const mapelItems = document.querySelectorAll(".mapel-item");
