@@ -38,6 +38,7 @@ Route::middleware(['auth', 'checkUserRole:admin'])->group(function () {
     Route::resource('/admin/tool', \App\Http\Controllers\ToolController::class);
     Route::resource('/admin/user', \App\Http\Controllers\UserController::class);
     Route::get('/users', [UserController::class, 'index'])->name('user.index');
+    // Route::resource('/admin/package', \App\Http\Controllers\PackageController::class);
 });
 
 Route::fallback(function () {

@@ -3,6 +3,7 @@
 namespace App\Providers;
 
 use App\Models\Mapel;
+use App\Models\Package;
 use App\Models\Tool;
 use Illuminate\Support\Facades\View;
 use Illuminate\Support\Facades\Blade;
@@ -26,8 +27,12 @@ class AppServiceProvider extends ServiceProvider
         // ambil data dari mapel controller agar bisa diakses di semua file
         $mapels = Mapel::all();
         view()->share('mapels', $mapels);
+
         $tools =Tool::all();
         view()->share('tools', $tools);
+
+        $packages =Package::all();
+        view()->share('packages', $packages);
 
     }
 }
