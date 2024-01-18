@@ -31,8 +31,8 @@ class AppServiceProvider extends ServiceProvider
         $tools =Tool::all();
         view()->share('tools', $tools);
 
-        $packages =Package::all();
-        view()->share('packages', $packages);
+        // $packages =Package::all();
+        // view()->share('packages', $packages);
 
     }
 }
