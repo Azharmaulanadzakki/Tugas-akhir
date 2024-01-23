@@ -80,40 +80,12 @@ class MapelController extends Controller
         // Lanjutkan dengan logika untuk menampilkan materi atau melakukan tindakan lain
     }
 
-    protected function userHasPaid(Mapel $mapel)
-    {
-        // Periksa apakah user sudah membayar untuk mapel ini
-        $userId = auth()->id();
-        $mapeltransaction = MapelTransaction::where(['user_id' => $userId, 'mapel_id' => $mapel->id, 'status' => 'paid'])->first();
-
-        return !is_null($mapeltransaction);
-    }
 
     public function show(Mapel $mapel)
     {
-        // Mendapatkan status pembayaran untuk mapel ini oleh pengguna yang sedang login
-        $statusPembayaran = $this->getStatusPembayaran($mapel);
-
-        // Memeriksa status pembayaran
-        if ($statusPembayaran === 'unpaid') {
-            return redirect()->route('halaman_pembayaran'); // Sesuaikan dengan nama route halaman pembayaran
-        }
-
-        // Jika status pembayaran adalah 'paid', tampilkan halaman mapel
-        return view('mapel.show', compact('mapel'));
+        //
     }
 
-    protected function getStatusPembayaran(Mapel $mapel)
-    {
-        // Mendapatkan ID pengguna yang sedang login
-        $userId = auth()->id();
-
-        // Mencari pembayaran yang sesuai dengan mapel dan pengguna
-        $mapeltransaction = MapelTransaction::where(['user_id' => $userId, 'mapel_id' => $mapel->id])->first();
-
-        // Mengembalikan status pembayaran atau 'unpaid' jika tidak ditemukan pembayaran
-        return $mapeltransaction ? $mapeltransaction->status : 'unpaid';
-    }
 
     /**
      * Show the form for editing the specified resource.
