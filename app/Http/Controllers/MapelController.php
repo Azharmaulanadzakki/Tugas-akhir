@@ -80,13 +80,13 @@ class MapelController extends Controller
         // Lanjutkan dengan logika untuk menampilkan materi atau melakukan tindakan lain
     }
 
-
+    
     public function show(Mapel $mapel)
     {
-        //
+
     }
 
-
+    
     /**
      * Show the form for editing the specified resource.
      */

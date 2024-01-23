@@ -1,6 +1,5 @@
 @extends('layout.app')
 @section('content')
-
     @include('components.navbar-user')
 
     <body class="bg-gray-100 antialiased">
@@ -15,7 +14,8 @@
                         Hello {{ Auth::user()->name }}
                     </h1>
                     <p class="text-gray-400 text-lg text-left mt-5 sm:w-[27rem]">
-                        Kelas online kami menyediakan kelas UI/UX design, Prototyping, dan ramah untuk designer UI/UX untuk pemula.
+                        Kelas online kami menyediakan kelas UI/UX design, Prototyping, dan ramah untuk designer UI/UX untuk
+                        pemula.
                     </p>
                 </div>
             </div>
@@ -70,7 +70,7 @@
                             <div class="rounded-xl shadow-lg">
                                 <div class="rounded-b-none rounded-t-xl overflow-hidden">
                                     <img src="{{ asset('/storage/mapels/' . $mapel->image) }}" alt=""
-                                    class="aspect-[1/1] w-full h-52">
+                                        class="aspect-[1/1] w-full h-52">
                                 </div>
                                 <div class="p-2 sm:p-4 flex flex-col">
                                     <h5 class="text-md font-medium mt-3"> {{ $mapel->judul }}</h5>
@@ -104,9 +104,9 @@
         @include('components.scroll')
         @include('components.infinite-scroll')
         @include('components.pay-view')
-        
+
         @include('components.footer')
-s
+        s
         {{-- script show more --}}
         <script>
             document.addEventListener("DOMContentLoaded", function() {

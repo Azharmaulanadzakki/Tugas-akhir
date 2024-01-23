@@ -47,9 +47,8 @@ class User extends Authenticatable implements CanResetPassword
         'password' => 'hashed',
     ];
 
-    // pembayaran
-    // public function pembayaran()
-    // {
-    //     return $this->hasMany(Pembayaran::class);
-    // }
+    public function mapels()
+    {
+        return $this->belongsToMany(Mapel::class)->withPivot('is_paid')->withTimestamps();
+    }
 }

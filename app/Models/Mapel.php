@@ -6,8 +6,7 @@ use App\Models\Tool;
 use App\Models\Materi;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-use App\Models\Pembayaran;
-
+ 
 class Mapel extends Model
 {
     use HasFactory;
@@ -17,6 +16,7 @@ class Mapel extends Model
         'description',
         'image',
         'harga',
+        'is_paid',
     ];
 
     public function materi()
@@ -34,20 +34,11 @@ class Mapel extends Model
     {
         $mapel = Mapel::find(1);
         $mapel->delete();
-
-        // Tambahkan logika atau respons sesuai kebutuhan
     }
 
-    //pembayaran
-    // public function pembayaran()
-    // {
-    //     return $this->hasMany(Pembayaran::class);
-    // }
+    public function users()
+    {
+        return $this->belongsToMany(User::class)->withPivot('is_paid')->withTimestamps();
+    }
 
-    // // Metode lain yang mungkin diperlukan
-    // public function getFormattedHargaAttribute()
-    // {
-    //     // Mengembalikan harga dalam format yang diinginkan
-    //     return 'Rp ' . number_format($this->harga, 2, ',', '.');
-    // }
 }
