@@ -6,6 +6,7 @@ use App\Models\Tool;
 use App\Models\Materi;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use App\Models\Pembayaran;
 
 class Mapel extends Model
 {
@@ -36,4 +37,17 @@ class Mapel extends Model
 
         // Tambahkan logika atau respons sesuai kebutuhan
     }
+
+    //pembayaran
+    // public function pembayaran()
+    // {
+    //     return $this->hasMany(Pembayaran::class);
+    // }
+
+    // // Metode lain yang mungkin diperlukan
+    // public function getFormattedHargaAttribute()
+    // {
+    //     // Mengembalikan harga dalam format yang diinginkan
+    //     return 'Rp ' . number_format($this->harga, 2, ',', '.');
+    // }
 }

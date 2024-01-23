@@ -77,8 +77,8 @@
                                     <h7 class="text-md font-medium"> Rp.{{ number_format($mapel->harga, 2, ',', '.') }}
                                     </h7>
                                     <form action="{{ route('materi', ['parent_id' => $mapel->id]) }}">
-                                        <button
-                                            class="my-3 rounded-md px-4 sm:px-3 py-2 text-sm bg-indigo-500 text-white font-semibold hover:bg-indigo-600 duration-300">
+                                        <!-- Isi form lainnya -->
+                                        <button class="my-3 rounded-md px-4 sm:px-3 py-2 text-sm bg-indigo-500 text-white font-semibold hover:bg-indigo-600 duration-300">
                                             Lihat Kursus
                                         </button>
                                     </form>
@@ -106,7 +106,7 @@
         @include('components.pay-view')
         
         @include('components.footer')
-
+s
         {{-- script show more --}}
         <script>
             document.addEventListener("DOMContentLoaded", function() {
