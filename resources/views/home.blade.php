@@ -106,7 +106,7 @@
         @include('components.pay-view')
 
         @include('components.footer')
-        s
+        
         {{-- script show more --}}
         <script>
             document.addEventListener("DOMContentLoaded", function() {

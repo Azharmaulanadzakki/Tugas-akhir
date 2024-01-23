@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Models\Mapel;
-use App\Models\MapelTransaction;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
@@ -43,7 +42,7 @@ class MapelController extends Controller
     public function store(Request $request)
     {
         $this->validate($request, [
-            'image'         =>  'required|image|mimes:jpeg,jpg,png|max:10000',
+            'image'         =>  'required|image|mimes:jpeg,jpg,png',
             'judul'         =>  'required|',
             'description'   =>  'nullable',
             'harga'         =>  'required|',
