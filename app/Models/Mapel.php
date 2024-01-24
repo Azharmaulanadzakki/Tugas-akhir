@@ -16,7 +16,6 @@ class Mapel extends Model
         'description',
         'image',
         'harga',
-        'is_paid',
     ];
 
     public function materi()
@@ -34,11 +33,6 @@ class Mapel extends Model
     {
         $mapel = Mapel::find(1);
         $mapel->delete();
-    }
-
-    public function users()
-    {
-        return $this->belongsToMany(User::class)->withPivot('is_paid')->withTimestamps();
     }
 
 }
