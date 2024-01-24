@@ -58,9 +58,9 @@
                     <li class="min-w-max">
                         <a href="#" method="GET">
                             <button
-                                class="group flex items-center space-x-5  px-4 py-3 text-gray-600 hover:bg-gray-600 w-full hover:text-white">
-                                <i class="fa-solid fa-money-check"></i>
-                                <span class="mr-1">Data Packages</span>
+                                class="group flex items-center space-x-7  px-4 py-3 text-gray-600 hover:bg-gray-600 w-full hover:text-white">
+                                <i class="fa-solid fa-file-invoice"></i>
+                                <span class="mr-1">Data Payment</span>
                             </button>
                         </a>
                     </li>

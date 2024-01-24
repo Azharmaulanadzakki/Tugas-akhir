@@ -103,8 +103,7 @@
 
         @include('components.scroll')
         @include('components.infinite-scroll')
-        @include('components.pay-view')
-
+        {{-- @include('components.pay-view') --}}
         @include('components.footer')
         
         {{-- script show more --}}
