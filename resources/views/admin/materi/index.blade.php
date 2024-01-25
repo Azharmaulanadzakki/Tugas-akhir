@@ -57,9 +57,9 @@
                                         <th scope="col" class="px-6 py-3">
                                             TAUTAN
                                         </th>
-                                        <th scope="col" class="px-6 py-3">
+                                        {{-- <th scope="col" class="px-6 py-3">
                                             IMAGE
-                                        </th>
+                                        </th> --}}
                                         <th scope="col" class="px-6 py-3">
                                             MAPEL PARENT
                                         </th>
@@ -85,10 +85,10 @@
                                             <td class="px-6 py-4">
                                                 {{ $materi->tautan }}
                                             </td>
-                                            <td class="px-6 py-4">
+                                            {{-- <td class="px-6 py-4">
                                                 <img src="{{ asset('/storage/materis/' . $materi->gif) }}" alt=""
                                                     style="width: 50px">
-                                            </td>
+                                            </td> --}}
                                             <td class="px-6 py-4 text-center">
                                                 {{ optional($materi->mapel)->judul }}
                                             </td>

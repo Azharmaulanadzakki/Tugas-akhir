@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('mapels', function (Blueprint $table) {
             $table->id();
             $table->string('judul');
-            $table->string('description');
+            $table->longText('description');
             $table->string('image');
             $table->decimal('harga', 10, 2); // Menggunakan tipe data decimal
             $table->timestamps();

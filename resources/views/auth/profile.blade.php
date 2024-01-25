@@ -27,12 +27,12 @@
                                 <div class="flex flex-col space-y-5">
                                     <p class="font-semibold">Username</p>
                                     <div
-                                        class="font-medium text-base bg-indigo-50 border border-indigo-300 text-indigo-900 rounded-lg focus:ring-indigo-500 focus:border-indigo-500 block py-2 px-5 w-fit">
+                                        class="font-medium text-base bg-indigo-50 border border-indigo-300 text-indigo-900 rounded-lg focus:ring-indigo-500 focus:border-indigo-500 block py-2 px-5 w-full">
                                         {{ $user->name }}
                                     </div>
                                     <p class="font-semibold">Email</p>
                                     <div
-                                        class="font-mediumtext-base bg-indigo-50 border border-indigo-300 text-indigo-900 rounded-lg focus:ring-indigo-500 focus:border-indigo-500 block py-2 px-5 w-fit ">
+                                        class="font-mediumtext-base bg-indigo-50 border border-indigo-300 text-indigo-900 rounded-lg focus:ring-indigo-500 focus:border-indigo-500 block py-2 px-5 w-full ">
                                         {{ $user->email }}
                                     </div>
                                     <p class="font-semibold">Bio</p>

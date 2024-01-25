@@ -17,7 +17,8 @@
                     <!-- Judul -->
                     <div class="mb-4">
                         <label for="judul" class="block text-gray-700 text-sm font-bold mb-2">Judul</label>
-                        <input type="text" name="judul" id="judul" class="w-full border rounded-md py-2 px-3"                            ="{{ old('judul') }}">
+                        <input type="text" name="judul" id="judul"
+                            class="w-full border rounded-md py-2 px-3"="{{ old('judul') }}">
                         <!-- Tampilkan pesan kesalahan jika ada -->
                         {{-- @error('judul')
                             <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
@@ -27,12 +28,12 @@
                     <!-- Harga -->
                     <div class="mb-4">
                         <label for="harga" class="block text-gray-700 text-sm font-bold mb-2">Harga</label>
-                        <input type="number" min="0" max="1000000" name="harga" id="harga"
-                            class="w-full border rounded-md py-2 px-3">
+                        <input type="number" min="0" max="1000000" max="1000000" name="harga" id="harga"
+                            class="w-full border rounded-md py-2 px-3" oninput="formatNumber(this)">
                         <!-- Tampilkan pesan kesalahan jika ada -->
-                        {{-- @error('harga')
+                        @error('harga')
                             <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
-                        @enderror --}}
+                        @enderror
                     </div>
 
                     <!-- Deskripsi -->
@@ -81,5 +82,14 @@
                 reader.readAsDataURL(input.files[0]);
             }
         </script>
+
+        <script>
+            function formatNumber(input) {
+                // Remove non-numeric characters and format as a number
+                let value = input.value.replace(/[^0-9]/g, '');
+                input.value = new Intl.NumberFormat().format(value);
+            }
+        </script>
+
     </body>
 @endsection

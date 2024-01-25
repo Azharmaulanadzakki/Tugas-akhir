@@ -6,24 +6,79 @@
 
         <!-- Hero Section -->
         <header class="text-gray-800 py-10 px-4 sm:px-8 md:px-16 lg:px-24">
-            <div class="grid grid-cols-1 sm:grid-cols-2">
-                <div class="container mx-auto text-center">
-                    <div class="text-[#55c097] text-lg font-bold text-left">#DreamComeTrue</div>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+
+                <!-- Bagian Teks -->
+                <div class="md:col-span-1">
                     <h1
                         class="text-3xl sm:text-4xl md:text-5xl lg:text-5xl mt-5 font-bold leading-tight text-left sm:w-[30rem]">
                         Hello {{ Auth::user()->name }}
                     </h1>
-                    <p class="text-gray-400 text-lg text-left mt-5 sm:w-[27rem]">
-                        Kelas online kami menyediakan kelas UI/UX design, Prototyping, dan ramah untuk designer UI/UX untuk
-                        pemula.
+                    
+                    <p class="text-gray-400 text-lg text-left mt-5 ">
+                        Kelas online kami menawarkan pengalaman pembelajaran yang mendalam dan interaktif untuk para calon
+                        desainer UI/UX, terutama mereka yang baru memulai perjalanan mereka dalam dunia desain antarmuka
+                        pengguna. Dengan fokus pada UI/UX design, prototyping, dan pendekatan yang ramah untuk pemula, kami
+                        berkomitmen untuk membantu peserta belajar konsep-konsep kunci dan keterampilan praktis yang
+                        diperlukan untuk menjadi desainer UI/UX yang sukses.
                     </p>
                 </div>
+
+                <!-- Bagian Gambar -->
+                <div class="relative hidden md:block col-span-1">
+                    <div
+                        class="absolute top-0 -left-4 w-80 h-80 bg-purple-300 rounded-full mix-blend-multiply filter blur-xl opacity-70 animate-blob">
+                    </div>
+                    <div
+                        class="absolute top-0 -right-4 w-80 h-80 bg-yellow-300 rounded-full mix-blend-multiply filter blur-xl opacity-70 animate-blob animation-delay-2000">
+                    </div>
+                    <div
+                        class="absolute -bottom-8 left-20 w-80 h-80 bg-pink-300 rounded-full mix-blend-multiply filter blur-xl opacity-70 animate-blob animation-delay-4000">
+                    </div>
+                    <img src="{{asset('img/banner.png')}}" class="img-fluid z-50 relative" alt="">
+                </div>
             </div>
+
+            <div class="col-lg-12 col-12 text-center mt-40">
+                <img src="http://127.0.0.1:3000/images/brands.png" alt="">
+            </div>
+
+            <section class="flex container mt-32 ml-20">
+                <div class="flex justify-start items-start">
+                    <div class="item-step flex w-full">
+                        <img src="{{ asset('img/step1.png') }}" alt="" class="w-[25rem] object-cover rounded-lg">
+                    </div>
+                    <div class="w-full mt-40">
+                        <p class="text-lg font-medium text-gray-500 mb-2">BETTER CAREER</p>
+                        <h2 class="text-2xl font-bold mb-4">Prepare The Journey</h2>
+                        <p class="text-gray-700">
+                            Learn from anyone around the world and get new skills.
+                        </p>
+                    </div>
+                </div>
+            </section>
+
+            <section class="flex container mt-20 ml-24">
+                <div class="flex justify-start items-start">
+                    <div class="w-full mt-40 ml-[10rem]">
+                        <p class="text-lg font-medium text-gray-500 mb-2">STUDY HARDER</p>
+                        <h2 class="text-2xl font-bold mb-4">Finish The Project</h2>
+                        <p class="text-gray-700">
+                            Each of you will be joining a private group and working together with
+                            team members on a project
+                        </p>
+                    </div>
+                </div>
+                <div class="item-step flex w-full">
+                    <img src="{{ asset('img/step2.png') }}" alt="" class="w-[25rem] object-cover rounded-lg">
+                </div>
+            </section>
+
         </header>
 
         <!-- Features Section -->
+        {{-- @include('components.step') --}}
         <section class="mx-4 sm:mx-8 md:mx-16 lg:mx-24">
-
             <div class="container mx-auto py-8 sm:py-16 px-4">
                 <h1 class="text-2xl sm:text-4xl font-semibold mb-4 sm:mb-8 text-center">
                     Discover a most popular Online Course
@@ -78,7 +133,8 @@
                                     </h7>
                                     <form action="{{ route('materi', ['parent_id' => $mapel->id]) }}">
                                         <!-- Isi form lainnya -->
-                                        <button class="my-3 rounded-md px-4 sm:px-3 py-2 text-sm bg-indigo-500 text-white font-semibold hover:bg-indigo-600 duration-300">
+                                        <button
+                                            class="my-3 rounded-md px-4 sm:px-3 py-2 text-sm bg-indigo-500 text-white font-semibold hover:bg-indigo-600 duration-300">
                                             Lihat Kursus
                                         </button>
                                     </form>
@@ -105,7 +161,7 @@
         @include('components.infinite-scroll')
         {{-- @include('components.pay-view') --}}
         @include('components.footer')
-        
+
         {{-- script show more --}}
         <script>
             document.addEventListener("DOMContentLoaded", function() {
@@ -155,3 +211,15 @@
         </script>
     </body>
 @endsection
+
+{{-- <div class="item-step mt-22">
+    <img src="{{ asset('img/step2.png') }}" alt="" class="w-full object-cover rounded-lg">
+    <div class="p-4">
+        <p class="text-lg font-medium text-gray-500 mb-2">STUDY HARDER</p>
+        <h2 class="text-2xl font-bold mb-4">Finish The Project</h2>
+        <p class="text-gray-700">
+            Each of you will be joining a private group and working together with
+            team members on a project
+        </p>
+    </div>
+</div> --}}
