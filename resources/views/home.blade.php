@@ -2,7 +2,7 @@
 @section('content')
     @include('components.navbar-user')
 
-    <body class="bg-gray-100 antialiased">
+    <body class="bg-gray-100 box-border antialiased">
 
         <!-- Hero Section -->
         <header class="text-gray-800 py-10 px-4 sm:px-8 md:px-16 lg:px-24">
@@ -10,74 +10,47 @@
 
                 <!-- Bagian Teks -->
                 <div class="md:col-span-1">
+                    <p class="text-[#55c097] text-lg font-semibold text-left">#KeepLearning</p>
                     <h1
-                        class="text-3xl sm:text-4xl md:text-5xl lg:text-5xl mt-5 font-bold leading-tight text-left sm:w-[30rem]">
+                        class="text-3xl sm:text-4xl md:text-5xl lg:text-7xl mt-5 font-bold leading-tight text-left sm:w-[30rem]">
                         Hello {{ Auth::user()->name }}
                     </h1>
-                    
                     <p class="text-gray-400 text-lg text-left mt-5 ">
                         Kelas online kami menawarkan pengalaman pembelajaran yang mendalam dan interaktif untuk para calon
-                        desainer UI/UX, terutama mereka yang baru memulai perjalanan mereka dalam dunia desain antarmuka
-                        pengguna. Dengan fokus pada UI/UX design, prototyping, dan pendekatan yang ramah untuk pemula, kami
+                        desainer UI/UX, <br> terutama mereka yang baru memulai perjalanan mereka dalam dunia desain
+                        antarmuka
+                        pengguna. 
+                        <br> 
+                        {{-- Dengan fokus pada UI/UX design, prototyping, dan pendekatan yang ramah untuk pemula,
+                        kami
                         berkomitmen untuk membantu peserta belajar konsep-konsep kunci dan keterampilan praktis yang
-                        diperlukan untuk menjadi desainer UI/UX yang sukses.
+                        diperlukan untuk menjadi desainer UI/UX yang sukses. --}}
                     </p>
                 </div>
 
                 <!-- Bagian Gambar -->
                 <div class="relative hidden md:block col-span-1">
                     <div
-                        class="absolute top-0 -left-4 w-80 h-80 bg-purple-300 rounded-full mix-blend-multiply filter blur-xl opacity-70 animate-blob">
+                        class="absolute top-0 -left-4 w-[22rem] h-[22rem] bg-purple-300 rounded-full mix-blend-multiply filter blur-xl opacity-100 animate-blob">
                     </div>
                     <div
-                        class="absolute top-0 -right-4 w-80 h-80 bg-yellow-300 rounded-full mix-blend-multiply filter blur-xl opacity-70 animate-blob animation-delay-2000">
+                        class="absolute top-0 -right-4 w-[22rem] h-[22rem] bg-yellow-300 rounded-full mix-blend-multiply filter blur-xl opacity-100 animate-blob animation-delay-2000">
                     </div>
                     <div
-                        class="absolute -bottom-8 left-20 w-80 h-80 bg-pink-300 rounded-full mix-blend-multiply filter blur-xl opacity-70 animate-blob animation-delay-4000">
+                        class="absolute -bottom-8 left-20 w-[22rem] h-[22rem] bg-pink-300 rounded-full mix-blend-multiply filter blur-xl opacity-100 animate-blob animation-delay-4000">
                     </div>
-                    <img src="{{asset('img/banner.png')}}" class="img-fluid z-50 relative" alt="">
+                    <img src="{{ asset('img/fix.webp') }}" class="img-fluid z-10 relative" alt="">
                 </div>
             </div>
 
             <div class="col-lg-12 col-12 text-center mt-40">
-                <img src="http://127.0.0.1:3000/images/brands.png" alt="">
+                <img src="{{ asset('img/brands.png') }}" alt="">
             </div>
 
-            <section class="flex container mt-32 ml-20">
-                <div class="flex justify-start items-start">
-                    <div class="item-step flex w-full">
-                        <img src="{{ asset('img/step1.png') }}" alt="" class="w-[25rem] object-cover rounded-lg">
-                    </div>
-                    <div class="w-full mt-40">
-                        <p class="text-lg font-medium text-gray-500 mb-2">BETTER CAREER</p>
-                        <h2 class="text-2xl font-bold mb-4">Prepare The Journey</h2>
-                        <p class="text-gray-700">
-                            Learn from anyone around the world and get new skills.
-                        </p>
-                    </div>
-                </div>
-            </section>
-
-            <section class="flex container mt-20 ml-24">
-                <div class="flex justify-start items-start">
-                    <div class="w-full mt-40 ml-[10rem]">
-                        <p class="text-lg font-medium text-gray-500 mb-2">STUDY HARDER</p>
-                        <h2 class="text-2xl font-bold mb-4">Finish The Project</h2>
-                        <p class="text-gray-700">
-                            Each of you will be joining a private group and working together with
-                            team members on a project
-                        </p>
-                    </div>
-                </div>
-                <div class="item-step flex w-full">
-                    <img src="{{ asset('img/step2.png') }}" alt="" class="w-[25rem] object-cover rounded-lg">
-                </div>
-            </section>
+            @include('components.step')
 
         </header>
 
-        <!-- Features Section -->
-        {{-- @include('components.step') --}}
         <section class="mx-4 sm:mx-8 md:mx-16 lg:mx-24">
             <div class="container mx-auto py-8 sm:py-16 px-4">
                 <h1 class="text-2xl sm:text-4xl font-semibold mb-4 sm:mb-8 text-center">
@@ -118,40 +91,50 @@
 
             <div class="mx-4 sm:mx-8 my-6">
 
-                <div class="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4 ">
-                    @foreach ($mapels as $index => $mapel)
-                        <div id="mapel-list-{{ $index }}" class="rounded-xl shadow-lg mapel-item"
-                            data-index="{{ $index }}">
-                            <div class="rounded-xl shadow-lg">
-                                <div class="rounded-b-none rounded-t-xl overflow-hidden">
-                                    <img src="{{ asset('/storage/mapels/' . $mapel->image) }}" alt=""
-                                        class="aspect-[1/1] w-full h-52">
-                                </div>
-                                <div class="p-2 sm:p-4 flex flex-col">
-                                    <h5 class="text-md font-medium mt-3"> {{ $mapel->judul }}</h5>
-                                    <h7 class="text-md font-medium"> Rp.{{ number_format($mapel->harga, 2, ',', '.') }}
-                                    </h7>
-                                    <form action="{{ route('materi', ['parent_id' => $mapel->id]) }}">
-                                        <!-- Isi form lainnya -->
-                                        <button
-                                            class="my-3 rounded-md px-4 sm:px-3 py-2 text-sm bg-indigo-500 text-white font-semibold hover:bg-indigo-600 duration-300">
-                                            Lihat Kursus
-                                        </button>
-                                    </form>
+                @foreach ($mapels as $index => $mapel)
+                    <a href="{{ route('materi', ['parent_id' => $mapel->id]) }}">
+                        <div class="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4 ">
+                            <div id="mapel-list-{{ $index }}" class="rounded-3xl shadow-lg mapel-item"
+                                data-index="{{ $index }}">
+                                <div class="rounded-3xl shadow-lg">
+                                    <div class="rounded-b-none rounded-t-3xl overflow-hidden">
+                                        <img src="{{ asset('/storage/mapels/' . $mapel->image) }}" alt=""
+                                            class="aspect-[1/1] w-full h-52">
+                                    </div>
+                                    <div class="p-2 sm:p-4 flex flex-col">
+                                        <h5 class="text-xl font-bold mt-3 text-gray-900 leading-tight"> {{ $mapel->judul }}</h5>
+                                        {{-- <h5 class="text-xl font- mt-3 text-gray-900"> {{ $mapel->judul }}</h5> --}}
+                                        <h7 class="text-md font-normal text-gray-600 mt-2">
+                                            Rp. {{ number_format($mapel->harga, 2, ',', '.') }}
+                                        </h7>
+                                        {{-- <form action="{{ route('materi', ['parent_id' => $mapel->id]) }}">
+                                            <!-- Isi form lainnya -->
+                                            <button
+                                                class="my-3 rounded-md px-4 sm:px-3 py-2 text-sm bg-indigo-500 text-white font-semibold hover:bg-indigo-600 duration-300">
+                                                <i class="fa-regular fa-circle-dot"></i> Lihat Kursus
+                                            </button>
+                                        </form> --}}
+                                        <div class="flex justify-end items-end">
+                                            <i class="fa-solid fa-signal py-1 text-2xl font-bold"
+                                                style="color: #506fff;"></i>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                    @endforeach
+                    </a>
+                @endforeach
+                
+                <div class="mt-10">
+                    <button id="showMoreBtn"
+                        class="my-3 rounded-md px-4 sm:px-9 py-2 bg-black text-white font-semibold hover:bg-gray-900 duration-300">
+                        Show More
+                    </button>
+                    <button id="lessMoreBtn" style="display: none; "
+                        class="my-3 rounded-md px-4 sm:px-9 py-2 bg-black text-white font-semibold hover:bg-gray-900 duration-300">
+                        Less More
+                    </button>
                 </div>
-
-                <button id="showMoreBtn"
-                    class="my-3 rounded-md px-4 sm:px-9 py-2 bg-black text-white font-semibold hover:bg-gray-900 duration-300">
-                    Show More
-                </button>
-                <button id="lessMoreBtn" style="display: none; "
-                    class="my-3 rounded-md px-4 sm:px-9 py-2 bg-black text-white font-semibold hover:bg-gray-900 duration-300">
-                    Less More
-                </button>
             </div>
 
             @include('components.about')
@@ -159,8 +142,7 @@
 
         @include('components.scroll')
         @include('components.infinite-scroll')
-        {{-- @include('components.pay-view') --}}
-        @include('components.footer')
+        @include('components.faq')
 
         {{-- script show more --}}
         <script>

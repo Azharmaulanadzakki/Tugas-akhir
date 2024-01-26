@@ -1,12 +1,11 @@
 @extends('layout.app')
 @section('content')
 
-    <body class="bg-gray-100">
+    <body class="bg-gray-100 box-border antialiased">
 
         <!-- Hero Section -->
-        <header class="text-gray-800 py-8 sm:py-12 md:py-16 lg:py-20 px-4 sm:px-6 md:px-8 lg:px-12 xl:px-16">
+        <header class="text-gray-800 py-10 px-4 sm:px-8 md:px-16 lg:px-24"">
             <div class="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-12">
-
                 <div class="container mx-auto text-center">
                     <div class="text-[#55c097] text-lg font-bold text-left">#KeepLearning</div>
                     <h1
@@ -14,7 +13,7 @@
                         Your Dream Career Starts With Us
                     </h1>
                     <div class="text-gray-400 text-base sm:text-lg md:text-xl text-left mt-4 sm:mt-6 md:mt-8 xl:w-[25rem]">
-                        LearnWithAzhar menyediakan kelas UI/UX design, Prototyping, dan Quiz UI/UX untuk pemula.
+                        LearnWithAzhar menyediakan kelas UI/UX design, Prototyping untuk pemula.
                     </div>
 
                     <div class="w-full md:w-[16rem] mt-6 sm:mt-8 md:mt-10">
@@ -23,7 +22,7 @@
                             Login
                         </a>
                         <a href="{{ route('register') }}"
-                            class="ml-4 sm:ml-5 text-left font-bold inline-block bg-gray-200 hover:shadow-xl text-gray-900 py-2 px-4 sm:px-6 rounded-full text-base sm:text-lg md:text-base lg:text-lg xl:text-base transition duration-300">
+                            class="ml-4 sm:ml-5 text-left font-bold inline-block bg-gray-200 hover:bg-gray-300 text-gray-900 py-2 px-4 sm:px-6 rounded-full text-base sm:text-lg md:text-base lg:text-lg xl:text-base transition duration-300">
                             Register
                         </a>
                     </div>
@@ -39,16 +38,19 @@
                     <div
                         class="absolute -bottom-8 left-20 w-80 h-80 bg-pink-300 rounded-full mix-blend-multiply filter blur-xl opacity-70 animate-blob animation-delay-4000">
                     </div>
-                    <img class="rounded-xl relative p-7" src="https://i.pinimg.com/736x/8a/ed/3b/8aed3badcde62dcd68780e1be562611c.jpg"
-                        alt="">
+                    <img class="rounded-xl relative p-7" src="{{ asset('img/section.png') }}" alt="">
                 </div>
-
             </div>
+
+            <div class="col-lg-12 col-12 text-center mt-40">
+                <img src="{{ asset('img/brands.png') }}" alt="">
+            </div>
+
+            @include('components.step')
         </header>
 
         <!-- Features Section -->
         <section class="mx-20">
-
             <div class="container mx-auto py-16 px-4">
                 <h1 class="text-4xl font-semibold mb-8 text-center">Discover a most popular Online Course</h1>
                 <div class="flex items-center justify-center">
@@ -88,54 +90,60 @@
             </div>
 
             {{-- untuk card --}}
-            <section class="mx-11 my-6">
+            <section class="mx-4 sm:mx-8 my-6">
                 {{-- grid --}}
-                <div class="owl-carousel grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
-                    @foreach ($mapels as $index => $mapel)
-                        <div id="mapel-list-{{ $index }}" class="rounded-xl shadow-lg mapel-item"
-                            data-index="{{ $index }}">
-                            <div class="rounded-xl shadow-lg">
-                                <div class="rounded-b-none rounded-t-xl overflow-hidden">
-                                    <img src="{{ asset('/storage/mapels/' . $mapel->image) }}" alt=""
-                                        class="aspect-[1/1] w-full h-full">
-                                </div>
-                                <div class="p-2 sm:p-4 flex flex-col">
-                                    <h5 class="text-md font-medium mt-3"> {{ $mapel->judul }}</h5>
-                                    <h7 class="text-md font-medium"> Rp.{{ number_format($mapel->harga, 2, ',', '.') }}
-                                    </h7>
-                                    <form action="{{ route('materi', ['parent_id' => $mapel->id]) }}">
-                                        <button
-                                            class="my-3 rounded-md px-4 sm:px-3 py-2 text-sm bg-indigo-500 text-white font-semibold hover:bg-indigo-600 duration-300">
-                                            Lihat Kursus
-                                        </button>
-                                    </form>
+                @foreach ($mapels as $index => $mapel)
+                    <a href="{{ route('materi', ['parent_id' => $mapel->id]) }}">
+                        <div class="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4 ">
+                            <div id="mapel-list-{{ $index }}" class="rounded-3xl shadow-lg mapel-item"
+                                data-index="{{ $index }}">
+                                <div class="rounded-2xl shadow-lg">
+                                    <div class="rounded-b-none rounded-t-2xl overflow-hidden">
+                                        <img src="{{ asset('/storage/mapels/' . $mapel->image) }}" alt=""
+                                            class="aspect-[1/1] w-full h-52">
+                                    </div>
+                                    <div class="p-2 sm:p-4 flex flex-col">
+                                        <h5 class="text-xl font-bold mt-3 text-gray-900"> {{ $mapel->judul }}</h5>
+                                        <h7 class="text-md font-normal text-gray-600">
+                                            Rp.{{ number_format($mapel->harga, 2, ',', '.') }}</h7>
+                                        {{-- <form action="{{ route('materi', ['parent_id' => $mapel->id]) }}">
+                                            <!-- Isi form lainnya -->
+                                            <button
+                                                class="my-3 rounded-md px-4 sm:px-3 py-2 text-sm bg-indigo-500 text-white font-semibold hover:bg-indigo-600 duration-300">
+                                                <i class="fa-regular fa-circle-dot"></i> Lihat Kursus
+                                            </button>
+                                        </form> --}}
+                                        <div class="flex justify-end items-end">
+                                            <i class="fa-solid fa-signal py-1 text-2xl font-bold"
+                                                style="color: #506fff;"></i>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                    @endforeach
+                    </a>
+                @endforeach
+
+                <div class="mt-10">
+                    <button id="showMoreBtn"
+                        class="my-3 rounded-md px-4 sm:px-9 py-2 bg-black text-white font-semibold hover:bg-gray-900 duration-300">
+                        Show More
+                    </button>
+                    <button id="lessMoreBtn" style="display: none; "
+                        class="my-3 rounded-md px-4 sm:px-9 py-2 bg-black text-white font-semibold hover:bg-gray-900 duration-300">
+                        Less More
+                    </button>
                 </div>
-
-                <button id="showMoreBtn"
-                    class="my-3 rounded-md px-9 py-2 bg-black text-white font-semibold hover:bg-gray-900 duration-300">Show
-                    More
-                </button>
-
-                <button id="lessMoreBtn" style="display: none; "
-                    class="my-3 rounded-md px-9 py-2 bg-black text-white font-semibold hover:bg-gray-900 duration-300">Less
-                    More
-                </button>
 
             </section>
             {{-- end card --}}
 
             @include('components.about')
-
         </section>
 
         @include('components.scroll')
         @include('components.infinite-scroll')
-        {{-- @include('components.pay-view') --}}
-        @include('components.footer')
+        @include('components.faq')
 
 
 

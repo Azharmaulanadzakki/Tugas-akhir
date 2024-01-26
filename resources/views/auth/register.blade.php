@@ -98,7 +98,7 @@
             <!-- image -->
             <div class="md:block hidden w-1/2">
                 <img class="rounded-2xl aspect-[9/12]"
-                    src="https://images.unsplash.com/photo-1616606103915-dea7be788566?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1887&q=80">
+                    src="{{ asset('img/showcase4.png') }}">
             </div>
         </div>
         
