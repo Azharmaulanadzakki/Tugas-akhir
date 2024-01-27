@@ -12,7 +12,7 @@
                 <div class="md:col-span-1">
                     <p class="text-[#55c097] text-lg font-semibold text-left">#KeepLearning</p>
                     <h1
-                        class="text-3xl sm:text-4xl md:text-5xl lg:text-7xl mt-5 font-bold leading-tight text-left sm:w-[30rem]">
+                        class="text-3xl sm:text-4xl md:text-5xl lg:text-6xl mt-5 font-bold leading-tight text-left sm:w-[30rem]">
                         Hello {{ Auth::user()->name }}
                     </h1>
                     <p class="text-gray-400 text-lg text-left mt-5 ">

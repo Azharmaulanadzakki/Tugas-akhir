@@ -36,31 +36,31 @@
             <div id="marquee-content" class="marquee-content inline-block py-2 justify-between">
 
                 <div class="w-60 h-28 bg-white p-3 inline-flex items-center rounded-xl ml-2">
-                    <img src="/img/figma.png" alt="" class="w-12">
+                    <img src="{{ asset('img/figma.png') }}" alt="" class="w-12">
                     <p class="ml-2 text-[#121212] font-semibold text-xl flex-col">Figma
                         <span class="flex text-[#121212] font-medium text-base">UI/UX Designer</span>
                     </p>
                 </div>
                 <div class="w-60 h-28 bg-white p-3 inline-flex items-center rounded-xl ml-2">
-                    <img src="/img/figma.png" alt="" class="w-12">
+                    <img src="{{ asset('img/figma.png') }}" alt="" class="w-12">
                     <p class="ml-2 text-[#121212] font-semibold text-xl flex-col">Figma
                         <span class="flex text-[#121212] font-medium text-base">UI/UX Designer</span>
                     </p>
                 </div>
                 <div class="w-60 h-28 bg-white p-3 inline-flex items-center rounded-xl ml-2">
-                    <img src="/img/figma.png" alt="" class="w-12">
+                    <img src="{{ asset('img/figma.png') }}" alt="" class="w-12">
                     <p class="ml-2 text-[#121212] font-semibold text-xl flex-col">Figma
                         <span class="flex text-[#121212] font-medium text-base">UI/UX Designer</span>
                     </p>
                 </div>
                 <div class="w-60 h-28 bg-white p-3 inline-flex items-center rounded-xl ml-2">
-                    <img src="/img/figma.png" alt="" class="w-12">
+                    <img src="{{ asset('img/figma.png') }}" alt="" class="w-12">
                     <p class="ml-2 text-[#121212] font-semibold text-xl flex-col">Figma
                         <span class="flex text-[#121212] font-medium text-base">UI/UX Designer</span>
                     </p>
                 </div>
                 <div class="w-60 h-28 bg-white p-3 inline-flex items-center rounded-xl ml-2">
-                    <img src="/img/figma.png" alt="" class="w-12">
+                    <img src="{{ asset('img/figma.png') }}" alt="" class="w-12">
                     <p class="ml-2 text-[#121212] font-semibold text-xl flex-col">Figma
                         <span class="flex text-[#121212] font-medium text-base">UI/UX Designer</span>
                     </p>
@@ -76,31 +76,31 @@
             <div id="marquee-content" class="marquee-content inline-block py-2 justify-between">
 
                 <div class="w-60 h-28 bg-white p-3 inline-flex items-center rounded-xl ml-2">
-                    <img src="/img/figma.png" alt="" class="w-12">
+                    <img src="{{ asset('img/figma.png') }}" alt="" class="w-12">
                     <p class="ml-2 text-[#121212] font-semibold text-xl flex-col">Figma
                         <span class="flex text-[#121212] font-medium text-base">UI/UX Designer</span>
                     </p>
                 </div>
                 <div class="w-60 h-28 bg-white p-3 inline-flex items-center rounded-xl ml-2">
-                    <img src="/img/figma.png" alt="" class="w-12">
+                    <img src="{{ asset('img/figma.png') }}" alt="" class="w-12">
                     <p class="ml-2 text-[#121212] font-semibold text-xl flex-col">Figma
                         <span class="flex text-[#121212] font-medium text-base">UI/UX Designer</span>
                     </p>
                 </div>
                 <div class="w-60 h-28 bg-white p-3 inline-flex items-center rounded-xl ml-2">
-                    <img src="/img/figma.png" alt="" class="w-12">
+                    <img src="{{ asset('img/figma.png') }}" alt="" class="w-12">
                     <p class="ml-2 text-[#121212] font-semibold text-xl flex-col">Figma
                         <span class="flex text-[#121212] font-medium text-base">UI/UX Designer</span>
                     </p>
                 </div>
                 <div class="w-60 h-28 bg-white p-3 inline-flex items-center rounded-xl ml-2">
-                    <img src="/img/figma.png" alt="" class="w-12">
+                    <img src="{{ asset('img/figma.png') }}" alt="" class="w-12">
                     <p class="ml-2 text-[#121212] font-semibold text-xl flex-col">Figma
                         <span class="flex text-[#121212] font-medium text-base">UI/UX Designer</span>
                     </p>
                 </div>
                 <div class="w-60 h-28 bg-white p-3 inline-flex items-center rounded-xl ml-2">
-                    <img src="/img/figma.png" alt="" class="w-12">
+                    <img src="{{ asset('img/figma.png') }}" alt="" class="w-12">
                     <p class="ml-2 text-[#121212] font-semibold text-xl flex-col">Figma
                         <span class="flex text-[#121212] font-medium text-base">UI/UX Designer</span>
                     </p>

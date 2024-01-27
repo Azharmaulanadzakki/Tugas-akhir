@@ -1,3 +1,17 @@
+<style>
+    .accordion-content {
+        max-height: 0;
+        overflow: hidden;
+        transition: max-height 0.3s ease-out;
+        /* Ubah durasi dan fungsi timing sesuai keinginan Anda */
+    }
+
+    /* .accordion-content:not(.hidden) {
+        max-height: initial;
+    } */
+
+</style>
+
 <section class="max-w-6xl mx-auto py-16 md:px-8 px-4 xl:px-0">
     <div class="flex flex-col gap-y-7">
         <p class="flex items-center justify-center text-center font-medium text-emerald-400 font-['Poppins'] text-lg">
@@ -201,9 +215,12 @@
                     button.addEventListener('click', function() {
                         const content = this.nextElementSibling;
                         content.classList.toggle('hidden');
+                        content.style.maxHeight = content.classList.contains('hidden') ? null : content
+                            .scrollHeight + 'px';
                     });
                 });
             });
         </script>
+
 
 </section>
