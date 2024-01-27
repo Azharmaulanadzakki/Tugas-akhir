@@ -7,8 +7,6 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\WelcomeController;
 
-
-
 // Route guest ( belum login )
 Route::group(['middleware' => 'guest'], function () {
     Route::get('/', [WelcomeController::class, 'index'])->name('welcome.index');
