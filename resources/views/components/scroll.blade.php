@@ -1,6 +1,6 @@
 
 <button onclick="scrollToTop()" id="scrollToTopBtn"
-    class="hidden bg-gray-100 font-bold px-4 py-4 rounded-full shadow-2xl shadow-black 
+    class="hidden bg-white font-bold px-4 py-4 rounded-full 
      fixed bottom-8 right-8">
     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#00000" class="bi bi-arrow-up-short"
         viewBox="0 0 16 16">

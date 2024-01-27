@@ -9,7 +9,6 @@
     /* .accordion-content:not(.hidden) {
         max-height: initial;
     } */
-
 </style>
 
 <section class="max-w-6xl mx-auto py-16 md:px-8 px-4 xl:px-0">
@@ -150,7 +149,7 @@
                         <button class="btn-accordion">
                             <div class="flex flex-row justify-between">
                                 <h3 class="text-indigo-950 font-bold text-base">
-                                    How to migrate from other service?
+                                    Apa skill yang diharapkan setelah menyelesaikan kursus UI/UX?
                                 </h3>
                                 <div class="bg-white w-[30px] h-[30px] items-center flex justify-center rounded-full">
                                     <svg width="19" height="18" viewBox="0 0 19 18" fill="none"
@@ -166,9 +165,9 @@
                         </button>
                         <div class="accordion-content hidden flex flex-col gap-y-5">
                             <p class=" text-base text-gray-500 leading-loose">
-                                Kapp is able to develop by themselve without removing the parents permission and
-                                lorem
-                                dolor si amet fully run network at 100% avoiding data-loss at any moments.
+                                Setelah menyelesaikan kursus, diharapkan peserta memiliki pemahaman mendalam tentang
+                                prinsip-prinsip desain, kemampuan prototyping, keterampilan riset pengguna, dan keahlian
+                                menggunakan alat-alat desain.
                             </p>
                         </div>
 
@@ -179,7 +178,7 @@
                         <button class="btn-accordion">
                             <div class="flex flex-row justify-between">
                                 <h3 class="text-indigo-950 font-bold text-base">
-                                    How to migrate from other service?
+                                    Bagaimana mengevaluasi kesuksesan desain UI/UX?
                                 </h3>
                                 <div class="bg-white w-[30px] h-[30px] items-center flex justify-center rounded-full">
                                     <svg width="19" height="18" viewBox="0 0 19 18" fill="none"
@@ -195,9 +194,9 @@
                         </button>
                         <div class="accordion-content hidden flex flex-col gap-y-5">
                             <p class=" text-base text-gray-500 leading-loose">
-                                Kapp is able to develop by themselve without removing the parents permission and
-                                lorem
-                                dolor si amet fully run network at 100% avoiding data-loss at any moments.
+                                Kesuksesan desain UI/UX dapat diukur melalui metrik seperti kepuasan pengguna, tingkat
+                                konversi, retensi pengguna, dan feedback positif dari pengguna. Evaluasi dapat dilakukan
+                                melalui pengujian pengguna dan analisis data.
                             </p>
                         </div>
 
