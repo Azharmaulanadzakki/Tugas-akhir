@@ -23,16 +23,6 @@
                             <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
                         @enderror
                     </div>
-
-                    <!-- Tools -->
-                    <div class="mb-4">
-                        <label for="tools" class="block text-gray-700 text-sm font-bold mb-2">Tools</label>
-                        <input type="text" name="tools" id="tools" class="w-full border rounded-md py-2 px-3"
-                            value="{{ old('tools', $materi->tools ) }}">
-                        @error('tools')
-                            <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
-                        @enderror
-                    </div>
                     
                     {{-- tautan --}}
                     <div class="mb-4">
@@ -40,20 +30,6 @@
                         <textarea name="tautan" id="tautan" class="w-full border rounded-md py-2 px-3" rows="4">{{ old('tautan', $materi->tautan ) }}</textarea>
                         @error('isi')
                             <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
-                        @enderror
-                    </div>
-
-                    
-                    
-                    <!-- Input Gambar -->
-                    <div class="mb-4">
-                        <label for="gif" class="block text-gray-700 text-sm font-bold mb-2">Icon png yg berkaitan dgn judul</label>
-                        <input type="file" name="gif" id="gif" class="w-full border rounded-md py-2 px-"
-                        onchange="previewImage()">
-                        <img id="preview" class="mt-2" style="max-width: 40%;">
-                        <!-- Tampilkan pesan kesalahan jika ada -->
-                        @error('gambar')
-                        <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
                         @enderror
                     </div>
                     

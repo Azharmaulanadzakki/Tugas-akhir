@@ -1,7 +1,7 @@
 @extends('layout.app')
 @section('content')
 
-    <body class="bg-gray-100 box-border antialiased">
+    <body class="bg-slate-100 box-border antialiased">
 
         <!-- Hero Section -->
         <header class="text-gray-800 py-10 px-4 sm:px-8 md:px-16 lg:px-24"">
@@ -92,37 +92,9 @@
             {{-- untuk card --}}
             <section class="mx-4 sm:mx-8 my-6">
                 {{-- grid --}}
-                @foreach ($mapels as $index => $mapel)
-                    <a href="{{ route('materi', ['parent_id' => $mapel->id]) }}">
-                        <div class="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4 ">
-                            <div id="mapel-list-{{ $index }}" class="rounded-3xl shadow-lg mapel-item"
-                                data-index="{{ $index }}">
-                                <div class="rounded-2xl shadow-lg">
-                                    <div class="rounded-b-none rounded-t-2xl overflow-hidden">
-                                        <img src="{{ asset('/storage/mapels/' . $mapel->image) }}" alt=""
-                                            class="aspect-[1/1] w-full h-52">
-                                    </div>
-                                    <div class="p-2 sm:p-4 flex flex-col">
-                                        <h5 class="text-xl font-bold mt-3 text-gray-900"> {{ $mapel->judul }}</h5>
-                                        <h7 class="text-md font-normal text-gray-600">
-                                            Rp.{{ number_format($mapel->harga, 2, ',', '.') }}</h7>
-                                        {{-- <form action="{{ route('materi', ['parent_id' => $mapel->id]) }}">
-                                            <!-- Isi form lainnya -->
-                                            <button
-                                                class="my-3 rounded-md px-4 sm:px-3 py-2 text-sm bg-indigo-500 text-white font-semibold hover:bg-indigo-600 duration-300">
-                                                <i class="fa-regular fa-circle-dot"></i> Lihat Kursus
-                                            </button>
-                                        </form> --}}
-                                        <div class="flex justify-end items-end">
-                                            <i class="fa-solid fa-signal py-1 text-2xl font-bold"
-                                                style="color: #506fff;"></i>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </a>
-                @endforeach
+                <div class="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4 ">
+                @include('components.card')
+                </div>
 
                 <div class="mt-10">
                     <button id="showMoreBtn"
@@ -144,6 +116,7 @@
         @include('components.scroll')
         @include('components.infinite-scroll')
         @include('components.faq')
+        @include('components.footer')
 
 
 
@@ -196,4 +169,5 @@
         </script>
 
     </body>
+    
 @endsection

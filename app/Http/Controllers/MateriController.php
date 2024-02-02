@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\Mapel;
 use App\Models\Materi;
 use Illuminate\Http\Request;
+use Illuminate\Support\Carbon;
+use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Storage;
 use RealRashid\SweetAlert\Facades\Alert;
 
@@ -15,11 +17,31 @@ class MateriController extends Controller
      * Display a listing of the resource.
      */
 
-    public function index()
+    public function index(Request $request)
     {
-        $materis = Materi::with('mapel')->latest()->paginate(5);
-        return view('admin.materi.index', compact('materis'));
+        $search = $request->input('search');
+
+        $materis = Materi::with('mapel')
+            ->when($search, function ($query) use ($search) {
+                $query->where('title', 'like', '%' . $search . '%');
+            })
+            ->latest()
+            ->paginate(5);
+
+        foreach ($materis as $materi) {
+            // Format 'created_at' dalam bahasa Inggris (US)
+            $materi->formatted_created_at = Carbon::parse($materi->created_at)->translatedFormat('F Y');
+
+                // // Periksa apakah properti playlist ada sebelum di-decode
+                // $materi->playlist = isset($materi->playlist) ? json_decode($materi->playlist, true) : [];
+        }
+
+        // Set locale kembali ke default
+        App::setLocale(config('app.locale'));
+
+        return view('admin.materi.index', compact('materis', 'search'));
     }
+
 
     /**
      * Show the form for creating a new resource.
@@ -36,24 +58,16 @@ class MateriController extends Controller
     public function store(Request $request)
     {
         $this->validate($request, [
-            'judul'     =>  'required|',
-            'isi'       =>  'required|',
-            'gif'       =>  'nullable',
-            'parent_id' =>  'required|exists:mapels,id',
-            'tautan'    =>  'required|url|',
+            'judul'     => 'required',
+            'isi'       => 'required',
+            'parent_id' => 'required|exists:mapels,id',
+            'tautan'    => 'required|url',
         ]);
 
-
-
-        // Upload image
-        $gif = $request->file('gif');
-        $gif->storeAs('public/materis', $gif->hashName());
-
-        // Create Materi
+        // Create Materi without uploading gif
         $materi = Materi::create([
             'judul'     => $request->judul,
             'isi'       => $request->isi,
-            'gif'       => $gif->hashName(),
             'parent_id' => $request->parent_id,
             'tautan'    => $request->tautan,
         ]);
@@ -68,6 +82,7 @@ class MateriController extends Controller
 
         return redirect()->route('materi.index')->with(['success' => 'Data Berhasil Disimpan!']);
     }
+
 
     /**
      * Display the specified resource.
@@ -90,50 +105,27 @@ class MateriController extends Controller
     public function update(Request $request, Materi $materi)
     {
         $this->validate($request, [
-            'judul'     =>  'required|',
-            'isi'       =>  'required|',
-            'gif'       =>  'nullable',
-            'tautan'    =>  'required|url|',
+            'judul'     => 'required',
+            'isi'       => 'required',
+            'tautan'    => 'required|url',
         ]);
 
-        //untuk menyimpan gambar yang ada
-        $existingGif = $materi->gif;
+        // Update Materi without changing gif
+        $materi->update([
+            'judul'     => $request->judul,
+            'isi'       => $request->isi,
+            'tautan'    => $request->tautan,
+        ]);
 
-        if ($request->hasFile('gif')) {
-            $gif = $request->file('gif');
-            $gif->storeAs('public/materis', $gif->hashName());
-
-            //hapus gambar lama
-            if ($existingGif) {
-                Storage::delete('public/materis/' . $existingGif);
-            }
-
-            $materi->update([
-                'judul'     => $request->judul,
-                'isi'       => $request->isi,
-                'tautan'    => $request->tautan,
-                'gif'       => $gif->hashName(),
-
-
-            ]);
-        } else {
-            $materi->update([
-                'judul'     => $request->judul,
-                'isi'       => $request->isi,
-                'tautan'    => $request->tautan,
-                'gif'       => $existingGif //gunakan gif yang sudah ada
-            ]);
-        }
-
-        return redirect()->route('materi.index')->with(['success' => "Data Berhasil di Update!"]);
+        return redirect()->route('materi.index')->with(['success' => 'Data Berhasil di Update!']);
     }
+
 
     /**
      * Remove the specified resource from storage.
      */
     public function destroy(Materi $materi)
     {
-        Storage::delete('public/materis/', $materi->gif);
         $materi->delete();
         Alert::success("Berhasil dihapus");
         return redirect()->route('materi.index');

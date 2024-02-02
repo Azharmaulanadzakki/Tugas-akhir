@@ -6,6 +6,8 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\WelcomeController;
+use App\Http\Controllers\LoginGoogleController;
+
 
 // Route guest ( belum login )
 Route::group(['middleware' => 'guest'], function () {
@@ -18,6 +20,7 @@ Route::group(['middleware' => 'guest'], function () {
     Route::post('/register', [AuthController::class, 'registerPost'])->name('register');
     Route::get('/login', [AuthController::class, 'login'])->name('login');
     Route::post('/login', [AuthController::class, 'loginPost'])->name('login');
+    
 });
 
 // Route yg udah login

@@ -6,10 +6,9 @@
         <!-- component -->
         <section class="max-w-4xl p-6 mx-auto my-5">
 
-            <h1 class="text-xl font-bold text-white capitalize">Create judul form</h1>
+            <h1 class="text-xl font-bold text-black capitalize">Create Mapel</h1>
 
             <form action="{{ route('mapel.store') }}" method="post" enctype="multipart/form-data">
-
                 @csrf
 
                 <div class="grid grid-cols-1 gap-6 mt-4 sm:grid-cols-2">
@@ -20,9 +19,9 @@
                         <input type="text" name="judul" id="judul"
                             class="w-full border rounded-md py-2 px-3"="{{ old('judul') }}">
                         <!-- Tampilkan pesan kesalahan jika ada -->
-                        {{-- @error('judul')
+                        @error('judul')
                             <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
-                        @enderror --}}
+                        @enderror
                     </div>
 
                     <!-- Harga -->
@@ -41,21 +40,27 @@
                         <label for="description" class="block text-gray-700 text-sm font-bold mb-2">description</label>
                         <textarea name="description" id="description" class="w-full border rounded-md py-2 px-3" rows="4"></textarea>
                         <!-- Tampilkan pesan kesalahan jika ada -->
-                        {{-- @error('deskripsi')
+                        @error('deskripsi')
                             <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
-                        @enderror --}}
+                        @enderror
                     </div>
 
                     <!-- Input Gambar -->
                     <div class="mb-4">
                         <label for="image" class="block text-gray-700 text-sm font-bold mb-2">image</label>
-                        <input type="file" name="image" id="image" class="w-full border rounded-md py-2 px-"
+                        <input type="file" name="image" id="image"
+                            class="block w-full text-sm text-slate-500
+                        file:mr-4 file:py-2 file:px-4
+                        file:rounded-full file:border-0
+                        file:text-sm file:font-semibold
+                        file:bg-violet-50 file:text-violet-700
+                        hover:file:bg-violet-100"
                             onchange="previewImage()">
                         <img id="preview" class="mt-2" style="max-width: 40%;">
                         <!-- Tampilkan pesan kesalahan jika ada -->
-                        {{-- @error('gambar')
+                        @error('gambar')
                             <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
-                        @enderror --}}
+                        @enderror
                     </div>
 
                     <!-- Tombol Submit -->

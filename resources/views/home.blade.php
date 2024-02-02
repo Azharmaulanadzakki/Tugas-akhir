@@ -2,7 +2,7 @@
 @section('content')
     @include('components.navbar-user')
 
-    <body class="bg-gray-100 box-border antialiased">
+    <body class="bg-slate-100 box-border antialiased">
 
         <!-- Hero Section -->
         <header class="text-gray-800 py-10 px-4 sm:px-8 md:px-16 lg:px-24">
@@ -19,13 +19,17 @@
                         Kelas online kami menawarkan pengalaman pembelajaran yang mendalam dan interaktif untuk para calon
                         desainer UI/UX, <br> terutama mereka yang baru memulai perjalanan mereka dalam dunia desain
                         antarmuka
-                        pengguna. 
-                        <br> 
-                        {{-- Dengan fokus pada UI/UX design, prototyping, dan pendekatan yang ramah untuk pemula,
-                        kami
-                        berkomitmen untuk membantu peserta belajar konsep-konsep kunci dan keterampilan praktis yang
-                        diperlukan untuk menjadi desainer UI/UX yang sukses. --}}
+                        pengguna.
+                        <br>
                     </p>
+
+                    <div class="my-12">
+                        <button onclick="scrollToCard()"
+                            class="text-left font-bold inline-block bg-blue-500 hover:bg-blue-600 text-white py-2 px-6 sm:px-8 rounded-full text-base sm:text-lg md:text-base lg:text-lg xl:text-base transition duration-300">
+                            Get Started
+                        </button>
+                    </div>
+
                 </div>
 
                 <!-- Bagian Gambar -->
@@ -53,9 +57,10 @@
 
         <section class="mx-4 sm:mx-8 md:mx-16 lg:mx-24">
             <div class="container mx-auto py-8 sm:py-16 px-4">
-                <h1 class="text-2xl sm:text-4xl font-semibold mb-4 sm:mb-8 text-center">
+                <h1 id="card-section" class="text-2xl sm:text-4xl font-semibold mb-4 sm:mb-8 text-center">
                     Discover a most popular Online Course
                 </h1>
+
                 <div class="flex items-center justify-center">
                     <form action="{{ route('home.index') }}" method="GET">
                         <div
@@ -65,18 +70,6 @@
                             <button type="submit"
                                 class="w-full sm:w-auto px-4 sm:px-6 py-3 bg-black border-black text-white fill-white active:scale-110 duration-300 border will-change-transform overflow-hidden relative rounded-xl transition-all disabled:opacity-70">
                                 <div class="relative">
-                                    <div
-                                        class="flex items-center justify-center h-3 w-3 absolute inset-1/2 -translate-x-1/2 -translate-y-1/2 transition-all">
-                                        <!-- Loading animation change opacity to display -->
-                                        <svg class="opacity-0 animate-spin w-full h-full" xmlns="http://www.w3.org/2000/svg"
-                                            fill="none" viewBox="0 0 24 24">
-                                            <circle class="opacity-25" cx="12" cy="12" r="10"
-                                                stroke="currentColor" stroke-width="4"></circle>
-                                            <path class="opacity-75" fill="currentColor"
-                                                d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z">
-                                            </path>
-                                        </svg>
-                                    </div>
                                     <div class="flex items-center transition-all opacity-1 valid:"><span
                                             class="text-sm font-semibold whitespace-nowrap truncate mx-auto">
                                             Search
@@ -87,44 +80,15 @@
                         </div>
                     </form>
                 </div>
+                
             </div>
 
             <div class="mx-4 sm:mx-8 my-6">
 
-                @foreach ($mapels as $index => $mapel)
-                    <a href="{{ route('materi', ['parent_id' => $mapel->id]) }}">
-                        <div class="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4 ">
-                            <div id="mapel-list-{{ $index }}" class="rounded-3xl shadow-lg mapel-item"
-                                data-index="{{ $index }}">
-                                <div class="rounded-3xl shadow-lg">
-                                    <div class="rounded-b-none rounded-t-3xl overflow-hidden">
-                                        <img src="{{ asset('/storage/mapels/' . $mapel->image) }}" alt=""
-                                            class="aspect-[1/1] w-full h-52">
-                                    </div>
-                                    <div class="p-2 sm:p-4 flex flex-col">
-                                        <h5 class="text-xl font-bold mt-3 text-gray-900 leading-tight"> {{ $mapel->judul }}</h5>
-                                        {{-- <h5 class="text-xl font- mt-3 text-gray-900"> {{ $mapel->judul }}</h5> --}}
-                                        <h7 class="text-md font-normal text-gray-600 mt-2">
-                                            Rp. {{ number_format($mapel->harga, 2, ',', '.') }}
-                                        </h7>
-                                        {{-- <form action="{{ route('materi', ['parent_id' => $mapel->id]) }}">
-                                            <!-- Isi form lainnya -->
-                                            <button
-                                                class="my-3 rounded-md px-4 sm:px-3 py-2 text-sm bg-indigo-500 text-white font-semibold hover:bg-indigo-600 duration-300">
-                                                <i class="fa-regular fa-circle-dot"></i> Lihat Kursus
-                                            </button>
-                                        </form> --}}
-                                        <div class="flex justify-end items-end">
-                                            <i class="fa-solid fa-signal py-1 text-2xl font-bold"
-                                                style="color: #506fff;"></i>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </a>
-                @endforeach
-                
+                <div id="results-section" class="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4 ">
+                    @include('components.card')
+                </div>
+
                 <div class="mt-10">
                     <button id="showMoreBtn"
                         class="my-3 rounded-md px-4 sm:px-9 py-2 bg-black text-white font-semibold hover:bg-gray-900 duration-300">
@@ -143,6 +107,7 @@
         @include('components.scroll')
         @include('components.infinite-scroll')
         @include('components.faq')
+        @include('components.footer')
 
         {{-- script show more --}}
         <script>
@@ -191,17 +156,38 @@
                 });
             });
         </script>
+
+        <script>
+            function scrollToCard() {
+                const aboutSection = document.getElementById('card-section');
+
+                if (aboutSection) {
+                    // Gunakan fungsi scrollIntoView untuk melakukan scroll ke elemen tersebut
+                    aboutSection.scrollIntoView({
+                        behavior: 'smooth'
+                    });
+                }
+            }
+        </script>
+
+        <script>
+            window.onload = function() {
+                // Cek apakah terdapat parameter search pada URL
+                const searchParam = new URLSearchParams(window.location.search).get('search');
+
+                if (searchParam) {
+                    // Jika parameter search ada, gulirkan halaman ke hasil pencarian
+                    const resultsSection = document.getElementById('results-section');
+
+                    if (resultsSection) {
+                        resultsSection.scrollIntoView({
+                            behavior: 'smooth'
+                        });
+                    }
+                }
+            };
+        </script>
+
+
     </body>
 @endsection
-
-{{-- <div class="item-step mt-22">
-    <img src="{{ asset('img/step2.png') }}" alt="" class="w-full object-cover rounded-lg">
-    <div class="p-4">
-        <p class="text-lg font-medium text-gray-500 mb-2">STUDY HARDER</p>
-        <h2 class="text-2xl font-bold mb-4">Finish The Project</h2>
-        <p class="text-gray-700">
-            Each of you will be joining a private group and working together with
-            team members on a project
-        </p>
-    </div>
-</div> --}}

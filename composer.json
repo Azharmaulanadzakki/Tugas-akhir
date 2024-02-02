@@ -14,9 +14,10 @@
         "laracasts/flash": "^3.2",
         "laravel/framework": "^10.10",
         "laravel/sanctum": "^3.2",
-        "laravel/socialite": "^5.9",
+        "laravel/socialite": "^5.11",
         "laravel/tinker": "^2.8",
         "midtrans/midtrans-php": "^2.5",
+        "nesbot/carbon": "^2.72",
         "realrashid/sweet-alert": "^7.1"
     },
     "require-dev": {

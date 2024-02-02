@@ -1,23 +1,10 @@
 @extends('layout.app') <!-- Sesuaikan dengan layout aplikasi Anda -->
 
 @section('content')
-    <div class="container">
-        <h1>{{ $mapel->judul }}</h1>
-        <p>Description: {{ $mapel->description }}</p>
-        <p>Harga: {{ $mapel->formatted_harga }}</p> <!-- Memanggil accessor getFormattedHargaAttribute -->
-        <img src="{{ $mapel->image }}" alt="Mapel Image">
-        <!-- Tambahkan bagian lain dari tampilan sesuai kebutuhan Anda -->
-        @php
-            $userHasPaid = $this->userHasPaid($mapel); // Assuming userHasPaid is a method in MapelController
-        @endphp
-
-        @if (!$userHasPaid)
-            <form action="{{ route('mapel.initiate-payment', ['mapel' => $mapel->id]) }}" method="post">
-                @csrf
-                <button type="submit">Bayar Sekarang</button>
-            </form>
-        @else
-            <p>Anda sudah membayar untuk akses ini.</p>
-        @endif
+    <div class="mb-4">
+        <a href="{{ route('reviews.create', ['mapel_id' => $mapel->id]) }}"
+            class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+            Beri Review
+        </a>
     </div>
 @endsection

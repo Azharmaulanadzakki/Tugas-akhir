@@ -4,20 +4,7 @@
     <body class="flex bg-gray-100 min-h-screen">
         @include('components.sidebar')
         <div class="flex-grow text-gray-800">
-            <header class="flex items-center h-20 px-6 sm:px-10 bg-white">
-
-                <div class="relative w-full max-w-md sm:-ml-2">
-                    <svg aria-hidden="true" viewBox="0 0 20 20" fill="currentColor"
-                        class="absolute h-6 w-6 mt-2.5 ml-2 text-gray-400">
-                        <path fill-rule="evenodd"
-                            d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z"
-                            clip-rule="evenodd" />
-                    </svg>
-                    <input type="text" role="search" placeholder="Search..."
-                        class="py-2 pl-10 pr-4 w-full border-4 border-transparent placeholder-gray-400 focus:bg-gray-50 rounded-lg" />
-                </div>
-
-            </header>
+        
             <main class="p-6 sm:p-10 space-y-2">
                 <div class="flex flex-col space-y-6 md:space-y-0 md:flex-row justify-between">
                     <div class="mr-6">
@@ -25,8 +12,15 @@
                         <h2 class="text-gray-600 ml-0.5">Learn With Azhar UI/UX Course</h2>
                     </div>
                 </div>
+                <form action="{{ route('materi.index') }}" method="GET">
+                    <div class="flex items-center">
+                        <input type="text" name="search" class="p-2 border rounded-md mr-2"
+                            placeholder="Cari mata pelajaran" value="{{ $search }}">
+                        <button type="submit" class="bg-blue-500 text-white px-5 py-2 rounded-md">Cari</button>
+                    </div>
+                </form>
                 <div class="flex flex-wrap items-start justify-end -mb-3">
-                    <form action="{{ route('materi.create') }}" method="get">
+                    <a href="{{ route('materi.create') }}" method="get">
                         <button
                             class="inline-flex px-5 py-3 text-white bg-purple-600 hover:bg-purple-700 rounded-md ml-6 mb-3">
                             <svg aria-hidden="true" fill="none" viewBox="0 0 24 24" stroke="currentColor"
@@ -36,7 +30,7 @@
                             </svg>
                             Create Materi
                         </button>
-                    </form>
+                    </a>
                 </div>
 
                 <div>

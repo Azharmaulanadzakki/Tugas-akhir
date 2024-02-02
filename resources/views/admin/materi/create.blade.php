@@ -2,15 +2,13 @@
 @section('content')
 
     <body>
+        <script src="https://cdn.ckeditor.com/4.16.1/standard/ckeditor.js"></script>
         <!-- component -->
-        <section class="max-w-4xl p-6 mx-auto my-5">
+        <section class="max-w-4xl p-10 mx-auto my-5">
 
-
-
-            <form action="{{ route('materi.store') }}" method="post" enctype="multipart/form-data">
+            <form action="{{ route('materi.store') }}" method="post" enctype="multipart/form-data" value="{{ csrf_token() }}">
 
                 @csrf
-
 
                 <div class="grid grid-cols-1 gap-6 mt-4 sm:grid-cols-2">
 
@@ -20,35 +18,6 @@
                         <input type="text" name="judul" id="judul" class="w-full border rounded-md py-2 px-3"
                             value="{{ old('judul') }}">
                         @error('judul')
-                            <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
-                        @enderror
-                    </div>
-
-                    <!-- Isi -->
-                    <div class="mb-4">
-                        <label for="isi" class="block text-gray-700 text-sm font-bold mb-2">Isi</label>
-                        <textarea name="isi" id="isi" class="w-full border rounded-md py-2 px-3" rows="4">{{ old('isi') }}</textarea>
-                        @error('isi')
-                            <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
-                        @enderror
-                    </div>
-
-                    <div class="mb-4">
-                        <label for="tautan" class="block text-gray-700 text-sm font-bold mb-2">link yt</label>
-                        <textarea name="tautan" id="tautan" class="w-full border rounded-md py-2 px-3" rows="4">{{ old('tautan') }}</textarea>
-                        @error('isi')
-                            <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
-                        @enderror
-                    </div>
-
-                    <!-- Input Gambar -->
-                    <div class="mb-4">
-                        <label for="gif" class="block text-gray-700 text-sm font-bold mb-2">icon png yg berkaitan dgn judul</label>
-                        <input type="file" name="gif" id="gif" class="w-full border rounded-md py-2 px-"
-                            onchange="previewImage()">
-                        <img id="preview" class="mt-2" style="max-width: 40%;">
-                        <!-- Tampilkan pesan kesalahan jika ada -->
-                        @error('gambar')
                             <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
                         @enderror
                     </div>
@@ -64,7 +33,27 @@
                         </select>
                     </div>
 
+
+                    <div class="mb-4">
+                        <label for="tautan" class="block text-gray-700 text-sm font-bold mb-2">link yt</label>
+                        <textarea name="tautan" id="tautan" class="w-full border rounded-md py-2 px-3" rows="2">{{ old('tautan') }}</textarea>
+                        @error('isi')
+                            <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
+                        @enderror
+                    </div>
+
                 </div>
+
+                <!-- Isi -->
+                <div class="mb-4">
+                    <label for="isi" class="block text-gray-700 text-sm font-bold mb-2">Isi</label>
+                    <textarea id="isi" name="isi" class="w-full border-2 rounded py-2 px-3 h-64" rows="">{{ old('isi') }}</textarea>
+                    @error('isi')
+                        <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
+                    @enderror
+                </div>
+
+
                 <div class="flex mt-6 justify-start">
                     <button type="submit"
                         class="ring-2 ring-slate-700 font-semibold px-6 py-2 leading-5 text-gray-900 hover:text-white transition-colors duration-200 transform bg-white rounded-md hover:bg-gray-700 focus:outline-none focus:bg-gray-900">Create</button>
@@ -88,5 +77,4 @@
         </script>
 
     </body>
-    
 @endsection

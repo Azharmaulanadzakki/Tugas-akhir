@@ -11,8 +11,10 @@
     integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA=="
     crossorigin="anonymous" referrerpolicy="no-referrer" />
 </head>
-<body> 
-    @yield('content')
+<body>
+    <div class="box-border antialiased font-['Poppins']">
+        @yield('content')
+    </div>
     @include('sweetalert::alert')
     <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.2.1/flowbite.min.js"></script>
 </body>

@@ -7,11 +7,11 @@
             class="flex items-center px-6 py-2.5 font-semibold bg-gray-700 hover:bg-gray-800 transition-colors text-white text-base border rounded-full w-full">
             Edit Profile
         </button>
-        <a href="">
+        {{-- <a href="">
             <button"
                 class="flex items-center px-6 py-2.5 font-semibold bg-gray-700 hover:bg-gray-800 transition-colors text-white text-base border rounded-full w-full">
                 To-do List
             </button>
-        </a>
+        </a> --}}
     </div>
 </aside>
