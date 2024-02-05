@@ -43,7 +43,7 @@
                     <div
                         class="absolute -bottom-8 left-20 w-[22rem] h-[22rem] bg-pink-300 rounded-full mix-blend-multiply filter blur-xl opacity-100 animate-blob animation-delay-4000">
                     </div>
-                    <img src="{{ asset('img/fix.webp') }}" class="img-fluid z-10 relative" alt="">
+                    <img src="{{ asset('img/section.png') }}" class="img-fluid z-10 relative" alt="">
                 </div>
             </div>
 

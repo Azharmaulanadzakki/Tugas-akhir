@@ -37,8 +37,15 @@ class HomeController extends Controller
             ->where('parent_id', $parent_id)
             ->paginate(1); // Sesuaikan dengan jumlah item per halaman yang diinginkan
 
+        //buat playlist
+        $playlists = DB::table('materis')
+            ->where('parent_id', $parent_id)
+            ->get();
+
+        $parent_id = $parent_id;
+
         // Kirimkan variabel $parent dan $materis ke tampilan
-        return view('materi', compact('parent', 'materis'));
+        return view('materi', compact('parent', 'materis', 'playlists', 'parent_id'));
     }
 
     public function tools($parent_id = null)

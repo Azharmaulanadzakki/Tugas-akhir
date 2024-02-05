@@ -31,9 +31,6 @@ class MateriController extends Controller
         foreach ($materis as $materi) {
             // Format 'created_at' dalam bahasa Inggris (US)
             $materi->formatted_created_at = Carbon::parse($materi->created_at)->translatedFormat('F Y');
-
-                // // Periksa apakah properti playlist ada sebelum di-decode
-                // $materi->playlist = isset($materi->playlist) ? json_decode($materi->playlist, true) : [];
         }
 
         // Set locale kembali ke default

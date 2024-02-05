@@ -1,5 +1,7 @@
 @extends('layout.app')
 @section('content')
+    <link href="https://cdn.jsdelivr.net/gh/eliyantosarage/font-awesome-pro@main/fontawesome-pro-6.5.1-web/css/all.min.css"
+        rel="stylesheet">
 
     <body class="bg-gray-100 box-border antialiased font-['Poppins']">
         @if ($materis->isEmpty())
@@ -32,7 +34,6 @@
                     <span class="ml-1">
                         All levels
                     </span>
-
                 </h2>
 
                 <div class="flex justify-between my-20 mx-20">
@@ -85,8 +86,16 @@
                         <section class="bg-white p-4 rounded-2xl shadow">
                             <h2 class="text-lg font-semibold mb-4">Playlist</h2>
                             <ul>
-                                @foreach ($materis as $materi)
-                                    <li class="mb-2"> {{ $materi->judul }} </li>
+                                @foreach ($playlists as $playlist)
+                                    <a href="{{ '/materi/' . $parent_id . '?page=' . $playlist->id }}">
+                                        <button
+                                            class="px-4 py-2 rounded-3xl bg-gray-200 hover:bg-gray-300 transition-colors duration-300 w-full my-2 text-left">
+                                            <i class="fa-solid fa-circle-play text-xl my-1" style="color: #506fff"></i> 
+                                            <span class="mx-4">
+                                                {{ $playlist->judul }} 
+                                            </span>
+                                        </button>
+                                    </a>
                                 @endforeach
                             </ul>
                         </section>
